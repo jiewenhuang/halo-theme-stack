@@ -7,5 +7,8 @@
   </head>
   <body>
     Theme Starter
+    <p th:each="post : ${postFinder.list(1, 10)}">
+      <span th:text="${post.name}">Onions</span>
+    </p>
   </body>
 </html>
