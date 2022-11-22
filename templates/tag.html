@@ -4,6 +4,7 @@
   th:replace="~{layout :: html(head = null,content = ~{::content})}"
 >
   <th:block th:fragment="content">
+    <h1 th:text="${tag.spec.displayName}"></h1>
     <ul>
       <li th:each="post : ${posts.items}">
         <a
