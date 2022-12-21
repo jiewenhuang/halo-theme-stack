@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" th:fragment="html (title,header,content,head,footer)" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name=generator content="Hugo 0.104.1">
+    <meta charset=utf-8>
+    <meta name=viewport content="width=device-width,initial-scale=1">
+    <meta name=description content="无限进步.✍️">
+    <title th:text="${title}"></title>
+    <link rel=stylesheet th:href="@{/assets/css/style.css}">
+    <link rel=stylesheet th:href="@{${#strings.isEmpty(site.favicon) ? '/assets/images/hao-logo.jpg' : site.favicon}}"/>
+    <link rel="shortcut icon" th:href="@{/assets/img/favicon.ico}">
+</head>
+<body class=article-page>
+<script>
+    (function() {
+        const e = "StackColorScheme";
+        localStorage.getItem(e) || localStorage.setItem(e, "light")
+    })()
+</script>
+<script>
+    (function() {
+        const t = "StackColorScheme",
+            e = localStorage.getItem(t),
+            n = window.matchMedia("(prefers-color-scheme: dark)").matches === !0;
+        e == "dark" || e === "auto" && n ? document.documentElement.dataset.scheme = "dark": document.documentElement.dataset.scheme = "light"
+    })()
+</script>
+<div class="container main-container flex on-phone--column extended">
+<!--左边栏-->
+    <th:block th:replace="~{modules/left-sidebar}" />
+<!--右边栏-->
+    <th:block th:replace="~{modules/right-sidebar}" />
+    <th:block th:replace="${content}"></th:block>
+
+</div>
+
+<script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js
+        integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin=anonymous>
+</script>
+<script type=text/javascript th:src="@{/assets/js/main.js}" defer>
+</script>
+<script>
+    (function() {
+        const e = document.createElement("link");
+        e.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",
+            e.type = "text/css",
+            e.rel = "stylesheet",
+            document.head.appendChild(e)
+    })()
+</script>
+
+</body>
+</html>

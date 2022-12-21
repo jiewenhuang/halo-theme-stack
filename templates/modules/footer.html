@@ -1,0 +1,44 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<footer class=site-footer th:fragment="footer">
+  <section class=copyright>
+    &copy; [[${theme.config.basic.copyright}]]
+  </section>
+  <section class=powerby>
+    Powered by GitHub.Pages
+    <br>
+    Built with
+    <a href=https://halo.run/ target=_blank rel=noopener>
+      Halo
+    </a>
+    <br>
+    主题
+    <b>
+      <a href=https://github.com/jiewenhuang/halo-theme-stack target=_blank rel=noopener
+         data-version=3.16.0>
+        Stack
+      </a>
+    </b>
+    由
+    <a href=https://jimmycai.com target=_blank rel=noopener>
+      Jimmy
+    </a>
+    设计
+    <span>
+      <a href="https://www.jiewen.run/" target=_blank rel=noopener>
+              • 由Jiewen移植
+      </a>
+            </span>
+  </section>
+  <section class=powerby>
+<!--    <img th:src="@{/assets/img/icp.png}" alt width=15px height=15px>-->
+    <a href="https://beian.miit.gov.cn/" target=_blank>
+      [[${theme.config.basic.icp}]]
+    </a>
+  </section>
+  <section class=powerby>
+    📑共咕咕了 96.90k 字 · 共水了 75篇文章.
+    </br>
+
+  </section>
+</footer>
+</html>

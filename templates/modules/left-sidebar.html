@@ -1,0 +1,186 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<aside class="sidebar left-sidebar sticky" th:fragment="left-sidebar">
+    <button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label=切换菜单>
+          <span class=hamburger-box>
+            <span class=hamburger-inner>
+            </span>
+          </span>
+    </button>
+    <header>
+        <figure class=site-avatar>
+            <a href=/>
+                <img th:src="@{/assets/img/avatar_huc4ee539f708b3764d0a4718d2170118a_9562_300x0_resize_box_3.png}"
+                     width=300 height=300 class=site-logo loading=lazy alt=Avatar>
+            </a>
+            <span class=emoji>
+              🍥
+            </span>
+        </figure>
+        <div class=site-meta>
+            <h1 class=site-name>
+                <a href=index.html>
+                    L1nSn0w's Blog
+                </a>
+            </h1>
+            <h2 class=site-description>
+                无限进步.✍️
+            </h2>
+        </div>
+    </header>
+    <ol class=social-menu >
+        <th:block th:replace="~{modules/widgets/social-group :: github}" />
+
+    </ol>
+    <ol class=menu id=main-menu>
+        <li class=current>
+            <a href=/>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home"
+                     width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ff4500"
+                     fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <polyline points="5 12 3 12 12 3 21 12 19 12" />
+                    <path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
+                    <path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6" />
+                </svg>
+                <span>
+                主页
+              </span>
+            </a>
+        </li>
+        <li>
+            <a href=/archives>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive"
+                     width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#00abfb"
+                     fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <rect x="3" y="4" width="18" height="4" rx="2" />
+                    <path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8" />
+                    <line x1="10" y1="12" x2="14" y2="12" />
+                </svg>
+                <span>
+                归档
+              </span>
+            </a>
+        </li>
+        <li>
+            <a href=/about>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-alien"
+                     width="80" height="80" viewBox="0 0 24 24" stroke-width="2" stroke="#ff9300"
+                     fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M11 17a2.5 2.5.0 002 0" />
+                    <path d="M12 3C7.336 3 4.604 5.331 4.138 8.595a11.816 11.816.0 002 8.592 10.777 10.777.0 003.199 3.064c1.666 1 3.664 1 5.33.0a10.777 10.777.0 003.199-3.064 11.89 11.89.0 002-8.592C19.4 5.33 16.668 3 12.004 3z"
+                    />
+                    <line x1="8" y1="11" x2="10" y2="13" />
+                    <line x1="16" y1="11" x2="14" y2="13" />
+                </svg>
+                <span>
+                关于
+              </span>
+            </a>
+        </li>
+        <li>
+            <a href=search.html>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search"
+                     width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#00b341"
+                     fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <circle cx="10" cy="10" r="7" />
+                    <line x1="21" y1="21" x2="15" y2="15" />
+                </svg>
+                <span>
+                搜索
+              </span>
+            </a>
+        </li>
+        <li>
+            <a href=links>
+                <svg width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="48" height="48" fill="#fff" fill-opacity=".01" />
+                    <path d="M24 44c11.0457.0 20-8.9543 20-20C44 12.9543 35.0457 4 24 4 12.9543 4 4 12.9543 4 24s8.9543 20 20 20z"
+                          stroke="#579901" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"
+                    />
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M31 7V24 7z" fill="none"
+                    />
+                    <path d="M31 7V24" stroke="#579901" stroke-width="4" stroke-linecap="round"
+                          stroke-linejoin="round" />
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M16.636 6.63605 30.7781 20.7782 16.636 6.63605z"
+                          fill="none" />
+                    <path d="M16.636 6.63605 30.7781 20.7782" stroke="#579901" stroke-width="4"
+                          stroke-linecap="round" stroke-linejoin="round" />
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M7 17H24 7z" fill="none"
+                    />
+                    <path d="M7 17H24" stroke="#579901" stroke-width="4" stroke-linecap="round"
+                          stroke-linejoin="round" />
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M20.364 17.636 6.22188 31.7782 20.364 17.636z"
+                          fill="none" />
+                    <path d="M20.364 17.636 6.22188 31.7782" stroke="#579901" stroke-width="4"
+                          stroke-linecap="round" stroke-linejoin="round" />
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M17 25V42 25z" fill="none"
+                    />
+                    <path d="M17 25V42" stroke="#579901" stroke-width="4" stroke-linecap="round"
+                          stroke-linejoin="round" />
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M17.636 27.636 31.7781 41.7782 17.636 27.636z"
+                          fill="none" />
+                    <path d="M17.636 27.636 31.7781 41.7782" stroke="#579901" stroke-width="4"
+                          stroke-linecap="round" stroke-linejoin="round" />
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M24 31H42 24z" fill="none"
+                    />
+                    <path d="M24 31H42" stroke="#579901" stroke-width="4" stroke-linecap="round"
+                          stroke-linejoin="round" />
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M42.364 16.636 28.2219 30.7782 42.364 16.636z"
+                          fill="none" />
+                    <path d="M42.364 16.636 28.2219 30.7782" stroke="#579901" stroke-width="4"
+                          stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M24 31c3.866.0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7z"
+                          fill="none" stroke="#579901" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"
+                    />
+                </svg>
+                <span>
+                友链
+              </span>
+            </a>
+        </li>
+        <div class=menu-bottom-section>
+<!--            <li id=i18n-switch>-->
+<!--                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language"-->
+<!--                     width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor"-->
+<!--                     fill="none" stroke-linecap="round" stroke-linejoin="round">-->
+<!--                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />-->
+<!--                    <path d="M4 5h7" />-->
+<!--                    <path d="M9 3v2c0 4.418-2.239 8-5 8" />-->
+<!--                    <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />-->
+<!--                    <path d="M12 20l4-9 4 9" />-->
+<!--                    <path d="M19.1 18h-6.2" />-->
+<!--                </svg>-->
+<!--                <select name=language onchange="window.location.href=this.selectedOptions[0].value">-->
+<!--                    <option value=https://blog.linsnow.cn/ selected>-->
+<!--                        中文-->
+<!--                    </option>-->
+<!--                    <option value=https://blog.linsnow.cn/en/>-->
+<!--                        English-->
+<!--                    </option>-->
+<!--                </select>-->
+<!--            </li>-->
+            <li id=dark-mode-toggle>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left"
+                     width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor"
+                     fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" />
+                    <circle cx="8" cy="12" r="2" />
+                    <rect x="2" y="6" width="20" height="12" rx="6" />
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right"
+                     width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor"
+                     fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" />
+                    <circle cx="16" cy="12" r="2" />
+                    <rect x="2" y="6" width="20" height="12" rx="6" />
+                </svg>
+                <span>
+                暗色模式
+              </span>
+            </li>
+        </div>
+    </ol>
+</aside>

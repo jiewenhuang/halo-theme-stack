@@ -1,0 +1,25 @@
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<main class="main full-width" th:fragment="moment">
+<!--  欢迎语-->
+  <div class=announce th:utext="${theme.config.basic.head_hello}">
+  </div>
+<!--  post-list-->
+  <th:block th:replace="~{modules/post-list}" />
+  <nav class=pagination>
+          <span class='page-link current'>
+            1
+          </span>
+    <a class=page-link href=page/2/2.html>
+      2
+    </a>
+    <span class='page-link dots'>
+            &mldr;
+          </span>
+    <a class=page-link href=page/13/13.html>
+      13
+    </a>
+  </nav>
+    <th:block th:replace="~{modules/footer}" />
+
+</main>

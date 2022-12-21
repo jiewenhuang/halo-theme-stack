@@ -1,13 +1,43 @@
 apiVersion: v1alpha1
 kind: Setting
 metadata:
-  name: theme-starter-setting
+  name: theme-stack-setting
 spec:
   forms:
-    - group: style
-      label: 样式
+    - group: basic
+      label: 基本设置
       formSchema:
-        - $formkit: color
-          name: background_color
-          label: 背景颜色
-          value: "#f2f2f2"
+        - $formkit: code
+          name: head_hello
+          label: 顶部欢迎代码
+          value: "<h2>
+👋Welcome To
+      <strong style=color:#e99312>
+        L1nSn0w's Blog
+      </strong>
+    </h2>"
+          language: html
+        - $formkit: text
+          name: copyright
+          label: copyright
+          value: "2020 - 2022 Jiewen's Blog"
+        - $formkit: text
+          name: icp
+          label: 备案信息
+          value: "京ICP备888888号-3"
+
+    - group: left-sidebar
+      label: 左边栏
+      formSchema:
+        - $formkit: repeater
+          name: socialMedia
+          label: 社交媒体
+          help: 头像底部社交媒体
+          value: [ ]
+          children:
+            - $formkit: select
+              name: icon
+              label: 图标
+              options:
+
+
