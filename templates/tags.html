@@ -1,17 +1,44 @@
 <!DOCTYPE html>
-<html
-  xmlns:th="https://www.thymeleaf.org"
-  th:replace="~{layout :: html(head = null,content = ~{::content})}"
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{modules/layout :: html(title = '标签' + ' - ' + ${site.title},htmlType = tags,header = null,leftSidebar = true,rightSidebar = false, content = ~{::content}, head = null, footer = null)}"
 >
-  <th:block th:fragment="content">
-    <h1>标签</h1>
-    <ul>
-      <li th:each="tag : ${tags}">
-        <a
-          th:href="@{${tag.status.permalink}}"
-          th:text="${tag.spec.displayName}"
-        ></a>
-      </li>
-    </ul>
-  </th:block>
-</html>
+<th:block th:fragment="content">
+  <main class="main full-width">
+    <header>
+      <h3 class=section-title>
+        TAG
+      </h3>
+      <div class=section-card>
+        <div class=section-details>
+          <h3 class=section-count>
+            [[${tag.status.postCount}]] page
+          </h3>
+          <h1 class=section-term>
+            [[${tag.spec.displayName}]]
+          </h1>
+        </div>
+      </div>
+    </header>
+    <section class=article-list--compact>
+      <article th:each="post : ${posts.items}">
+        <a th:href="${post.status.permalink}">
+          <div class=article-details>
+            <h2 class=article-title>
+              [[${post.spec.title}]]
+            </h2>
+            <footer class=article-time>
+              <time th:text="${#dates.format(post.spec.publishTime,'yyyy-MM-dd')}">
+
+              </time>
+            </footer>
+          </div>
+          <div class=article-image>
+            <img th:src="${post.spec.cover}"
+                 width=120 height=120 th:alt="${post.spec.title}" loading=lazy>
+          </div>
+        </a>
+      </article>
+    </section>
+    <th:block th:replace="~{modules/footer}" />
+  </main>
+</th:block>
