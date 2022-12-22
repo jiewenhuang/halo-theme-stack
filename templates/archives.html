@@ -1,26 +1,64 @@
 <!DOCTYPE html>
-<html
-  xmlns:th="https://www.thymeleaf.org"
-  th:replace="~{layout :: html(head = null,content = ~{::content})}"
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{modules/layout :: html(title = '归档' + ' - ' + ${site.title},htmlType = category,header = null,leftSidebar = true,rightSidebar = false, content = ~{::content}, head = null, footer = null)}"
 >
   <th:block th:fragment="content">
-    <th:block th:each="archive : ${archives.items}">
-      <h1 th:text="${archive.year}"></h1>
-      <ul class="listing">
-        <th:block th:each="month : ${archive.months}">
-          <li th:each="post : ${month.posts}">
-            <a
-              th:href="@{${post.status.permalink}}"
-              th:title="${post.spec.title}"
-              th:text="${post.spec.title}"
-            ></a>
-          </li>
-        </th:block>
-      </ul>
-    </th:block>
-    <a th:if="${archives.hasPrevious()}" th:href="@{${archives.prevUrl}}">
-      上一页
-    </a>
-    <a th:if="${archives.hasNext()}" th:href="@{${archives.nextUrl}}">下一页</a>
+    <main class="main full-width">
+      <header>
+        <h2 class=section-title>
+          Categories
+        </h2>
+        <div class=subsection-list>
+          <div class=article-list--tile th:with="categories = ${categoryFinder.listAll()}">
+            <article class=has-image th:each="category : ${categories}">
+              <a th:href="@{${category.status.permalink}}">
+                <div class=article-image>
+                  <img th:src="${category.spec.cover}"
+                       width=250 height=150 loading=lazy th:alt="${category.spec.displayName}" data-hash="md5-B9yOkgltkIEh9dKNPcE5GQ==">
+                </div>
+                <div class=article-details>
+                  <h2 class=article-title th:text="${category.spec.displayName}">
+
+                  </h2>
+                </div>
+              </a>
+            </article>
+          </div>
+        </div>
+      </header>
+      <div class=archives-group th:each="archive : ${archives.items}" id="${archive.year}">
+        <h2 class="archives-date section-title">
+          <a th:href="'#'+${archive.year}" th:text="${archive.year}">
+
+          </a>
+        </h2>
+        <div class=article-list--compact>
+          <th:block th:each="month : ${archive.months}">
+          <article th:each="post : ${month.posts}">
+            <a th:href="@{${post.status.permalink}}">
+              <div class=article-details>
+                <h2 class=article-title>
+                  [[${post.spec.title}]]
+                </h2>
+                <footer class=article-time>
+                  <time th:text="${#dates.format(post.metadata.creationTimestamp,'yyyy-MM-dd')}">
+
+                  </time>
+                </footer>
+              </div>
+              <div class=article-image>
+                <img th:src="${post.spec.cover}"
+                     width=120 height=120 th:alt="${post.spec.title}" loading=lazy>
+              </div>
+            </a>
+          </article>
+          </th:block>
+        </div>
+      </div>
+
+      <!--  底部信息-->
+      <th:block th:replace="~{modules/footer}" />
+    </main>
+
   </th:block>
 </html>
