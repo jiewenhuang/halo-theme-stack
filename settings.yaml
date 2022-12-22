@@ -18,7 +18,7 @@ spec:
     </h2>"
           language: html
         - $formkit: text
-          name: copyright
+          name: copy
           label: copyright
           value: "2020 - 2022 Jiewen's Blog"
         - $formkit: text
@@ -26,18 +26,41 @@ spec:
           label: 备案信息
           value: "京ICP备888888号-3"
 
-    - group: left-sidebar
+    - group: leftSidebar
       label: 左边栏
       formSchema:
+        - $formkit: text
+          name: profileName
+          label: 社交名称
+          value: "Jiewen's Blog"
+        - $formkit: text
+          name: profileDesc
+          label: 描述信息
+          value: "无限进步.✍️"
+        - $formkit: attachment
+          name: profileAvatar
+          label: 头像
+          value: ""
+
         - $formkit: repeater
-          name: socialMedia
-          label: 社交媒体
-          help: 头像底部社交媒体
-          value: [ ]
+          name: socials
+          id: socials
+          key: socials
+          label: 社交信息
+          value: []
           children:
             - $formkit: select
-              name: icon
-              label: 图标
+              name: socials_select
+              label: 平台
               options:
-
-
+                - label: Github
+                  value: github
+                - label: Facebook
+                  value: facebook
+                - label: Twitter
+                  value: twitter
+                - label: Instagram
+                  value: instagram
+            - $formkit: text
+              name: url
+              label: 链接
