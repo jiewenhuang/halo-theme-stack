@@ -24,7 +24,7 @@
     </a>
 </li>
 <li th:fragment="github">
-    <a href=https://github.com/lin-snow target=_blank title=dGitHub rel=me>
+    <a th:href="${socialsIcon.socialUrl}" target=_blank title=dGitHub rel=me>
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github"
              width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor"
              fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -34,9 +34,8 @@
         </svg>
     </a>
 </li>
-
-<li th:fragment="Facebook">
-    <a href=https://www.facebook.com/l1nsn0w/ target=_blank title=Facebook
+<li th:fragment="facebook">
+    <a th:href="${socialsIcon.socialUrl}" target=_blank title=Facebook
        rel=me>
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-facebook"
              width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor"
@@ -48,7 +47,7 @@
     </a>
 </li>
 <li th:fragment="twitter">
-    <a href=https://twitter.com/l1nsn0wleo target=_blank title=eTwitter rel=me>
+    <a th:href="${socialsIcon.socialUrl}" target=_blank title=eTwitter rel=me>
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter"
              width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor"
              fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -58,8 +57,9 @@
         </svg>
     </a>
 </li>
+
 <li th:fragment="instagram">
-    <a href=https://www.instagram.com/l1nsn0w/ target=_blank title=Instagram
+    <a th:href="${socialsIcon.socialUrl}" target=_blank title=Instagram
        rel=me>
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-instagram"
              width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor"
@@ -71,3 +71,42 @@
         </svg>
     </a>
 </li>
+<li th:fragment="telegram">
+    <a th:href="${socialsIcon.socialUrl}" target=_blank title=Telegram
+       rel=me>
+        <img th:src="@{/assets/img/telegram.svg}" alt="Telegram" width="24" height="24">
+    </a>
+</li>
+<li th:fragment="youtube">
+    <a th:href="${socialsIcon.socialUrl}" target=_blank title=Youtube
+       rel=me>
+        <img th:src="@{/assets/img/Youtube.svg}" alt="Youtube" width="24" height="24">
+    </a>
+</li>
+<li th:fragment="bilibili">
+    <a th:href="${socialsIcon.socialUrl}" target=_blank title=bilibili
+       rel=me>
+        <img th:src="@{/assets/img/bilibili-line.svg}" alt="bilibili" width="24" height="24">
+    </a>
+</li>
+<li th:fragment="wechat_group">
+    <a th:href="${socialsIcon.socialUrl}" target=_blank title=webchat_groud
+       rel=me>
+        <img th:src="@{/assets/img/wechat.svg}" alt="webchat_group" width="24" height="24">
+    </a>
+</li>
+<li th:fragment="zhihu">
+    <a th:href="${socialsIcon.socialUrl}" target=_blank title=zhihu
+       rel=me>
+        <img th:src="@{/assets/img/zhihu.svg}" alt="知乎" width="24" height="24">
+    </a>
+</li>
+
+<li th:fragment="qq">
+    <a th:href="${socialsIcon.socialUrl}" target=_blank title=QQ
+       rel=me>
+        <img th:src="@{/assets/img/qq.svg}" alt="QQ" width="24" height="24">
+    </a>
+</li>
+
+</html>
