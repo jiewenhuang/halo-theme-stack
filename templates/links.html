@@ -153,8 +153,8 @@
     </article>
     <div class="article-list--compact links">
       <th:block th:each="group : ${groups}">
-        <article>
-          <a th:each="link : ${group.links}" :key="i" th:href="${link.spec.url}" target="_blank" rel="noopener">
+        <article th:each="link : ${group.links}">
+          <a :key="i" th:href="${link.spec.url}" target="_blank" rel="noopener">
             <div class="article-details">
               <h2 class="article-title" th:text="${link.spec.displayName}">
 
