@@ -28,11 +28,9 @@
         </div>
     </header>
     <ol class=social-menu >
-        <th:block th:replace="~{modules/widgets/social-group :: github}" />
-        <th:block th:replace="~{modules/widgets/social-group :: Facebook}" />
-        <th:block th:replace="~{modules/widgets/social-group :: twitter}" />
-        <th:block th:replace="~{modules/widgets/social-group :: instagram}" />
-
+        <th:block th:each="socialsIcon : ${theme.config.leftSidebar.socials}">
+        <th:block th:replace="modules/widgets/social-group :: ${socialsIcon.socials_select}" />
+        </th:block>
     </ol>
     <ol class=menu id=main-menu>
         <li class=current>
