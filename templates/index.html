@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-                      th:replace="~{modules/layout :: html(title = ${site.title},header = null, content = ~{::content}, head = null, footer = null)}"
+                      th:replace="~{modules/layout :: html(title = ${site.title},htmlType = index,header = null,leftSidebar = true,rightSidebar = true, content = ~{::content}, head = null, footer = null)}"
 >
   <th:block th:fragment="content">
-    <!--首页主体-->
-    <th:block th:replace="~{modules/moment}" />
-
+    <th:block th:replace="~{modules/indexMoment}" />
   </th:block>
 </html>
