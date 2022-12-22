@@ -7,15 +7,15 @@
     <article class="has-image main-article">
       <header class="article-header">
         <div class="article-image">
-          <a href="/links/">
-            <img th:src="@{/assets/img/page.webp}" loading="lazy" alt="Featured image of post 『 Links 』友情链接">
+          <a th:href="${site.url}+'links'">
+            <img th:src="${theme.config.flinks.indexPhoto}" loading="lazy" alt="Featured image of post 『 Links 』友情链接">
           </a>
         </div>
         <div class="article-details">
           <div class="article-title-wrapper">
             <h2 class="article-title">
-              <a href="/links/">
-                『 Links 』友情链接
+              <a th:href="${site.url}+'links'">
+                [[${theme.config.flinks.linksTitle}]]
               </a>
             </h2>
           </div>
@@ -72,20 +72,11 @@
             </strong>
           </h2>
           <blockquote>
-            <p>
-              名字： Jiewen’s Blog
-            </p>
-            <p>
-              博客地址：https://www.jiewen.run
-            </p>
-            <p>
-              简介：无限进步.🎈
-            </p>
-            <p>
+            <th:block th:utext="${theme.config.flinks.linksInformation}" />
               我的头像:
-              <a class="link" href="https://www.jiewen.run/upload/IMG_9891.JPG" target="_blank"
+              <a class="link" th:href="${theme.config.flinks.myAvatar}" target="_blank"
                  rel="noopener">
-                https://www.jiewen.run/upload/IMG_9891.JPG
+                [[${theme.config.flinks.myAvatar}]]
               </a>
             </p>
           </blockquote>
@@ -95,41 +86,13 @@
             </strong>
           </h2>
           <blockquote>
-            <p>
-              你的大名: XXXX
-            </p>
-            <p>
-              你的简介: XXXXXX
-            </p>
-            <p>
-              头像链接: XXXXXXX
-            </p>
-            <p>
-              博客地址: XXXXXXXXXXXXXXXXXXX
-            </p>
+            <th:block th:utext="${theme.config.flinks.linksFormat}" />
           </blockquote>
           <h2 id="友链交换须知">
             友链交换须知😛
           </h2>
           <blockquote>
-            <p>
-              正常安全的网址，尽量买一个好的域名。
-            </p>
-            <p>
-              站点至少正常运行一个星期。
-            </p>
-            <p>
-              只接受双向友链。
-            </p>
-            <p>
-              头像链接稳定不掉。
-            </p>
-            <p>
-              尽量不要接入广告
-            </p>
-            <p>
-              尽量定期更新,如果长期不更新或者不维护的话我可能会将其撤掉!!!!!
-            </p>
+            <th:block th:utext="${theme.config.flinks.linksTip}" />
           </blockquote>
         </details>
       </section>
