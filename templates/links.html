@@ -1,11 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{modules/layout :: html(title = '友链' + ' - ' + ${site.title},htmlType = links,header = null,leftSidebar = true,rightSidebar = true, content = ~{::content}, head = null, footer = null)}"
+>
+<th:block th:fragment="content">
 <main class="main full-width">
   <article class="has-image main-article">
     <header class="article-header">
       <div class="article-image">
         <a href="/links/">
-          <img src="img/page.webp" loading="lazy" alt="Featured image of post 『 Links 』友情链接">
+          <img th:src="@{/assets/img/page.webp}" loading="lazy" alt="Featured image of post 『 Links 』友情链接">
         </a>
       </div>
       <div class="article-details">
@@ -33,29 +36,29 @@
             </time>
           </div>
         </footer>
-        <footer class="article-translations">
-          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language"
-               width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor"
-               fill="none" stroke-linecap="round" stroke-linejoin="round">
-            <path stroke="none" d="M0 0h24v24H0z" fill="none">
-            </path>
-            <path d="M4 5h7">
-            </path>
-            <path d="M9 3v2c0 4.418-2.239 8-5 8">
-            </path>
-            <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4">
-            </path>
-            <path d="M12 20l4-9 4 9">
-            </path>
-            <path d="M19.1 18h-6.2">
-            </path>
-          </svg>
-          <div>
-            <a href="https://blog.linsnow.cn/en/links/" class="link">
-              English
-            </a>
-          </div>
-        </footer>
+<!--        <footer class="article-translations">-->
+<!--          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language"-->
+<!--               width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor"-->
+<!--               fill="none" stroke-linecap="round" stroke-linejoin="round">-->
+<!--            <path stroke="none" d="M0 0h24v24H0z" fill="none">-->
+<!--            </path>-->
+<!--            <path d="M4 5h7">-->
+<!--            </path>-->
+<!--            <path d="M9 3v2c0 4.418-2.239 8-5 8">-->
+<!--            </path>-->
+<!--            <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4">-->
+<!--            </path>-->
+<!--            <path d="M12 20l4-9 4 9">-->
+<!--            </path>-->
+<!--            <path d="M19.1 18h-6.2">-->
+<!--            </path>-->
+<!--          </svg>-->
+<!--          <div>-->
+<!--            <a href="https://blog.linsnow.cn/en/links/" class="link">-->
+<!--              English-->
+<!--            </a>-->
+<!--          </div>-->
+<!--        </footer>-->
       </div>
     </header>
     <section class="article-content">
@@ -149,251 +152,28 @@
     </footer>
   </article>
   <div class="article-list--compact links">
+    <th:block th:each="group : ${groups}">
     <article>
-      <a href="https://amoshk.top/" target="_blank" rel="noopener">
+      <a th:each="link : ${group.links}" :key="i" th:href="${link.spec.url}" target="_blank" rel="noopener">
         <div class="article-details">
-          <h2 class="article-title">
-            豆豆
+          <h2 class="article-title" th:text="${link.spec.displayName}">
+
           </h2>
           <footer class="article-time">
-            🃏生活碎片
+            [[${link.spec.description}]]
           </footer>
         </div>
         <div class="article-image">
-          <img src="img/doudou.png" loading="lazy">
+          <img th:src="${link.spec.logo}" loading="lazy">
         </div>
       </a>
     </article>
-    <article>
-      <a href="https://blog.zhheo.com/" target="_blank" rel="noopener">
-        <div class="article-details">
-          <h2 class="article-title">
-            Heo
-          </h2>
-          <footer class="article-time">
-            👻爱折腾的设计师
-          </footer>
-        </div>
-        <div class="article-image">
-          <img src="img/heo.png" loading="lazy">
-        </div>
-      </a>
-    </article>
-    <article>
-      <a href="https://www.snhere.com/" target="_blank" rel="noopener">
-        <div class="article-details">
-          <h2 class="article-title">
-            思宁HERE
-          </h2>
-          <footer class="article-time">
-            🧨一个小胖子.
-          </footer>
-        </div>
-        <div class="article-image">
-          <img src="img/snhere.png" loading="lazy">
-        </div>
-      </a>
-    </article>
-    <article>
-      <a href="https://dusays.com/" target="_blank" rel="noopener">
-        <div class="article-details">
-          <h2 class="article-title">
-            杜老师说
-          </h2>
-          <footer class="article-time">
-            🎓师者，传道，授业，解惑！
-          </footer>
-        </div>
-        <div class="article-image">
-          <img src="img/dusays.png" loading="lazy">
-        </div>
-      </a>
-    </article>
-    <article>
-      <a href="https://t-t.live/" target="_blank" rel="noopener">
-        <div class="article-details">
-          <h2 class="article-title">
-            团团生活志
-          </h2>
-          <footer class="article-time">
-            🚀爱生活 爱分享
-          </footer>
-        </div>
-        <div class="article-image">
-          <img src="img/tx.png" loading="lazy">
-        </div>
-      </a>
-    </article>
-    <article>
-      <a href="https://undf.top" target="_blank" rel="noopener">
-        <div class="article-details">
-          <h2 class="article-title">
-            沐印小站
-          </h2>
-          <footer class="article-time">
-            🍭时间不在于你拥有多少，而在于你如何使用!
-          </footer>
-        </div>
-        <div class="article-image">
-          <img src="img/muyin.webp" loading="lazy">
-        </div>
-      </a>
-    </article>
-    <article>
-      <a href="https://blog.whispery.cn/" target="_blank" rel="noopener">
-        <div class="article-details">
-          <h2 class="article-title">
-            Whisper
-          </h2>
-          <footer class="article-time">
-            👀我们的忧愁将会崩解，灵魂将会穿梭如风
-          </footer>
-        </div>
-        <div class="article-image">
-          <img src="img/whisper.png" loading="lazy">
-        </div>
-      </a>
-    </article>
-    <article>
-      <a href="https://pampo.cn/" target="_blank" rel="noopener">
-        <div class="article-details">
-          <h2 class="article-title">
-            Pampo
-          </h2>
-          <footer class="article-time">
-            👻我希望，我们都能够变得更勇敢
-          </footer>
-        </div>
-        <div class="article-image">
-          <img src="img/pampo.png" loading="lazy">
-        </div>
-      </a>
-    </article>
-    <article>
-      <a href="https://foolishfox.cn/" target="_blank" rel="noopener">
-        <div class="article-details">
-          <h2 class="article-title">
-            FF
-          </h2>
-          <footer class="article-time">
-            🃏foolish fox
-          </footer>
-        </div>
-        <div class="article-image">
-          <img src="img/ff.jpeg" loading="lazy">
-        </div>
-      </a>
-    </article>
-    <article>
-      <a href="https://blog.btwoa.com" target="_blank" rel="noopener">
-        <div class="article-details">
-          <h2 class="article-title">
-            btwoa
-          </h2>
-          <footer class="article-time">
-            🙃仍相信人间滚烫
-          </footer>
-        </div>
-        <div class="article-image">
-          <img src="img/btwoa.jpeg" loading="lazy">
-        </div>
-      </a>
-    </article>
-    <article>
-      <a href="https://lisenhui.cn/" target="_blank" rel="noopener">
-        <div class="article-details">
-          <h2 class="article-title">
-            凡梦星尘空间站
-          </h2>
-          <footer class="article-time">
-            🍀再平凡的人也有属于他自己的梦想!
-          </footer>
-        </div>
-        <div class="article-image">
-          <img src="img/xinchen.png" loading="lazy">
-        </div>
-      </a>
-    </article>
-    <article>
-      <a href="https://gahotx.cn/" target="_blank" rel="noopener">
-        <div class="article-details">
-          <h2 class="article-title">
-            Gahotx
-          </h2>
-          <footer class="article-time">
-            🪅Don't repeat yourself
-          </footer>
-        </div>
-        <div class="article-image">
-          <img src="img/cat.jpeg" loading="lazy">
-        </div>
-      </a>
-    </article>
-    <article>
-      <a href="https://woc.xyz/" target="_blank" rel="noopener">
-        <div class="article-details">
-          <h2 class="article-title">
-            废物作家
-          </h2>
-          <footer class="article-time">
-            🍀一个废物作家的梦想
-          </footer>
-        </div>
-        <div class="article-image">
-          <img src="img/tx.jpeg" loading="lazy">
-        </div>
-      </a>
-    </article>
-    <article>
-      <a href="https://blog.cworld.top/" target="_blank" rel="noopener">
-        <div class="article-details">
-          <h2 class="article-title">
-            CWorld’s Blog
-          </h2>
-          <footer class="article-time">
-            🤔求知若愚，虚怀若谷
-          </footer>
-        </div>
-        <div class="article-image">
-          <img src="img/cworld.png" loading="lazy">
-        </div>
-      </a>
-    </article>
-    <article>
-      <a href="https://blog.smallsunnyfox.com/" target="_blank" rel="noopener">
-        <div class="article-details">
-          <h2 class="article-title">
-            橘子
-          </h2>
-          <footer class="article-time">
-            👻风一定会吹过黄昏
-          </footer>
-        </div>
-        <div class="article-image">
-          <img src="img/juzi.jpeg" loading="lazy">
-        </div>
-      </a>
-    </article>
-    <article>
-      <a href="https://www.imcao.cn/" target="_blank" rel="noopener">
-        <div class="article-details">
-          <h2 class="article-title">
-            ImCaO's Blog
-          </h2>
-          <footer class="article-time">
-            🍟花有重开日，人无再少年.
-          </footer>
-        </div>
-        <div class="article-image">
-          <img src="img/imcao.png" loading="lazy">
-        </div>
-      </a>
-    </article>
+    </th:block>
   </div>
-  <script src="js/waline.js">
+  <script src=https://unpkg.com/@waline/client@v2/dist/waline.js>
   </script>
-  <link href="css/waline.css" rel="stylesheet">
-  <div id="waline" class="waline-container">
+  <link href=https://unpkg.com/@waline/client@2.13.0/dist/waline.css rel=stylesheet>
+  <div id=waline class=waline-container>
   </div>
   <style>
     .waline-container{background-color:var(--card-background);border-radius:var(--card-border-radius);box-shadow:var(--shadow-l1);padding:var(--card-padding);--waline-font-size:var(--article-font-size)}.waline-container
@@ -414,49 +194,8 @@
       serverURL: "https://waline.linsnow.cn/"
     })
   </script>
-  <footer class="site-footer">
-    <section class="copyright">
-      © 2020 - 2022 L1nSn0w's Blog
-    </section>
-    <section class="powerby">
-      Powered by GitHub.Pages
-      <br>
-      Built with
-      <a href="https://gohugo.io/" target="_blank" rel="noopener">
-        Hugo
-      </a>
-      <br>
-      主题
-      <b>
-        <a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank"
-           rel="noopener" data-version="3.16.0">
-          Stack
-        </a>
-      </b>
-      由
-      <a href="https://jimmycai.com" target="_blank" rel="noopener">
-        Jimmy
-      </a>
-      设计
-      <span>
-							• 由L1nSn0w用❤️魔改
-						</span>
-    </section>
-    <section class="powerby">
-      <img src="img/icp.png" alt="" width="15px" height="15px">
-      <a href="https://icp.gov.moe/?keyword=20222117" target="_blank">
-        萌ICP备20222117号
-      </a>
-    </section>
-    <section class="powerby">
-      📑共咕咕了 96.90k 字 · 共水了 75篇文章.
-      <br>
-      <span>
-							<p>
-							</p>
-						</span>
-    </section>
-  </footer>
+  <footer th:replace="~{modules/footer :: footer}"></footer>>
+
   <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="pswp__bg">
     </div>
@@ -516,4 +255,5 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"
         crossorigin="anonymous">
 </main>
+</th:block>
 </html>
