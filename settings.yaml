@@ -61,6 +61,94 @@ spec:
                   value: twitter
                 - label: Instagram
                   value: instagram
+                - label: Telegram
+                  value: telegram
+                - label: Youtube
+                  value: youtube
+                - label: Bilibili
+                  value: bilibili
+                - label: 知乎
+                  value: zhihu
+                - label: QQ
+                  value: qq
+                - label: 微信公众号
+                  value: wechat_group
+
             - $formkit: text
-              name: url
+              name: socialUrl
               label: 链接
+    - group: rightSidebar
+      label: 右边栏
+      formSchema:
+        - $formkit: attachment
+          name: indexPhoto
+          label: 顶部大图
+
+    - group: flinks
+      label: 友链设置
+      formSchema:
+        - $formkit: attachment
+          name: indexPhoto
+          label: 顶部大图
+          value: "/themes/theme-stack/assets/img/page.webp"
+        - $formkit: text
+          name: linksTitle
+          label: 友链标题
+          value: "『 Links 』友情链接"
+        - $formkit: code
+          name: linksInformation
+          label: 我的信息
+          value: "
+          <p>
+              名字： Jiewen’s Blog
+            </p>
+            <p>
+              博客地址：https://www.jiewen.run
+            </p>
+            <p>
+              简介：无限进步.🎈
+            </p>
+            "
+        - $formkit: attachment
+          name: myAvatar
+          label: 头像
+          value: "https://www.jiewen.run/upload/jiewen_icon.png"
+
+          language: html
+        - $formkit: code
+          name: linksFormat
+          label: 友链申请格式
+          value: "<p>
+              你的大名: XXXX
+            </p>
+            <p>
+              你的简介: XXXXXX
+            </p>
+            <p>
+              头像链接: XXXXXXX
+            </p>
+            <p>
+              博客地址: XXXXXXXXXXXXXXXXXXX
+            </p>"
+          language: html
+        - $formkit: code
+          name: linksTip
+          label: 其他信息
+          value: "<p>
+              正常安全的网址，尽量买一个好的域名。
+            </p>
+            <p>
+              站点至少正常运行一个星期。
+            </p>
+            <p>
+              只接受双向友链。
+            </p>
+            <p>
+              头像链接稳定不掉。
+            </p>
+            <p>
+              尽量不要接入广告
+            </p>
+            <p>
+              尽量定期更新,如果长期不更新或者不维护的话我可能会将其撤掉!!!!! </p>"
+          language: html
