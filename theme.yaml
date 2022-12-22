@@ -3,14 +3,14 @@ kind: Theme
 metadata:
   name: theme-stack
 spec:
-  displayName: Theme Starter
+  displayName: theme-stack
   author:
     name: Jiewen
-    website: "https://halo.run"
-  description: Halo 2.0 Theme base on Thymeleaf
-  logo: "https://halo.run/logo"
-  website: "https://halo.run"
-  repo: "https://github.com/halo-sigs/theme-starter"
+    website: "https://Jiewen.run"
+  description: 移植自hugo同名主题stack，一款优秀的个人博客模板。
+  logo: "https://www.jiewen.run/upload/jiewen_icon.png"
+  website: "https://Jiewen.run"
+  repo: "https://github.com/jiewenhuang/halo-theme-stack"
   settingName: "theme-stack-setting"
   configMapName: "theme-stack-configMap"
   version: "1.0"
