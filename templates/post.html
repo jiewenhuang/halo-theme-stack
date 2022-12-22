@@ -1,10 +1,8 @@
 <!DOCTYPE html>
-<html
-  xmlns:th="https://www.thymeleaf.org"
-  th:replace="~{layout :: html(head = null,content = ~{::content})}"
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{modules/layout :: html(title = ${post.spec.title} + ' - ' + ${site.title},header = null,htmlType = post,leftSidebar = true,rightSidebar = true, content = ~{::content}, head = null, footer = null)}"
 >
-  <th:block th:fragment="content">
-    <h1 th:text="${post.spec.title}"></h1>
-    <article th:utext="${post.content.content}"></article>
-  </th:block>
+<th:block th:fragment="content">
+  <th:block th:replace="~{modules/articleMoment}" />
+</th:block>
 </html>
