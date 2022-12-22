@@ -1,14 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" th:fragment="html (title,header,content,head,footer)" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" th:fragment="html (title,header,content,head,footer,leftSidebar,rightSidebar,htmlType)" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta name=generator content="Hugo 0.104.1">
     <meta charset=utf-8>
     <meta name=viewport content="width=device-width,initial-scale=1">
-    <meta name=description content="无限进步.✍️">
     <title th:text="${title}"></title>
     <link rel=stylesheet th:href="@{/assets/css/style.css}">
-    <link rel=stylesheet th:href="@{${#strings.isEmpty(site.favicon) ? '/assets/images/hao-logo.jpg' : site.favicon}}"/>
-    <link rel="shortcut icon" th:href="@{/assets/img/favicon.ico}">
+    <link rel="shortcut icon" th:href="@{${#strings.isEmpty(site.favicon) ? '/assets/img/jiewen_icon.png' : site.favicon}}"/>
 </head>
 <body class=article-page>
 <script>
@@ -27,10 +25,19 @@
 </script>
 <div class="container main-container flex on-phone--column extended">
 <!--左边栏-->
-    <th:block th:replace="~{modules/left-sidebar}" />
+    <th:block th:if="${leftSidebar == true}">
+        <th:block th:replace="~{modules/left-sidebar}" />
+    </th:block>
+
 <!--右边栏-->
-    <th:block th:replace="~{modules/right-sidebar}" />
+    <th:block th:if="${rightSidebar == true}">
+        <th:block th:replace="~{modules/right-sidebar}" />
+    </th:block>
+
+
     <th:block th:replace="${content}"></th:block>
+
+
 
 </div>
 

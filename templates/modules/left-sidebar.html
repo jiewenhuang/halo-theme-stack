@@ -8,8 +8,8 @@
     </button>
     <header>
         <figure class=site-avatar>
-            <a href=/>
-                <img th:src="@{/assets/img/avatar_huc4ee539f708b3764d0a4718d2170118a_9562_300x0_resize_box_3.png}"
+            <a th:href="${site.url}">
+                <img th:src="${theme.config.leftSidebar.profileAvatar ?: #theme.assets('/img/avatar_huc4ee539f708b3764d0a4718d2170118a_9562_300x0_resize_box_3.png')}"
                      width=300 height=300 class=site-logo loading=lazy alt=Avatar>
             </a>
             <span class=emoji>
@@ -18,22 +18,25 @@
         </figure>
         <div class=site-meta>
             <h1 class=site-name>
-                <a href=index.html>
-                    L1nSn0w's Blog
+                <a th:href="${site.url}">
+                    [[${theme.config.leftSidebar.profileName}]]
                 </a>
             </h1>
             <h2 class=site-description>
-                无限进步.✍️
+                [[${theme.config.leftSidebar.profileDesc}]]
             </h2>
         </div>
     </header>
     <ol class=social-menu >
         <th:block th:replace="~{modules/widgets/social-group :: github}" />
+        <th:block th:replace="~{modules/widgets/social-group :: Facebook}" />
+        <th:block th:replace="~{modules/widgets/social-group :: twitter}" />
+        <th:block th:replace="~{modules/widgets/social-group :: instagram}" />
 
     </ol>
     <ol class=menu id=main-menu>
         <li class=current>
-            <a href=/>
+            <a th:href="${site.url}">
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home"
                      width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ff4500"
                      fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -48,7 +51,7 @@
             </a>
         </li>
         <li>
-            <a href=/archives>
+            <a th:href=${site.url}+'archives'>
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive"
                      width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#00abfb"
                      fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -63,7 +66,7 @@
             </a>
         </li>
         <li>
-            <a href=/about>
+            <a th:href="${site.url}+'about'">
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-alien"
                      width="80" height="80" viewBox="0 0 24 24" stroke-width="2" stroke="#ff9300"
                      fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -94,7 +97,7 @@
             </a>
         </li>
         <li>
-            <a href=links>
+            <a th:href="${site.url}+'links'">
                 <svg width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect width="48" height="48" fill="#fff" fill-opacity=".01" />
                     <path d="M24 44c11.0457.0 20-8.9543 20-20C44 12.9543 35.0457 4 24 4 12.9543 4 4 12.9543 4 24s8.9543 20 20 20z"
