@@ -1,6 +1,6 @@
 
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<section class=article-list th:with="posts = ${postFinder.listAll()}">
+<section class=article-list th:with="posts = ${posts.items}">
   <article class=has-image th:each="post : ${posts}">
     <header class=article-header>
       <div class=article-image>
