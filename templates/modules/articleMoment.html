@@ -91,7 +91,7 @@
     </h2>
     <div class=related-content>
       <div class="flex article-list--tile" th:each="recommendPosts : ${post.categories}"
-           th:with="recommendPosts = ${postFinder.listByCategory(1,4,recommendPosts.metadata.name)}">
+           th:with="recommendPosts = ${postFinder.listByCategory(1,5,recommendPosts.metadata.name)}">
         <article class=has-image th:each="recommendPost : ${recommendPosts.items}">
           <a th:href="@{${recommendPost.status.permalink}}">
             <div class=article-image>
