@@ -45,9 +45,16 @@
               <circle cx="12" cy="12" r="9" />
               <polyline points="12 7 12 12 15 15" />
             </svg>
-            <time class=article-time--reading>
-              阅读时长: 7 分钟
+            <th:block th:with="content = ${postFinder.content(post.metadata.name)}">
+            <time class=article-time--reading id="article-time--reading" th:with="wordCount = ${#strings.length(content.content)}">
+              <th:block th:if="${wordCount / 400 lt 1}">
+                阅读时长: 1 分钟
+              </th:block>
+              <th:block th:if="${wordCount / 400 ge 1}">
+                阅读时长: [[${wordCount / 400}]] 分钟
+              </th:block>
             </time>
+            </th:block>
           </div>
         </footer>
       </div>
