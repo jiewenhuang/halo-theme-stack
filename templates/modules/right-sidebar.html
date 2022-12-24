@@ -31,7 +31,7 @@
     <br>
     <br>
   </th:block>
-  <th:block th:if="${htmlType == 'post'} or ${htmlType == 'links'}">
+  <th:block th:if="${htmlType == 'post'} or ${htmlType == 'links'} or ${htmlType == 'page'}">
     <th:block th:replace="~{modules/widgets/right-listWidgets :: list}"/>
     <br>
     <br>
