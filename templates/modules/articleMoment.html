@@ -1,4 +1,4 @@
-<main class="main full-width">
+<main class="main full-width" xmlns:th="http://www.thymeleaf.org">
   <article class="has-image main-article">
     <header class=article-header>
       <div class=article-image>
@@ -46,14 +46,19 @@
               <circle cx="12" cy="12" r="9" />
               <polyline points="12 7 12 12 15 15" />
             </svg>
-            <time class=article-time--reading>
-              阅读时长: 7 分钟
+            <time class=article-time--reading id="article-time--reading" th:with="wordCount = ${#strings.length(post.content.content)}">
+              <th:block th:if="${wordCount / 400 lt 1}">
+              阅读时长: 1 分钟
+              </th:block>
+              <th:block th:if="${wordCount / 400 ge 1}">
+                阅读时长: [[${wordCount / 400}]] 分钟
+              </th:block>
             </time>
           </div>
         </footer>
       </div>
     </header>
-    <section class=article-content th:utext="${post.content.content}">
+    <section class=article-content id="article-content" th:utext="${post.content.content}">
 
 
       <hr />
@@ -85,17 +90,18 @@
       相关文章
     </h2>
     <div class=related-content>
-      <div class="flex article-list--tile">
-        <article class=has-image>
-          <a href=../join-hugo-and-stack/join-hugo-and-stack.html>
+      <div class="flex article-list--tile" th:each="recommendPosts : ${post.categories}"
+           th:with="recommendPosts = ${postFinder.listByCategory(1,4,recommendPosts.metadata.name)}">
+        <article class=has-image th:each="recommendPost : ${recommendPosts.items}">
+          <a th:href="@{${recommendPost.status.permalink}}">
             <div class=article-image>
-              <img src=../join-hugo-and-stack/hugostack.3d6f4b44b192a314beaa2a52df23063c_hu93227961552f3de66aeca07fb63ffc4a_76842_250x150_fill_q75_h2_box_smart1_2.webp
-                   width=250 height=150 loading=lazy alt="Featured image of post 拥抱最好用的hugo之stack"
-                   data-key=join-hugo-and-stack data-hash="md5-PW9LRLGSoxS+qipS3yMGPA==">
+              <img th:src="${recommendPost.spec.cover}"
+                   width=250 height=150 loading=lazy th:alt="${recommendPost.spec.title}"
+                   >
             </div>
             <div class=article-details>
               <h2 class=article-title>
-                拥抱最好用的hugo之stack
+                [[${recommendPost.spec.title}]]
               </h2>
             </div>
           </a>
