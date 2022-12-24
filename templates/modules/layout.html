@@ -58,5 +58,51 @@
 </script>
 <script type="text/javascript" th:src="@{/assets/js/tocbot.min.js}"></script>
 <script type="text/javascript" th:src="@{/assets/js/plugins.js}"></script>
+<script type="text/javascript">
+    // 获取导航栏中所有的链接元素
+    const navLinks = document.querySelectorAll('#main-menu a');
+
+    // 为每个链接元素添加点击事件监听器
+    navLinks.forEach(function(link) {
+        link.addEventListener('click', function() {
+            // 去除所有链接元素的选中类
+            navLinks.forEach(function(link) {
+                link.parentNode.classList.remove('current');
+            });
+
+            // 为当前点击的链接元素的父元素添加选中类
+            this.parentNode.classList.add('current');
+
+            // 使用本地存储保存选中状态
+            localStorage.setItem('selectedNavLink', this.getAttribute('href'));
+        });
+    });
+
+    // 在页面加载时检查本地存储中是否保存了选中状态
+    const selectedNavLink = localStorage.getItem('selectedNavLink');
+    if (selectedNavLink) {
+        // 如果本地存储中保存了选中状态，则为对应的链接元素的父元素添加选中类
+        const selectedLink = document.querySelector(`#main-menu a[href="${selectedNavLink}"]`);
+        if (selectedLink) {
+            selectedLink.parentNode.classList.add('current');
+        }
+    }
+
+    // 获取当前页面的 URL
+    const currentURL = window.location.href;
+
+    // 检查当前页面是否是导航栏中的链接
+    navLinks.forEach(function(link) {
+        // 获取链接的 URL
+        const linkURL = link.getAttribute('href');
+
+        // 如果链接的 URL 与当前页面的 URL 相同，则为该链接的父元素添加选中类
+        if (linkURL === currentURL && linkURL !== '/') {
+            link.parentNode.classList.add('current');
+        }
+    });
+
+
+</script>
 </body>
 </html>
