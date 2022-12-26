@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--图片-->
+<th:block th:fragment="right-pic">
+  <div class=rightpic>
+    <img th:src="${theme.config.rightSidebar.rightPic ?: #theme.assets('/img/daily_pic.webp')}"  alt class=rightimg>
+
+  </div>
+</th:block>
+<!--图片链接-->
+<th:block th:fragment="to-links">
+  <div class="jieli" th:utext="${theme.config.rightSidebar.toLinks}">
+
+  </div>
+
+</th:block>
+
+<!--搜索组件-->
+<th:block th:fragment="search">
+  <br>
+  <br>
+<form action=search/search.html class="search-form widget">
+  <p>
+    <label>
+      搜索
+    </label>
+    <input name=keyword required placeholder=输入关键词...>
+    <button title=搜索>
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search"
+           width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#00b341"
+           fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <circle cx="10" cy="10" r="7" />
+        <line x1="21" y1="21" x2="15" y2="15" />
+      </svg>
+    </button>
+  </p>
+</form>
+</th:block>
+<!--归档组件-->
+<th:block th:fragment="archives">
+<section class="widget archives">
+  <div class=widget-icon>
+    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-infinity"
+         width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor"
+         fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z" />
+      <path d="M9.828 9.172a4 4 0 100 5.656A10 10 0 0012 12a10 10 0 012.172-2.828 4 4 0 110 5.656A10 10 0 0112 12 10 10 0 009.828 9.172"
+      />
+    </svg>
+  </div>
+  <h2 class="widget-title section-title">
+    归档
+  </h2>
+  <div class=widget-archive--list th:with="archives = ${postFinder.archives(1,10)}">
+    <th:block th:each="archive : ${archives.items}">
+
+      <div class=archives-year>
+        <a href=archives>
+                <span class=year>
+                  [[${archive.year}]]
+                </span>
+          <span class=count>
+                  [[${archives.total}]]
+                </span>
+        </a>
+      </div>
+    </th:block>
+  </div>
+</section>
+</th:block>
+<!--分类组件-->
+<th:block th:fragment="category">
+<section class="widget tagCloud" >
+  <div class=widget-icon>
+    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash"
+         width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor"
+         fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z" />
+      <line x1="5" y1="9" x2="19" y2="9" />
+      <line x1="5" y1="15" x2="19" y2="15" />
+      <line x1="11" y1="4" x2="7" y2="20" />
+      <line x1="17" y1="4" x2="13" y2="20" />
+    </svg>
+  </div>
+  <h2 class="widget-title section-title">
+    分类
+  </h2>
+  <div class=tagCloud-tags th:with="categories = ${categoryFinder.listAll()}">
+    <a th:each="category : ${categories}"
+       th:href="@{${category.status.permalink}}"
+       th:text="${category.spec.displayName}" class="">
+
+    </a>
+
+  </div>
+</section>
+</th:block>
+<!--标签组件-->
+<th:block th:fragment="tags">
+<section class="widget tagCloud" >
+  <div class=widget-icon>
+    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tag"
+         width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor"
+         fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z" />
+      <path d="M11 3l9 9a1.5 1.5.0 010 2l-6 6a1.5 1.5.0 01-2 0L3 11V7a4 4 0 014-4h4"
+      />
+      <circle cx="9" cy="9" r="2" />
+    </svg>
+  </div>
+  <h2 class="widget-title section-title">
+    标签云
+  </h2>
+  <div class=tagCloud-tags th:with="tags = ${tagFinder.list(1,10)}">
+    <a th:each="tag : ${tags.items}"
+       th:href="@{${tag.status.permalink}}"
+       th:text="${tag.spec.displayName}"
+       class="">
+
+    </a>
+  </div>
+</section>
+  <br>
+  <br>
+</th:block>
+<!--目录组件-->
+<th:block th:fragment="list">
+  <section class="widget archives" id="listwidgets" th:fragment="list">
+    <div class=widget-icon>
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash"
+           width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor"
+           fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" />
+        <line x1="5" y1="9" x2="19" y2="9" />
+        <line x1="5" y1="15" x2="19" y2="15" />
+        <line x1="11" y1="4" x2="7" y2="20" />
+        <line x1="17" y1="4" x2="13" y2="20" />
+      </svg>
+    </div>
+    <h2 class="widget-title section-title">
+      目录
+    </h2>
+    <div class=widget--toc>
+      <nav id=TableOfContents>
+        <ol>
+          <li>
+
+          </li>
+        </ol>
+      </nav>
+    </div>
+  </section>
+</th:block>
+<th:block th:fragment="newcomments">
+  <div class=newcomments>
+    <div class=newtext>
+      📢最新评论:
+    </div>
+    <div id="waline-recent">
+    </div>
+  </div>
+  <script type="module">
+    const walineUrl = "[[${theme.config.article.walineUrl}]]";
+    import { RecentComments } from 'https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.mjs';
+    RecentComments({
+
+      serverURL: walineUrl,
+      count: 2,
+    }).then(({ comments }) => {
+      document.getElementById('waline-recent').innerHTML = comments.map(
+              (comment) => `<img src="${comment.avatar}" alt="" >${comment.nick}: ${comment.comment}`
+      );
+    });
+  </script>
+</th:block>
+
+</html>

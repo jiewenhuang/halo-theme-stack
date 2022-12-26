@@ -79,9 +79,41 @@ spec:
     - group: rightSidebar
       label: 右边栏
       formSchema:
+        - $formkit: textarea
+          name: indexWidgets
+          label: 首页右组件
+          value: "right-pic,search,archives,category,tags,newcomments"
+          help: "目前提供的小部件有：right-pic（一张大图）, to-links（链接图片）, search（搜索）, category（文章分类）, tags（文章标签）， newcomments（最新评论） 。你可以随意组合或排序，以英文逗号隔开。"
+        - $formkit: textarea
+          name: postWidgets
+          label: 文章右组件
+          value: "right-pic,list,newcomments"
+          help: "目前提供的小部件有：right-pic（一张大图）, to-links（链接图片）, search（搜索）, category（文章分类）, tags（文章标签）, list（文章目录）， newcomments（最新评论） 。你可以随意组合或排序，以英文逗号隔开。"
+        - $formkit: textarea
+          name: pageWidgets
+          label: 自定义页面右组件
+          value: "right-pic,list,newcomments"
+          help: "目前提供的小部件有：right-pic（一张大图）, to-links（链接图片）, search（搜索）, category（文章分类）, tags（文章标签）, list（文章目录）， newcomments（最新评论） 。你可以随意组合或排序，以英文逗号隔开。"
+        - $formkit: textarea
+          name: linksWidgets
+          label: 友情链接右组件
+          value: "right-pic,list,newcomments"
+          help: "目前提供的小部件有：right-pic（一张大图）, to-links（链接图片）, search（搜索）, category（文章分类）, tags（文章标签）, list（文章目录）， newcomments（最新评论） 。你可以随意组合或排序，以英文逗号隔开。"
         - $formkit: attachment
-          name: indexPhoto
-          label: 顶部大图
+          name: rightPic
+          label: Right-pic设置
+          value: ""
+        - $formkit: code
+          name: toLinks
+          label: To-links设置
+          value: "<a href=https://travellings.link/ target=_blank rel=noopener title=开往-友链接力>
+      <img src=https://travellings.link/assets/logo.gif alt=开往-友链接力 width=120>
+    </a>
+    <a href=https://www.foreverblog.cn/go.html target=_blank>
+      <img src=https://img.foreverblog.cn/wormhole_1.gif alt style=width:auto;height:32px
+           title=穿梭虫洞-随机访问十年之约友链博客>
+    </a>"
+
     - group: article
       label: 文章页
       formSchema:

@@ -1,68 +1,33 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <aside class="sidebar right-sidebar sticky" th:fragment="right-sidebar">
-  <div class=rightpic>
-    <img th:src="@{/assets/img/daily_pic.webp}" alt class=rightimg>
-  </div>
-  <div class=jieli>
-    <a href=https://travellings.link/ target=_blank rel=noopener title=开往-友链接力>
-      <img src=https://travellings.link/assets/logo.gif alt=开往-友链接力 width=120>
-    </a>
-    <a href=https://www.foreverblog.cn/go.html target=_blank>
-      <img src=https://img.foreverblog.cn/wormhole_1.gif alt style=width:auto;height:32px
-           title=穿梭虫洞-随机访问十年之约友链博客>
-    </a>
-  </div>
-  <br>
-  <br>
-<!--  搜索组件-->
-  <th:block th:if="${htmlType == 'index'} or ${htmlType == 'category'} or ${htmlType == 'tag'}">
-    <th:block th:replace="~{modules/widgets/right-searchWidgets :: search}"/>
+
+<!--  首页-->
+  <th:block th:if="${htmlType == 'index'}">
+    <th:block th:each="widgets : ${#strings.listSplit(theme.config.rightSidebar.indexWidgets, ',')}">
+      <th:block th:replace="modules/widgets/right-sideWidgets :: ${widgets}" />
+    </th:block>
   </th:block>
-<!--  归档组件-->
-  <th:block th:if="${htmlType == 'index'} or ${htmlType == 'category'} or ${htmlType == 'tag'}">
-    <th:block th:replace="~{modules/widgets/right-archivesWidgets :: archives}"/>
+<!--  文章页-->
+  <th:block th:if="${htmlType == 'post'}">
+    <th:block th:each="widgets : ${#strings.listSplit(theme.config.rightSidebar.postWidgets, ',')}">
+    <th:block th:replace="~{modules/widgets/right-sideWidgets :: ${widgets}}"/>
+    </th:block>
   </th:block>
-  <th:block th:if="${htmlType == 'index'} or ${htmlType == 'category'} or ${htmlType == 'tag'}">
-    <th:block th:replace="~{modules/widgets/right-categoryWidgets :: category}"/>
+<!--  友情链接页-->
+  <th:block th:if="${htmlType == 'links'}">
+    <th:block th:each="widgets : ${#strings.listSplit(theme.config.rightSidebar.linksWidgets, ',')}">
+    <th:block th:replace="~{modules/widgets/right-sideWidgets :: ${widgets}}"/>
+    </th:block>
   </th:block>
-  <th:block th:if="${htmlType == 'index'} or ${htmlType == 'category'} or ${htmlType == 'tag'}">
-    <th:block th:replace="~{modules/widgets/right-tagWidgets :: tags}"/>
-    <br>
-    <br>
-  </th:block>
-  <th:block th:if="${htmlType == 'post'} or ${htmlType == 'links'} or ${htmlType == 'page'}">
-    <th:block th:replace="~{modules/widgets/right-listWidgets :: list}"/>
-    <br>
-    <br>
+<!--  自定义页面-->
+  <th:block th:if="${htmlType == 'page'}">
+    <th:block th:each="widgets : ${#strings.listSplit(theme.config.rightSidebar.pageWidgets, ',')}">
+    <th:block th:replace="~{modules/widgets/right-sideWidgets :: ${widgets}}"/>
+    </th:block>
   </th:block>
 
-  <div class=newcomments>
-    <div class=newtext>
-      📢最新评论:
-    </div>
-    <div id=waline-recent>
-    </div>
-  </div>
-  <script type=module>
-    import {
-      RecentComments
-    }
-      from 'https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.mjs';
-    RecentComments({
 
-      serverURL: 'https://waline.linsnow.cn',
-      count: 2,
-    }).then(({
-      comments
-    }) = >{
-      document.getElementById('waline-recent').innerHTML = comments.map((comment) = >` < img src = "${comment.avatar}"alt = "" > $ {
-              comment.nick
-            }: $ {
-              comment.comment
-            }`);
-    });
-  </script>
   <br>
   <br>
   <br>
