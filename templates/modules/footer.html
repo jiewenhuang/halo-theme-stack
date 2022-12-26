@@ -34,11 +34,14 @@
     <a href="https://beian.miit.gov.cn/" target=_blank>
       [[${theme.config.basic.icp}]]
     </a>
-  </section>
-  <section class=powerby>
-    📑共咕咕了 96.90k 字 · 共水了 75篇文章.
-    </br>
+    <!-- 在模板中声明一个变量用于存储总字数 -->
+
 
   </section>
+      <section class=powerby>
+        📑共咕咕了 [[${totalWordCount}]]k 字 · 共水了 [[${articleCount}]]篇文章.
+        </br>
+
+      </section>
 </footer>
 </html>
