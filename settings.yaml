@@ -25,7 +25,6 @@ spec:
           name: icp
           label: 备案信息
           value: "京ICP备888888号-3"
-
     - group: leftSidebar
       label: 左边栏
       formSchema:
@@ -83,6 +82,33 @@ spec:
         - $formkit: attachment
           name: indexPhoto
           label: 顶部大图
+    - group: article
+      label: 文章页
+      formSchema:
+        - $formkit: select
+          name: articleComment
+          id: articleComment
+          key: articleComment
+          label: 评论使用模块
+          value: halo-comment
+          options:
+            - label: 官方评论插件
+              value: halo-comment
+            - label: Waline评论插件
+              value: waline-comment
+        - $formkit: url
+          if: "$get(articleComment).value === 'waline-comment'"
+          name: walineUrl
+          label: Waline服务地址
+          value: ""
+          help: "你的waline评论服务地址，具体参考：https://waline.js.org/"
+        - $formkit: text
+          if: "$get(articleComment).value === 'waline-comment'"
+          name: walineAdmin
+          label: Admin文字
+          value: "👻屑博主"
+          help: "管理者评论或回复时，名字旁边的介绍"
+
 
     - group: flinks
       label: 友链设置
