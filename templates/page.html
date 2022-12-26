@@ -50,27 +50,9 @@
     <script src=https://unpkg.com/@waline/client@v2/dist/waline.js>
     </script>
     <link href=https://unpkg.com/@waline/client@2.13.0/dist/waline.css rel=stylesheet>
-    <div id=waline class=waline-container>
-    </div>
-    <style>
-      .waline-container{background-color:var(--card-background);border-radius:var(--card-border-radius);box-shadow:var(--shadow-l1);padding:var(--card-padding);--waline-font-size:var(--article-font-size)}.waline-container
-                                                                                                                                                                                                            .wl-count{color:var(--card-text-color-main)}
-    </style>
-    <script>
-      Waline.init({
-        dark: 'html[data-scheme="dark"]',
-        el: "#waline",
-        emoji: ["https://cdn.jsdelivr.net/npm/sticker-heo@2022.7.5/Sticker-100/"],
-        locale: {
-          admin: "👻屑博主",
-          placeholder: "🎉不用登陆也可以畅所欲言哦...."
-        },
-        pageview: !0,
-        reaction: ["/themes/theme-stack/assets/img/good.svg", "/themes/theme-stack/assets/img/common.svg", "/themes/theme-stack/assets/img/bad.svg"],
-        requiredMeta: ["name", "email"],
-        serverURL: "https://waline.linsnow.cn/"
-      })
-    </script>
+<!--    评论组件-->
+    <th:block th:replace="~{modules/widgets/article-comment :: ${theme.config.article.articleComment}}" />
+
     <footer th:replace="~{modules/footer :: footer}"></footer>
     <div class=pswp tabindex=-1 role=dialog aria-hidden=true>
       <div class=pswp__bg>

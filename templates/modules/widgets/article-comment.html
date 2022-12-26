@@ -2,12 +2,30 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <th:block th:fragment="halo-comment">
 <div id=waline class=waline-container th:fragment="halo-comment">
+    <th:block th:if="${htmlType == 'post'}">
     <halo:comment
             group="content.halo.run"
             kind="Post"
             th:attr="name=${post.metadata.name}"
             colorScheme="'light'"
     />
+    </th:block>
+    <th:block th:if="${htmlType != 'post'}">
+        <halo:comment
+                group="content.halo.run"
+                kind="SinglePage"
+                th:attr="name=${singlePage.metadata.name}"
+                colorScheme="'light'"
+        />
+    </th:block>
+<!--    <th:block th:if="${htmlType == 'links'}">-->
+<!--        <halo:comment-->
+<!--                group="content.halo.run"-->
+<!--                kind="SinglePage"-->
+<!--                th:attr="name='links'"-->
+<!--                colorScheme="'light'"-->
+<!--        />-->
+<!--    </th:block>-->
 </div>
     <style>
         .waline-container{background-color:var(--card-background);border-radius:var(--card-border-radius);box-shadow:var(--shadow-l1);padding:var(--card-padding);--waline-font-size:var(--article-font-size)}.waline-container

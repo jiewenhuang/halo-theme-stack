@@ -3,6 +3,12 @@ kind: Theme
 metadata:
   name: theme-stack
 spec:
+  customTemplates:
+    page:
+      - name: 友链
+        description: 友情链接页
+        screenshot:
+        file: links.html
   displayName: theme-stack
   author:
     name: Jiewen
@@ -13,5 +19,5 @@ spec:
   repo: "https://github.com/jiewenhuang/halo-theme-stack"
   settingName: "theme-stack-setting"
   configMapName: "theme-stack-configMap"
-  version: "1.0"
+  version: "1.0.1"
   require: "2.0"
