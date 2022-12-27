@@ -1,4 +1,4 @@
-# Halo Theme Hao
+# Halo Theme stack
 
 ---
 
