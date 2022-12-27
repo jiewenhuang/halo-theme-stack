@@ -26,6 +26,7 @@
 - [x] [文章搜索](https://github.com/halo-sigs/plugin-search-widget)
 - [x] 显示字数统计
 - [x] 显示相关文章
+- [x] [waline评论](https://waline.js.org/)
 - [X] [评论系统](https://github.com/halo-sigs/plugin-comment-widget)
 - [x] 其他功能
 
