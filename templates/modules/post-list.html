@@ -5,7 +5,7 @@
     <header class=article-header>
       <div class=article-image>
         <a th:href="@{${post.status.permalink}}">
-          <img th:src="@{${post.spec.cover}}"
+          <img th:src="${#strings.isEmpty(post.spec.cover) ? theme.config.basic.postRandomImg : post.spec.cover}"
                width=800 height=450 loading=lazy th:alt="${post.spec.title}">
         </a>
       </div>

@@ -25,6 +25,12 @@ spec:
           name: icp
           label: 备案信息
           value: "京ICP备888888号-3"
+        - $formkit: url
+          name: postRandomImg
+          label: 博客封面随机 API
+          validation: "url"
+          value: "https://www.dmoe.cc/random.php"
+          help: 填写随机图Api  例如：https://www.dmoe.cc/random.php
     - group: leftSidebar
       label: 左边栏
       formSchema:
