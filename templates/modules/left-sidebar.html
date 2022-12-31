@@ -33,6 +33,7 @@
         </th:block>
     </ol>
     <ol class="menu" id="main-menu">
+        <th:block th:if="${theme.config.leftSidebar.menuItem == 'defaultMenu'}">
         <li>
             <a th:href="${site.url}">
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home"
@@ -142,6 +143,23 @@
               </span>
             </a>
         </li>
+        </th:block>
+        <th:block th:if="${theme.config.leftSidebar.menuItem == 'optionMenu'}">
+            <th:block th:with="menu = ${menuFinder.getByName(theme.config.leftSidebar.menuSelect)}">
+                <th:block th:with="menuItems = ${menu.menuItems}">
+                <li th:each="menuItem : ${menuItems}">
+                    <a th:href="@{${menuItem.status.href}}">
+                        <img th:src="${#annotations.getOrDefault(menuItem, 'icon','/themes/theme-stack/assets/img/menu.svg')}" th:alt="${menuItem.spec.displayName}" height="20" width="20">
+                        <span>
+                [[${menuItem.status.displayName}]]
+              </span>
+                    </a>
+                </li>
+                </th:block>
+
+            </th:block>
+
+        </th:block>
 <!--        <div class=menu-bottom-section>-->
             <li id=dark-mode-toggle>
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left"
