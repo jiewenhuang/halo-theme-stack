@@ -1,0 +1,13 @@
+spec:
+  targetRef:
+    group: ""
+    kind: MenuItem
+  formSchema:
+    - $formkit: "attachment"
+      name: "icon"
+      label: "图标"
+      help: "为了更自由的定义，需自行选择svg图，推荐阿里巴巴矢量图库（iconfont.cn）"
+apiVersion: v1alpha1
+kind: AnnotationSetting
+metadata:
+  generateName: annotation-
