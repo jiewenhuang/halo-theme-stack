@@ -26,6 +26,18 @@
     <th:block th:replace="~{modules/widgets/right-sideWidgets :: ${widgets}}"/>
     </th:block>
   </th:block>
+<!--  标签页-->
+  <th:block th:if="${htmlType == 'tag'}">
+    <th:block th:each="widgets : ${#strings.listSplit(theme.config.rightSidebar.tagsWidgets, ',')}">
+      <th:block th:replace="~{modules/widgets/right-sideWidgets :: ${widgets}}"/>
+    </th:block>
+  </th:block>
+<!--  分类页-->
+  <th:block th:if="${htmlType == 'category'}">
+    <th:block th:each="widgets : ${#strings.listSplit(theme.config.rightSidebar.categoryWidgets, ',')}">
+      <th:block th:replace="~{modules/widgets/right-sideWidgets :: ${widgets}}"/>
+    </th:block>
+  </th:block>
 
 
   <br>

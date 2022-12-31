@@ -46,7 +46,6 @@ spec:
           name: profileAvatar
           label: 头像
           value: ""
-
         - $formkit: repeater
           name: socials
           id: socials
@@ -82,6 +81,23 @@ spec:
             - $formkit: text
               name: socialUrl
               label: 链接
+        - $formkit: select
+          name: menuItem
+          id: menuItem
+          key: menuItem
+          label: 导航栏栏
+          value: defaultMenu
+          options:
+            - label: 默认
+              value: defaultMenu
+            - label: 自选菜单
+              value: optionMenu
+        - $formkit: menuRadio
+          if: "$get(menuItem).value === 'optionMenu'"
+          name: menuSelect
+          label: 选择你要显示的菜单
+          help: "列表中的icon图片需自行去菜单设置填入"
+
     - group: rightSidebar
       label: 右边栏
       formSchema:
@@ -89,22 +105,35 @@ spec:
           name: indexWidgets
           label: 首页右组件
           value: "right-pic,search,archives,category,tags,newcomments"
-          help: "目前提供的小部件有：right-pic（一张大图）, to-links（链接图片）, search（搜索）, category（文章分类）, tags（文章标签）， newcomments（最新评论） 。你可以随意组合或排序，以英文逗号隔开。"
+          help: "目前提供的小部件有：right-pic（一张大图）, archives（归档）,to-links（链接图片）, search（搜索）, category（文章分类）, tags（文章标签）， newcomments（最新评论） 。你可以随意组合或排序，以英文逗号隔开。"
         - $formkit: textarea
           name: postWidgets
           label: 文章右组件
           value: "right-pic,list,newcomments"
-          help: "目前提供的小部件有：right-pic（一张大图）, to-links（链接图片）, search（搜索）, category（文章分类）, tags（文章标签）, list（文章目录）， newcomments（最新评论） 。你可以随意组合或排序，以英文逗号隔开。"
+          help: "目前提供的小部件有：right-pic（一张大图）,archives（归档）, to-links（链接图片）, search（搜索）, category（文章分类）, tags（文章标签）, list（文章目录）， newcomments（最新评论） 。你可以随意组合或排序，以英文逗号隔开。"
         - $formkit: textarea
           name: pageWidgets
           label: 自定义页面右组件
           value: "right-pic,list,newcomments"
-          help: "目前提供的小部件有：right-pic（一张大图）, to-links（链接图片）, search（搜索）, category（文章分类）, tags（文章标签）, list（文章目录）， newcomments（最新评论） 。你可以随意组合或排序，以英文逗号隔开。"
+          help: "目前提供的小部件有：right-pic（一张大图）,archives（归档）, to-links（链接图片）, search（搜索）, category（文章分类）, tags（文章标签）, list（文章目录）， newcomments（最新评论） 。你可以随意组合或排序，以英文逗号隔开。"
         - $formkit: textarea
           name: linksWidgets
           label: 友情链接右组件
           value: "right-pic,list,newcomments"
-          help: "目前提供的小部件有：right-pic（一张大图）, to-links（链接图片）, search（搜索）, category（文章分类）, tags（文章标签）, list（文章目录）， newcomments（最新评论） 。你可以随意组合或排序，以英文逗号隔开。"
+          help: "目前提供的小部件有：right-pic（一张大图）,archives（归档）, to-links（链接图片）, search（搜索）, category（文章分类）, tags（文章标签）, list（文章目录）， newcomments（最新评论） 。你可以随意组合或排序，以英文逗号隔开。"
+        - $formkit: textarea
+          name: tagsWidgets
+          label: 标签页面右组件
+          value: "right-pic,category,tags,archives"
+          help: "目前提供的小部件有：right-pic（一张大图）, archives（归档）,to-links（链接图片）, search（搜索）, category（文章分类）, tags（文章标签）, list（文章目录）， newcomments（最新评论） 。你可以随意组合或排序，以英文逗号隔开。"
+        - $formkit: textarea
+          name: categoryWidgets
+          label: 分类页面右组件
+          value: "right-pic,category,tags,archives"
+          help: "目前提供的小部件有：right-pic（一张大图）, archives（归档）,to-links（链接图片）, search（搜索）, category（文章分类）, tags（文章标签）, list（文章目录）， newcomments（最新评论） 。你可以随意组合或排序，以英文逗号隔开。"
+
+
+
         - $formkit: attachment
           name: rightPic
           label: Right-pic设置
