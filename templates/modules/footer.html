@@ -4,8 +4,8 @@
     &copy; [[${theme.config.basic.copy}]]
   </section>
   <section class=powerby>
-    Powered by GitHub.Pages
-    <br>
+<!--    Powered by GitHub.Pages-->
+<!--    <br>-->
     Built with
     <a href=https://halo.run/ target=_blank rel=noopener>
       Halo
@@ -24,7 +24,7 @@
     </a>
     设计
     <span>
-      <a href="https://www.jiewen.run/" target=_blank rel=noopener>
+      <a href="https://github.com/jiewenhuang/halo-theme-stack" target=_blank rel=noopener>
               • 由Jiewen移植
       </a>
             </span>
@@ -38,10 +38,21 @@
 
 
   </section>
-      <section class=powerby>
-        📑共咕咕了 [[${totalWordCount}]]k 字 · 共水了 [[${articleCount}]]篇文章.
-        </br>
 
+    <!-- 显示文章数和字数 -->
+  <th:block th:with="posts = ${postFinder.listAll()}">
+    <th:block th:with="articleCount=${posts.size()}, wordCount=0">
+      <th:block th:each="post : ${posts}"
+                th:with="content = ${postFinder.content(post.metadata.name)}">
+        <th:block th:with="wordCount=${wordCount + (content.content!=null ? #strings.length(content.content) : 0)}">
+        </th:block>
+      </th:block>
+      <section class=powerby>
+        📑共水了 [[${articleCount}]]篇文章.
+        <br>
       </section>
+    </th:block>
+  </th:block>
+
 </footer>
 </html>
