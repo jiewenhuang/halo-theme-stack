@@ -13,25 +13,31 @@
 ## 安裝
 
 ### 下载安装
-直接下载，通过 Halo Console 后台主题安装处上传即可。
+下载[releases](https://github.com/jiewenhuang/halo-theme-stack/releases)或者直接[下载代码](https://github.com/jiewenhuang/halo-theme-stack)，通过 Halo Console 后台主题安装处上传即可。
 
 ## 说明
-> 部分功能是使用插件进行支持
+> 1、部分功能是使用插件进行支持  
+> 2、如果导航栏使用了系统菜单，则icon图需要自己去系统菜单设置添加
 
 - [x] 卡片化设计
 - [x] 响应式主题
 - [x] 深色模式
 - [X] 文章目录
 - [X] [代码高亮/语言/复制](https://github.com/halo-sigs/plugin-highlightjs)（插件）
-- [x] [文章搜索](https://github.com/halo-sigs/plugin-search-widget)
+- [x] [文章搜索](https://github.com/halo-sigs/plugin-search-widget)（插件）
 - [x] 显示字数统计
 - [x] 显示相关文章
 - [x] [waline评论](https://waline.js.org/)
-- [X] [评论系统](https://github.com/halo-sigs/plugin-comment-widget)
+- [X] [评论系统](https://github.com/halo-sigs/plugin-comment-widget)（插件）
+- [x] [友情链接](https://github.com/halo-sigs/plugin-links)
 - [x] 其他功能
 
 
 ## 预览
+WIP  
+## 进展
+1、官方评论插件在links页可能存在问题  
+2、计划将主题设置中的"友情链接"删除，统一由独立页面管理
 
 
 ## 其他
