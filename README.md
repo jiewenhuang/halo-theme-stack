@@ -2,7 +2,7 @@
 
 ---
 
-预览：[Jiewen's Blog](http://liuzhihang.com/)
+预览：[Jiewen's Blog](https://www.jiewen.run/)
 
 文档：WIP
 > halo-theme-stack 是一款 [Halo2.0](https://github.com/halo-dev/halo) 的博客主题
