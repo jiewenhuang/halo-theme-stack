@@ -1,7 +1,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <footer class=site-footer th:fragment="footer">
   <section class=copyright>
-    &copy; [[${theme.config.basic.copy}]]
+    &copy; [[${theme.config.basic.copy ?: '2020 - 2022 '+site.title}]]
   </section>
   <section class=powerby>
 <!--    Powered by GitHub.Pages-->
@@ -29,6 +29,7 @@
       </a>
             </span>
   </section>
+    <th:block th:if="${not #lists.isEmpty(theme.config.basic.icp)}">
   <section class=powerby>
 <!--    <img th:src="@{/assets/img/icp.png}" alt width=15px height=15px>-->
     <a href="https://beian.miit.gov.cn/" target=_blank>
@@ -38,6 +39,7 @@
 
 
   </section>
+    </th:block>
 
     <!-- 显示文章数和字数 -->
   <th:block th:with="posts = ${postFinder.listAll()}">
