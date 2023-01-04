@@ -8,11 +8,13 @@
         </a>
       </div>
       <div class=article-details>
-        <header class=article-category th:each="category : ${post.categories}">
+        <th:block th:if="${not #lists.isEmpty(post.categories)}">
+        <header class=article-category th:with="category = ${post.categories[0]}">
           <a th:href="@{${category.status.permalink}}"
              th:text="${category.spec.displayName}">
           </a>
         </header>
+        </th:block>
         <div class=article-title-wrapper>
           <h2 class=article-title>
             <a th:href="${post.status.permalink}"
@@ -85,6 +87,7 @@
       </section>
     </footer>
   </article>
+  <th:block th:if="${not #lists.isEmpty(post.categories)}">
   <aside class=related-content--wrapper>
     <h2 class=section-title>
       相关文章
@@ -109,6 +112,7 @@
       </div>
     </div>
   </aside>
+  </th:block>
   <script src=https://unpkg.com/@waline/client@v2/dist/waline.js>
   </script>
   <link href=https://unpkg.com/@waline/client@2.13.0/dist/waline.css rel=stylesheet>
