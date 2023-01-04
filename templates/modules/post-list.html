@@ -10,10 +10,18 @@
         </a>
       </div>
       <div class=article-details>
-        <header class=article-category th:each="category : ${post.categories.get(0)}">
-          <a th:href="@{${category.status.permalink}}" th:text="${category.spec.displayName}">
-          </a>
-        </header>
+        <th:block th:if="${not #lists.isEmpty(post.categories)}">
+          <header
+                  class="article-category"
+                  th:with="category = ${post.categories[0]}"
+          >
+            <a
+                    th:href="@{${category.status.permalink}}"
+                    th:text="${category.spec.displayName}"
+            >
+            </a>
+          </header>
+        </th:block>
         <div class=article-title-wrapper>
           <h2 class=article-title>
             <a th:href="@{${post.status.permalink}}" th:text="${post.spec.title}">
