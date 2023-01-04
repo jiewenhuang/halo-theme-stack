@@ -7,24 +7,38 @@ spec:
     - group: basic
       label: 基本设置
       formSchema:
+        - $formkit: radio
+          name: headWelcome
+          id: headWelcome
+          key: headWelcome
+          label: 顶部欢迎
+          value: true
+          options:
+            - label: 显示
+              value: true
+            - label: 隐藏
+              value: false
         - $formkit: code
-          name: head_hello
+          if: "$get(headWelcome).value"
+          name: headHello
           label: 顶部欢迎代码
           value: "<h2>
 👋Welcome To
       <strong style=color:#e99312>
-        L1nSn0w's Blog
+        Jiewen's Blog
       </strong>
     </h2>"
           language: html
         - $formkit: text
           name: copy
           label: copyright
-          value: "2020 - 2022 Jiewen's Blog"
+          value: ""
+          help: "例如：2020 - 2022 Jiewen's Blog"
         - $formkit: text
           name: icp
           label: 备案信息
-          value: "京ICP备888888号-3"
+          value: "1"
+          help: "例如：京ICP备888888号-3"
         - $formkit: url
           name: postRandomImg
           label: 博客封面随机 API
@@ -37,7 +51,7 @@ spec:
         - $formkit: text
           name: profileName
           label: 社交名称
-          value: "Jiewen's Blog"
+          value: ""
         - $formkit: text
           name: profileDesc
           label: 描述信息
@@ -81,21 +95,12 @@ spec:
             - $formkit: text
               name: socialUrl
               label: 链接
-        - $formkit: select
+        - $formkit: menuRadio
           name: menuItem
           id: menuItem
           key: menuItem
-          label: 导航栏栏
-          value: defaultMenu
-          options:
-            - label: 默认
-              value: defaultMenu
-            - label: 自选菜单
-              value: optionMenu
-        - $formkit: menuRadio
-          if: "$get(menuItem).value === 'optionMenu'"
-          name: menuSelect
-          label: 选择你要显示的菜单
+          label: 导航栏
+          value: ""
           help: "列表中的icon图片需自行去菜单设置填入"
 
     - group: rightSidebar
@@ -175,73 +180,3 @@ spec:
           label: Admin文字
           value: "👻屑博主"
           help: "管理者评论或回复时，名字旁边的介绍"
-
-
-    - group: flinks
-      label: 友链设置
-      formSchema:
-        - $formkit: attachment
-          name: indexPhoto
-          label: 顶部大图
-          value: "/themes/theme-stack/assets/img/page.webp"
-        - $formkit: text
-          name: linksTitle
-          label: 友链标题
-          value: "『 Links 』友情链接"
-        - $formkit: code
-          name: linksInformation
-          label: 我的信息
-          value: "
-          <p>
-              名字： Jiewen’s Blog
-            </p>
-            <p>
-              博客地址：https://www.jiewen.run
-            </p>
-            <p>
-              简介：无限进步.🎈
-            </p>
-            "
-        - $formkit: attachment
-          name: myAvatar
-          label: 头像
-          value: "https://www.jiewen.run/upload/jiewen_icon.png"
-
-          language: html
-        - $formkit: code
-          name: linksFormat
-          label: 友链申请格式
-          value: "<p>
-              你的大名: XXXX
-            </p>
-            <p>
-              你的简介: XXXXXX
-            </p>
-            <p>
-              头像链接: XXXXXXX
-            </p>
-            <p>
-              博客地址: XXXXXXXXXXXXXXXXXXX
-            </p>"
-          language: html
-        - $formkit: code
-          name: linksTip
-          label: 其他信息
-          value: "<p>
-              正常安全的网址，尽量买一个好的域名。
-            </p>
-            <p>
-              站点至少正常运行一个星期。
-            </p>
-            <p>
-              只接受双向友链。
-            </p>
-            <p>
-              头像链接稳定不掉。
-            </p>
-            <p>
-              尽量不要接入广告
-            </p>
-            <p>
-              尽量定期更新,如果长期不更新或者不维护的话我可能会将其撤掉!!!!! </p>"
-          language: html
