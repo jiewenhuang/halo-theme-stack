@@ -4,6 +4,11 @@ metadata:
   name: theme-stack
 spec:
   customTemplates:
+    page:
+      - name: 友链
+        description: 友情链接页
+        screenshot:
+        file: page_links.html
   displayName: theme-stack
   author:
     name: Jiewen
@@ -16,8 +21,4 @@ spec:
   configMapName: "theme-stack-configMap"
   version: "1.0.3"
   require: "2.0"
-  page:
-    - name: 友链
-      description: 友情链接页
-      screenshot:
-      file: page_links.html
+
