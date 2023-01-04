@@ -7,8 +7,7 @@
 文档：WIP
 > halo-theme-stack 是一款 [Halo2.0](https://github.com/halo-dev/halo) 的博客主题
 >
-> 移植于 Hugo  [hugo-theme-stack](https://github.com/CaiJimmy/hugo-theme-stack)
-> 主题中 [L1nSn0w](https://blog.linsnow.cn/) 的魔改
+> 移植于 Hugo  [hugo-theme-stack](https://github.com/CaiJimmy/hugo-theme-stack)主题中 [L1nSn0w](https://blog.linsnow.cn/) 的魔改
 
 ## 安裝
 
@@ -17,7 +16,9 @@
 
 ## 说明
 > 1、部分功能是使用插件进行支持  
-> 2、如果导航栏使用了系统菜单，则icon图需要自己去系统菜单设置添加
+> 2、如果导航栏使用了系统菜单，则icon图需要自己去系统菜单设置添加  
+> 3、1.0.4 版本之后删除了主题设置中的友链设置，如果需要开启请安装插件后前往"页面>新建页面>自定义模板"发布时选择模板为友链即可，由于插件路由占用，友链别名不能为"links"  
+> 4、当导航栏中使用的是自定义链接时，请使用完整链接，例如：首页链接应为"http://example.com/"
 
 - [x] 卡片化设计
 - [x] 响应式主题
@@ -36,8 +37,7 @@
 ## 预览
 WIP  
 ## 进展
-1、官方评论插件在links页可能存在问题  
-2、计划将主题设置中的"友情链接"删除，统一由独立页面管理
+WIP
 
 
 ## 其他
