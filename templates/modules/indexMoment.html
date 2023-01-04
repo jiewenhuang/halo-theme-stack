@@ -2,8 +2,10 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <main class="main full-width" th:fragment="moment">
 <!--  欢迎语-->
-  <div class=announce th:utext="${theme.config.basic.head_hello}">
+    <th:block th:if="${theme.config.basic.headWelcome}">
+  <div class=announce th:utext="${theme.config.basic.headHello}">
   </div>
+    </th:block>
 <!--  post-list-->
   <th:block th:replace="~{modules/post-list}" />
     <th:block th:if="${posts.hasPrevious() || posts.hasNext()}"
