@@ -60,7 +60,19 @@ spec:
           name: profileAvatar
           label: 头像
           value: ""
+        - $formkit: select
+          name: socialSelect
+          id: socialSelect
+          key: socialSelect
+          label: 评论使用模块
+          value: social-default
+          options:
+            - label: 默认图标
+              value: social-default
+            - label: 自选图标
+              value: social-option
         - $formkit: repeater
+          if: "$get(socialSelect).value === 'social-default'"
           name: socials
           id: socials
           key: socials
@@ -91,10 +103,32 @@ spec:
                   value: qq
                 - label: 微信公众号
                   value: wechat_group
-
+                - label: Email
+                  value: email
             - $formkit: text
               name: socialUrl
               label: 链接
+        - $formkit: repeater
+          if: "$get(socialSelect).value === 'social-option'"
+          name: socialOption
+          id: socialOption
+          key: socialOption
+          label: 社交信息
+          value: [ ]
+          children:
+            - $formkit: text
+              name: socialsName
+              label: 名称
+            - $formkit: text
+              name: socialsIcon
+              label: SVG矢量图代码
+              help: "标准请参考https://www.jiewen.run/archives/socialicon"
+            - $formkit: text
+              name: socialUrl
+              label: 跳转地址
+
+
+
         - $formkit: menuRadio
           name: menuItem
           id: menuItem

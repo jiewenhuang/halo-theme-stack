@@ -29,11 +29,25 @@
             </th:block>
         </div>
     </header>
+    <th:block th:if="${theme.config.leftSidebar.socialSelect == 'social-default'}">
     <ol class=social-menu >
         <th:block th:each="socialsIcon : ${theme.config.leftSidebar.socials}">
         <th:block th:replace="modules/widgets/social-group :: ${socialsIcon.socials_select}" />
         </th:block>
     </ol>
+    </th:block>
+    <th:block th:if="${theme.config.leftSidebar.socialSelect == 'social-option'}">
+        <ol class=social-menu >
+            <th:block th:each="socialsOption : ${theme.config.leftSidebar.socialOption}">
+                <li th:fragment="email">
+                    <a th:href="${socialsOption.socialUrl}" target=_blank th:title="${socialsOption.socialsName}"
+                       rel=me>
+                        <th:block th:utext="${socialsOption.socialsIcon}"></th:block>
+                    </a>
+                </li>
+            </th:block>
+        </ol>
+    </th:block>
     <ol class="menu" id="main-menu">
 
         <th:block th:if="${#lists.isEmpty(theme.config.leftSidebar.menuItem)}">
