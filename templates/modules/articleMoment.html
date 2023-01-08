@@ -98,7 +98,7 @@
         <article class=has-image th:each="recommendPost : ${recommendPosts.items}">
           <a th:href="@{${recommendPost.status.permalink}}">
             <div class=article-image>
-              <img th:src="${#strings.isEmpty(recommendPost.spec.cover) ? theme.config.basic.postRandomImg : recommendPost.spec.cover}"
+              <img th:src="${#strings.isEmpty(recommendPost.spec.cover) ? theme.config.basic.postRandomImg+'?pageid='+recommendPost.metadata.name+'&type=url' : recommendPost.spec.cover}"
                    width=250 height=150 loading=lazy th:alt="${recommendPost.spec.title}"
                    >
             </div>

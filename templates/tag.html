@@ -33,7 +33,7 @@
             </footer>
           </div>
           <div class=article-image>
-            <img th:src="${#strings.isEmpty(post.spec.cover) ? theme.config.basic.postRandomImg : post.spec.cover}"
+            <img th:src="${#strings.isEmpty(post.spec.cover) ? theme.config.basic.postRandomImg+'?pageid='+post.metadata.name+'&type=url' : post.spec.cover}"
                  width=120 height=120 th:alt="${post.spec.title}" loading=lazy>
           </div>
         </a>
