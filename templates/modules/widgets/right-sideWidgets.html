@@ -56,12 +56,12 @@
     <th:block th:each="archive : ${archives.items}">
 
       <div class=archives-year>
-        <a th:href="@{/archives}">
+        <a th:href="@{'/archives/'+${archive.year}}">
                 <span class=year>
                   [[${archive.year}]]
                 </span>
-          <span class=count>
-                  [[${archives.total}]]
+          <span class=count th:with="archiveTotal = ${postFinder.archives(1,10,archive.year)}">
+                  [[${archiveTotal.total}]]
                 </span>
         </a>
       </div>
