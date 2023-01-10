@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <th:block th:fragment="halo-comment">
+    <link href=https://unpkg.com/@waline/client@v2/dist/waline.css rel=stylesheet>
 <div id=waline class=waline-container th:fragment="halo-comment">
     <th:block th:if="${htmlType == 'post'}">
     <halo:comment
@@ -28,6 +29,8 @@
 <th:block th:fragment="waline-comment">
 <div id=waline class=waline-container >
 </div>
+    <script src=https://unpkg.com/@waline/client@v2/dist/waline.js></script>
+    <link href=https://unpkg.com/@waline/client@v2/dist/waline.css rel=stylesheet>
 <style>
     .waline-container{background-color:var(--card-background);border-radius:var(--card-border-radius);box-shadow:var(--shadow-l1);padding:var(--card-padding);--waline-font-size:var(--article-font-size)}.waline-container
                                                                                                                                                                                                           .wl-count{color:var(--card-text-color-main)}
