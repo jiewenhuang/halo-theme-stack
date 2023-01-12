@@ -6,7 +6,6 @@
     <meta name=viewport content="width=device-width,initial-scale=1">
     <title th:text="${title}"></title>
     <link rel=stylesheet th:href="@{/assets/css/style.css}">
-
     <link rel="shortcut icon" th:href="@{${#strings.isEmpty(site.favicon) ? '/assets/img/jiewen_icon.png' : site.favicon}}"/>
 </head>
 <body class=article-page>
@@ -55,6 +54,19 @@
             e.rel = "stylesheet",
             document.head.appendChild(e)
     })()
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+        var section = document.querySelector("#article-content");
+        var headings = section.querySelectorAll("h1, h2, h3, h4, h5, h6");
+        for(var i = 0; i < headings.length; i++){
+            var heading = headings[i];
+            if(!heading.id){
+                heading.id = "title-" + heading.textContent.replace(/\s+/g, '-');
+            }
+        }
+    });
+
 </script>
 <script type="text/javascript" th:src="@{/assets/js/tocbot.min.js}"></script>
 <script type="text/javascript" th:src="@{/assets/js/plugins.js}"></script>
@@ -109,5 +121,29 @@
 
 
 </script>
+<th:block th:if="${theme.config.basic.lazyLoading}">
+<script>
+    var imgs = document.getElementsByClassName('lazyLoading')
+    scrollFn()
+    // 监听滚动事件
+    window.onscroll = scrollFn
+    function scrollFn() {
+        var clietH = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+        var scrollTop = document.documentElement.scrollTop || window.pageYOffset ||  document.body.scrollTop;
+        console.log(clietH, scrollTop);
+        Array.from(imgs).forEach((item) =>{
+            let eleTop = item.offsetTop
+            // console.log(eleTop)
+            let count = scrollTop + clietH - eleTop
+            console.log(count)
+            // 可设置为>100 查看懒加载效果
+            if (count > 0) {
+                //从data-url中取出真实的图片地址赋值给scr
+                item.setAttribute('src', item.getAttribute('data-src'))
+            }
+        })
+    }
+</script>
+</th:block>
 </body>
 </html>

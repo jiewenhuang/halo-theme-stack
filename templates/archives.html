@@ -13,8 +13,15 @@
             <article class=has-image th:each="category : ${categories}">
               <a th:href="@{${category.status.permalink}}">
                 <div class=article-image>
-                  <img th:src="${category.spec.cover}"
+                    <th:block th:if="${theme.config.basic.lazyLoading}">
+                  <img th:data-src="${category.spec.cover}"
+                       th:src="${theme.config.basic.lazyUrl}" class="lazyLoading"
                        width=250 height=150 loading=lazy th:alt="${category.spec.displayName}">
+                    </th:block>
+                    <th:block th:if="not ${theme.config.basic.lazyLoading}">
+                        <img th:src="${category.spec.cover}"
+                             width=250 height=150 loading=lazy th:alt="${category.spec.displayName}">
+                    </th:block>
                 </div>
                 <div class=article-details>
                   <h2 class=article-title th:text="${category.spec.displayName}">
@@ -47,8 +54,15 @@
                 </footer>
               </div>
               <div class=article-image>
-                <img th:src="${#strings.isEmpty(post.spec.cover) ? theme.config.basic.postRandomImg+'?pageid='+post.metadata.name+'&type=url' : post.spec.cover}"
+                  <th:block th:if="${theme.config.basic.lazyLoading}">
+                <img th:data-src="${#strings.isEmpty(post.spec.cover) ? theme.config.basic.postRandomImg+'?pageid='+post.metadata.name+'&type=url' : post.spec.cover}"
+                     th:src="${theme.config.basic.lazyUrl}" class="lazyLoading"
                      width=120 height=120 th:alt="${post.spec.title}" loading=lazy>
+                  </th:block>
+                  <th:block th:if="not ${theme.config.basic.lazyLoading}">
+                      <img th:src="${#strings.isEmpty(post.spec.cover) ? theme.config.basic.postRandomImg+'?pageid='+post.metadata.name+'&type=url' : post.spec.cover}"
+                           width=120 height=120 th:alt="${post.spec.title}" loading=lazy>
+                  </th:block>
               </div>
             </a>
           </article>

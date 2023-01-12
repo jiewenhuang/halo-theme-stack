@@ -33,8 +33,15 @@
             </footer>
           </div>
           <div class=article-image>
-            <img th:src="${#strings.isEmpty(post.spec.cover) ? theme.config.basic.postRandomImg+'?pageid='+post.metadata.name+'&type=url' : post.spec.cover}"
+            <th:block th:if="${theme.config.basic.lazyLoading}">
+            <img th:data-src="${#strings.isEmpty(post.spec.cover) ? theme.config.basic.postRandomImg+'?pageid='+post.metadata.name+'&type=url' : post.spec.cover}"
+                 th:src="${theme.config.basic.lazyUrl}" class="lazyLoading"
                  width=120 height=120 th:alt="${post.spec.title}" loading=lazy>
+            </th:block>
+            <th:block th:if="not ${theme.config.basic.lazyLoading}">
+              <img th:src="${#strings.isEmpty(post.spec.cover) ? theme.config.basic.postRandomImg+'?pageid='+post.metadata.name+'&type=url' : post.spec.cover}"
+                   width=120 height=120 th:alt="${post.spec.title}" loading=lazy>
+            </th:block>
           </div>
         </a>
       </article>

@@ -45,6 +45,22 @@ spec:
           validation: "url"
           value: "https://www.dmoe.cc/random.php"
           help: 填写随机图Api  例如：https://www.dmoe.cc/random.php
+        - $formkit: radio
+          name: lazyLoading
+          id: lazyLoading
+          key: lazyLoading
+          label: 懒加载图
+          value: false
+          options:
+            - label: 显示
+              value: true
+            - label: 隐藏
+              value: false
+        - $formkit: attachment
+          if: "$get(lazyLoading).value"
+          name: lazyUrl
+          label: 加载图片
+          help: "懒加载图片"
     - group: leftSidebar
       label: 左边栏
       formSchema:
