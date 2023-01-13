@@ -48,7 +48,7 @@
                   [[${post.spec.title}]]
                 </h2>
                 <footer class=article-time>
-                  <time th:text="${#dates.format(post.metadata.creationTimestamp,'yyyy-MM-dd')}">
+                  <time th:text="${#dates.format(post.spec.publishTime,'yyyy-MM-dd')}">
 
                   </time>
                 </footer>
