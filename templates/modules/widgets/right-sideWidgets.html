@@ -52,7 +52,7 @@
   <h2 class="widget-title section-title">
     归档
   </h2>
-  <div class=widget-archive--list th:with="archives = ${postFinder.archives(1,10)}">
+  <div class=widget-archive--list th:with="archives = ${postFinder.archives(1,10000)}">
     <th:block th:each="archive : ${archives.items}">
 
       <div class=archives-year>
@@ -60,7 +60,7 @@
                 <span class=year>
                   [[${archive.year}]]
                 </span>
-          <span class=count th:with="archiveTotal = ${postFinder.archives(1,10,archive.year)}">
+          <span class=count th:with="archiveTotal = ${postFinder.archives(1,10000,archive.year)}">
                   [[${archiveTotal.total}]]
                 </span>
         </a>
