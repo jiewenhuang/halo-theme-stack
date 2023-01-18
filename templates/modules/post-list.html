@@ -6,13 +6,13 @@
       <div class=article-image>
         <a th:href="@{${post.status.permalink}}">
           <th:block th:if="${theme.config.basic.lazyLoading}">
-          <img th:data-src="${#strings.isEmpty(post.spec.cover) ? theme.config.basic.postRandomImg+'?pageid='+post.metadata.name+'&type=url' : post.spec.cover}"
+          <img th:data-src="${#strings.isEmpty(post.spec.cover) ? theme.config.basic.postRandomImg+'?pageid='+post.metadata.name : post.spec.cover}"
                th:src="${theme.config.basic.lazyUrl}"
                width=800 height=450 loading=lazy th:alt="${post.spec.title}"
           class="lazyLoading">
           </th:block>
           <th:block th:if="not ${theme.config.basic.lazyLoading}">
-            <img th:src="${#strings.isEmpty(post.spec.cover) ? theme.config.basic.postRandomImg+'?pageid='+post.metadata.name+'&type=url' : post.spec.cover}"
+            <img th:src="${#strings.isEmpty(post.spec.cover) ? theme.config.basic.postRandomImg+'?pageid='+post.metadata.name : post.spec.cover}"
                  width=800 height=450 loading=lazy th:alt="${post.spec.title}">
           </th:block>
         </a>

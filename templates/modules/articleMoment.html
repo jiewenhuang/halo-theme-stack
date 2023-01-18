@@ -107,13 +107,13 @@
           <a th:href="@{${recommendPost.status.permalink}}">
             <div class=article-image>
               <th:block th:if="${theme.config.basic.lazyLoading}">
-              <img th:data-src="${#strings.isEmpty(recommendPost.spec.cover) ? theme.config.basic.postRandomImg+'?pageid='+recommendPost.metadata.name+'&type=url' : recommendPost.spec.cover}"
+              <img th:data-src="${#strings.isEmpty(recommendPost.spec.cover) ? theme.config.basic.postRandomImg+'?pageid='+recommendPost.metadata.name : recommendPost.spec.cover}"
                    th:src="${theme.config.basic.lazyUrl}" class="lazyLoading"
                    width=250 height=150 loading=lazy th:alt="${recommendPost.spec.title}"
                    >
               </th:block>
               <th:block th:if="not ${theme.config.basic.lazyLoading}">
-                <img th:src="${#strings.isEmpty(recommendPost.spec.cover) ? theme.config.basic.postRandomImg+'?pageid='+recommendPost.metadata.name+'&type=url' : recommendPost.spec.cover}"
+                <img th:src="${#strings.isEmpty(recommendPost.spec.cover) ? theme.config.basic.postRandomImg+'?pageid='+recommendPost.metadata.name : recommendPost.spec.cover}"
                      width=250 height=150 loading=lazy th:alt="${recommendPost.spec.title}"
                 >
               </th:block>
