@@ -12,7 +12,7 @@ spec:
           id: headWelcome
           key: headWelcome
           label: 顶部欢迎
-          value: true
+          value: false
           options:
             - label: 显示
               value: true
@@ -22,12 +22,7 @@ spec:
           if: "$get(headWelcome).value"
           name: headHello
           label: 顶部欢迎代码
-          value: "<h2>
-👋Welcome To
-      <strong style=color:#e99312>
-        Jiewen's Blog
-      </strong>
-    </h2>"
+          value: "例如：<h2>👋Welcome To<strong style=color:#e99312>Jiewen's Blog</strong></h2>"
           language: html
         - $formkit: text
           name: copy
@@ -37,14 +32,14 @@ spec:
         - $formkit: text
           name: icp
           label: 备案信息
-          value: "1"
+          value: ""
           help: "例如：京ICP备888888号-3"
         - $formkit: url
           name: postRandomImg
           label: 博客封面随机 API
           validation: "url"
           value: "https://www.dmoe.cc/random.php"
-          help: 填写随机图Api  例如：https://www.dmoe.cc/random.php
+          help: "填写随机图Api  例如：https://www.dmoe.cc/random.php"
         - $formkit: radio
           name: lazyLoading
           id: lazyLoading
