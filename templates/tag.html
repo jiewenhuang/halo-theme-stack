@@ -33,7 +33,7 @@
             </footer>
           </div>
           <div class=article-image>
-
+            <th:block th:if="${theme.config.basic.lazyLoading}">
             <img th:data-src="${#strings.isEmpty(post.spec.cover) ? theme.config.basic.postRandomImg+'?pageid='+post.metadata.name : post.spec.cover}"
                  th:src="${theme.config.basic.lazyUrl}" class="lazyLoading"
                  width=120 height=120 th:alt="${post.spec.title}" loading=lazy>
