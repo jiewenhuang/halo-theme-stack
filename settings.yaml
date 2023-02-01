@@ -38,8 +38,8 @@ spec:
           name: postRandomImg
           label: 博客封面随机 API
           validation: "url"
-          value: "https://www.dmoe.cc/random.php"
-          help: "填写随机图Api  例如：https://www.dmoe.cc/random.php"
+          value: "https://imgapi.xl0408.top/index.php"
+          help: "填写随机图Api  例如：https://imgapi.xl0408.top/index.php"
         - $formkit: radio
           name: lazyLoading
           id: lazyLoading
