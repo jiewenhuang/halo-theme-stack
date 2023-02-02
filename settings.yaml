@@ -18,11 +18,11 @@ spec:
               value: true
             - label: 隐藏
               value: false
-        - $formkit: code
+        - $formkit: textarea
           if: "$get(headWelcome).value"
           name: headHello
           label: 顶部欢迎代码
-          value: "例如：<h2>👋Welcome To<strong style=color:#e99312>Jiewen's Blog</strong></h2>"
+          value: "<h2>👋Welcome To<strong style=color:#e99312>Jiewen's Blog</strong></h2>"
           language: html
         - $formkit: text
           name: copy
