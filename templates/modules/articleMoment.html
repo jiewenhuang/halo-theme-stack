@@ -101,7 +101,7 @@
       相关文章
     </h2>
     <div class=related-content>
-      <div class="flex article-list--tile" th:each="recommendPosts : ${post.categories}"
+      <div class="flex article-list--tile" th:each="recommendPosts : ${post.categories[0]}"
            th:with="recommendPosts = ${postFinder.listByCategory(1,5,recommendPosts.metadata.name)}">
         <article class=has-image th:each="recommendPost : ${recommendPosts.items}">
           <a th:href="@{${recommendPost.status.permalink}}">
