@@ -7,6 +7,7 @@
     <title th:text="${title}"></title>
     <link rel=stylesheet th:href="@{/assets/css/style.css}">
     <link rel=stylesheet th:href="@{/assets/css/main.css}">
+    <script type="text/javascript" th:src="@{/assets/js/stack.js}"></script>
     <link rel="shortcut icon" th:href="@{${#strings.isEmpty(site.favicon) ? '/assets/img/jiewen_icon.png' : site.favicon}}"/>
 </head>
 <body class=article-page>
@@ -56,21 +57,23 @@
             document.head.appendChild(e)
     })()
 </script>
-<script>
-    document.addEventListener("DOMContentLoaded", function(){
-        var section = document.querySelector("#article-content");
-        var headings = section.querySelectorAll("h1, h2, h3, h4, h5, h6");
-        for(var i = 0; i < headings.length; i++){
-            var heading = headings[i];
-            if(!heading.id){
-                heading.id = "title-" + heading.textContent.replace(/\s+/g, '-');
+<th:block th:if="${htmlType == 'post'}">
+    <script>
+        document.addEventListener("DOMContentLoaded", function(){
+            var section = document.querySelector("#article-content");
+            var headings = section.querySelectorAll("h1, h2, h3, h4, h5, h6");
+            for(var i = 0; i < headings.length; i++){
+                var heading = headings[i];
+                if(!heading.id){
+                    heading.id = "title-" + heading.textContent.replace(/\s+/g, '-');
+                }
             }
-        }
-    });
+        });
 
-</script>
+    </script>
 <script type="text/javascript" th:src="@{/assets/js/tocbot.min.js}"></script>
 <script type="text/javascript" th:src="@{/assets/js/plugins.js}"></script>
+</th:block>
 <script type="text/javascript">
 
     // 获取导航栏中所有的链接元素
