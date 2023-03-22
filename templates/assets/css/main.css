@@ -48,6 +48,23 @@
     transform: scale(0.8);
     background-color: rgb(255, 148, 6);
 }
+.hot-ranking_new {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: 0;
+    top: 0px;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #fff;
+    box-sizing: border-box;
+    border-radius: 3px;
+    transform: scale(0.8);
+    background-color: rgb(255, 56, 82);
+}
 .hot-ranking_title {
     white-space: nowrap;
     overflow: hidden;
