@@ -57,7 +57,7 @@
             document.head.appendChild(e)
     })()
 </script>
-<th:block th:if="${htmlType == 'post'}">
+<th:block th:if="${htmlType == 'post' or htmlType == 'links'}">
     <script>
         document.addEventListener("DOMContentLoaded", function(){
             var section = document.querySelector("#article-content");
