@@ -41,7 +41,7 @@
     <label>
       搜索
     </label>
-    <input name=keyword required placeholder=输入关键词...>
+    <input name=keyword placeholder=输入关键词...>
     <button title=搜索 onclick="javascript:SearchWidget.open();return false;">
       <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search"
            width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#00b341"
@@ -176,8 +176,16 @@
       📢最新评论:
     </div>
     <div id="waline-recent">
+      <th:block th:if="${theme.config.article.articleComment == 'halo-comment'}">
+        <th:block th:each="result : ${commentFinder.list(null,1,2)}">
+          <img th:src="${result.owner.avatar}" th:alt="${result.owner.displayName}">[[${result.owner.displayName}]]: <p>[[${result.spec.content}]]</p>
+        </th:block>
+
+
+      </th:block>
     </div>
   </div>
+  <th:block th:if="${theme.config.article.articleComment == 'waline-comment'}">
   <script type="module">
     const walineUrl = "[[${theme.config.article.walineUrl}]]";
     import { RecentComments } from 'https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.mjs';
@@ -191,6 +199,7 @@
       );
     });
   </script>
+  </th:block>
 </th:block>
 
 </html>
