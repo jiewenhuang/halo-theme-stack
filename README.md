@@ -22,20 +22,18 @@
   </a>  </a>
 </p>
 
-预览：[Jiewen's Blog](https://www.jiewen.run/?preview-theme=theme-stack)  
+### 预览：[Jiewen's Blog](https://www.jiewen.run/?preview-theme=theme-stack)  
 <p align="center">
 <img width="100%" src="https://wmimg.com/i/70/2023/08/64d8ee719d8ae.png">
 </p>
 
 
-文档：WIP
+### 文档：WIP
 
-## 安裝
-
-### 下载安装
+### 安裝
 下载[releases](https://github.com/jiewenhuang/halo-theme-stack/releases)或者直接[下载代码](https://github.com/jiewenhuang/halo-theme-stack)，通过 Halo Console 后台主题安装处上传即可。
 
-## 说明
+### 说明
 > 1、部分功能是使用插件进行支持  
 > 2、如果导航栏使用了系统菜单，则icon图需要自己去系统菜单设置添加  
 > 3、1.0.4 版本之后删除了主题设置中的友链设置，如果需要开启请安装插件后前往"页面>新建页面>自定义模板"发布时选择模板为友链即可，由于插件路由占用，友链别名不能为"links"  
