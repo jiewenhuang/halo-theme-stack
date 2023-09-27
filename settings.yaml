@@ -70,7 +70,7 @@ spec:
         - $formkit: text
           name: profileEmoji
           label: 状态Emoji
-          value: "🍥✍️"
+          value: "🍥"
         - $formkit: attachment
           name: profileAvatar
           label: 头像
