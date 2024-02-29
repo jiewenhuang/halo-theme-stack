@@ -34,7 +34,7 @@ jobs:
           echo "RELEASE_ID=${{ github.event.release.id }}" >> $GITHUB_ENV
           mkdir $PRE_ZIP_FOLDER
           mkdir dist
-          cp -r theme.yaml settings.yaml annotation-setting.yaml templates $PRE_ZIP_FOLDER/
+          cp -r theme.yaml settings.yaml annotation-setting.yaml templates i18n $PRE_ZIP_FOLDER/
           zip -r $ARTIFACT_PATHNAME $PRE_ZIP_FOLDER
 
       - name: Upload artifact
@@ -71,7 +71,7 @@ jobs:
           echo "RELEASE_ID=${{ github.event.release.id }}" >> $GITHUB_ENV
           mkdir $PRE_ZIP_FOLDER
           mkdir dist
-          cp -r theme.yaml settings.yaml annotation-setting.yaml templates $PRE_ZIP_FOLDER/
+          cp -r theme.yaml settings.yaml annotation-setting.yaml templates i18n $PRE_ZIP_FOLDER/
           zip -r $ARTIFACT_PATHNAME $PRE_ZIP_FOLDER
 
       - name: Upload a release asset
