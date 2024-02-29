@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<th:block th:fragment="related">
+    <th:block th:if="${! #lists.isEmpty(post.categories)} or ${! #lists.isEmpty(post.tags)}">
+    <aside class="related-content--wrapper">
+        <h2 class="section-title">[[#{theme.related_posts}]]</h2>
+        <div class="related-content">
+            <div class="flex article-list--tile">
+                <th:block th:if="${not #lists.isEmpty(post.categories)}">
+                    <th:block th:each="recommendPosts : ${post.categories[0]}"
+                              th:with="recommendPosts = ${postFinder.listByCategory(1,6,recommendPosts.metadata.name)}">
+                <article th:each="recommendPost : ${recommendPosts.items}"
+                         th:if="${post.metadata.name != recommendPost.metadata.name}"
+                         th:classappend="${! #strings.isEmpty(recommendPost.spec.cover)} ? 'has-image'">
+                    <a th:href="@{${recommendPost.status.permalink}}" th:title="${recommendPost.spec.title}">
+                        <div class="article-image" th:if="${! #strings.isEmpty(recommendPost.spec.cover)}">
+                            <img th:src="${recommendPost.spec.cover}">
+
+                        </div>
+                        <div class="article-details">
+                            <h2 class="article-title" th:text="${recommendPost.spec.title}"></h2>
+                        </div>
+                    </a>
+                </article>
+                    </th:block>
+                </th:block>
+                <th:block th:if="${#lists.isEmpty(post.categories)} and ${! #lists.isEmpty(post.tags)}">
+                    <th:block th:each="recommendPosts : ${post.categories[0]}"
+                              th:with="recommendPosts = ${postFinder.listByCategory(1,5,recommendPosts.metadata.name)}">
+                    <article th:each="recommendPost : ${recommendPosts.items}"
+                             th:if="${post.metadata.name != recommendPost.metadata.name}">
+                        <a th:href="@{${recommendPost.status.permalink}}" th:title="${recommendPost.spec.title}">
+                            <div class="article-image" th:if="${! #strings.isEmpty(recommendPost.spec.cover)}">
+                                <img th:src="${recommendPost.spec.cover}">
+
+                            </div>
+                            <div class="article-details">
+                                <h2 class="article-title" th:text="${recommendPost.spec.title}"></h2>
+                            </div>
+                        </a>
+                    </article>
+                    </th:block>
+                </th:block>
+            </div>
+        </div>
+    </aside>
+    </th:block>
+
+</th:block>
+</html>

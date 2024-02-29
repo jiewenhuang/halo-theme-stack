@@ -1,236 +1,30 @@
 <!DOCTYPE html>
-<html lang="en" th:fragment="html (title,header,content,head,footer,leftSidebar,rightSidebar,htmlType)" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta name=generator content="Hugo 0.104.1">
-    <meta charset=utf-8>
-    <meta name=viewport content="width=device-width,initial-scale=1">
-    <title th:text="${title}"></title>
-    <link rel=stylesheet th:href="@{/assets/css/style.css}">
-    <link rel=stylesheet th:href="@{/assets/css/main.css}">
-<!--    <script type="text/javascript" th:src="@{/assets/js/stack.js}"></script>-->
-    <link rel="shortcut icon" th:href="@{${#strings.isEmpty(site.favicon) ? '/assets/img/jiewen_icon.png' : site.favicon}}"/>
-</head>
-<body class=article-page>
-<script>
+<html  th:fragment="html (content, title, pageType)" xmlns:th="https://www.thymeleaf.org" lang="en">
+<th:block th:replace="~{modules/head :: head(${title})}"></th:block>
+  <body th:class="${pageType != 'index' ? 'article-page' : ''}">
+  <script>
     (function() {
-        const e = "StackColorScheme";
-        localStorage.getItem(e) || localStorage.setItem(e, "light")
-    })()
-</script>
-<script>
+      const colorSchemeKey = 'StackColorScheme';
+      if (!localStorage.getItem(colorSchemeKey)) {
+        localStorage.setItem(colorSchemeKey, "auto");
+      }
+    })();
+  </script>
+  <script>
     (function() {
-        const t = "StackColorScheme",
-            e = localStorage.getItem(t),
-            n = window.matchMedia("(prefers-color-scheme: dark)").matches === !0;
-        e == "dark" || e === "auto" && n ? document.documentElement.dataset.scheme = "dark": document.documentElement.dataset.scheme = "light"
-    })()
-</script>
-<div class="container main-container flex on-phone--column extended">
-<!--左边栏-->
-    <th:block th:if="${leftSidebar == true}">
-        <th:block th:replace="~{modules/left-sidebar}" />
-    </th:block>
+      const colorSchemeKey = 'StackColorScheme';
+      const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+      const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
 
-<!--右边栏-->
-    <th:block th:if="${rightSidebar == true}">
-        <th:block th:replace="~{modules/right-sidebar}" />
-    </th:block>
+      if (colorSchemeItem === 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
 
 
-    <th:block th:replace="${content}"></th:block>
-
-
-
-</div>
-
-<script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js
-        integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin=anonymous>
-</script>
-<script type=text/javascript th:src="@{/assets/js/main.js}" defer>
-</script>
-<script>
-    (function() {
-        const e = document.createElement("link");
-        e.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",
-            e.type = "text/css",
-            e.rel = "stylesheet",
-            document.head.appendChild(e)
-    })()
-</script>
-<th:block th:if="${htmlType == 'post' or htmlType == 'links'}">
-    <script>
-        document.addEventListener("DOMContentLoaded", function(){
-            var section = document.querySelector("#article-content");
-            var headings = section.querySelectorAll("h1, h2, h3, h4, h5, h6");
-            for(var i = 0; i < headings.length; i++){
-                var heading = headings[i];
-                if(!heading.id){
-                    heading.id = "title-" + heading.textContent.replace(/\s+/g, '-');
-                }
-            }
-        });
-
-    </script>
-<script type="text/javascript" th:src="@{/assets/js/tocbot.min.js}"></script>
-<script type="text/javascript" th:src="@{/assets/js/plugins.js}"></script>
-</th:block>
-<script type="text/javascript">
-
-    // 获取导航栏中所有的链接元素
-    const navLinks = document.querySelectorAll('#main-menu a');
-
-    // 定义函数用于清除所有链接的选中类、为当前点击的链接的父元素添加选中类以及使用本地存储保存选中状态
-    function updateNavSelection(link) {
-        // 去除所有链接元素的选中类
-        navLinks.forEach(function(link) {
-            link.parentNode.classList.remove('current');
-        });
-
-        // 为当前点击的链接元素的父元素添加选中类
-        link.parentNode.classList.add('current');
-
-        // 使用本地存储保存选中状态
-        localStorage.setItem('selectedNavLink', link.getAttribute('href'));
-    }
-
-    // 为每个链接元素添加点击事件监听器
-    navLinks.forEach(function(link) {
-        link.addEventListener('click', function() {
-            updateNavSelection(this);
-        });
-    });
-
-    // 在页面加载时清除所有链接的选中类，并使用本地存储中的选中状态来为对应的链接的父元素添加选中类
-    const selectedNavLink = localStorage.getItem('selectedNavLink');
-    if (selectedNavLink) {
-        const selectedLink = document.querySelector(`#main-menu a[href="${selectedNavLink}"]`);
-        if (selectedLink) {
-            updateNavSelection(selectedLink);
-        }
-    }
-
-    // 获取当前页面的 URL
-    const currentURL = window.location.href;
-
-    // 检查当前页面是否是导航栏中的链接
-    navLinks.forEach(function(link) {
-        // 获取链接的 URL
-        const linkURL = link.getAttribute('href');
-
-    // 如果链接的 URL 与当前页面的 URL 相同，则为该链接的父元素添加选中类
-        if (linkURL === currentURL) {
-            updateNavSelection(link);
-        }
-    });
-
-
-</script>
-<th:block th:if="${theme.config.basic.lazyLoading}">
-<script>
-    var imgs = document.getElementsByClassName('lazyLoading')
-    scrollFn()
-    // 监听滚动事件
-    window.onscroll = scrollFn
-    function scrollFn() {
-        var clietH = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-        var scrollTop = document.documentElement.scrollTop || window.pageYOffset ||  document.body.scrollTop;
-        // console.log(clietH, scrollTop);
-        Array.from(imgs).forEach((item) =>{
-            let eleTop = item.offsetTop
-            // console.log(eleTop)
-            let count = scrollTop + clietH - eleTop
-            // console.log(count)
-            // 可设置为>100 查看懒加载效果
-            if (count > 0) {
-                //从data-url中取出真实的图片地址赋值给scr
-                item.setAttribute('src', item.getAttribute('data-src'))
-            }
-        })
-    }
-</script>
-</th:block>
-<script>
-    // 创建XMLHttpRequest对象
-    var xhr = new XMLHttpRequest();
-
-    // 设置请求方法和请求地址
-    xhr.open("GET", "https://www.aapi.icu/call/hot/weibo/?item=6", true);
-
-    // 发送请求
-    xhr.send();
-
-    // 监听状态改变事件
-    xhr.onreadystatechange = function() {
-        if (this.readyState === 4 && this.status === 200) {
-            // 将响应数据转换为JSON格式
-            var response = JSON.parse(this.responseText);
-
-            // 获取热搜数据
-            var hotData = response.data;
-
-            // 创建ul元素
-            var ul = document.createElement("ul");
-            ul.className = "hot-ranking-list";
-
-            // 遍历热搜数据，创建li元素
-            for (var i = 0; i < hotData.length; i++) {
-                var hot = hotData[i];
-
-                // 创建li元素
-                var li = document.createElement("li");
-                li.className = "hot-ranking-list_item";
-
-                // 创建a元素
-                var a = document.createElement("a");
-                a.href = hot.hot_url;
-                a.target = "_blank";
-                a.title = hot.hot_title;
-
-                // 创建span元素
-                var spanOrder = document.createElement("span");
-                spanOrder.className = "hot-ranking_order hot-ranking_order-" + hot.hot_rank;
-                spanOrder.textContent = hot.hot_rank;
-
-                var spanText = document.createElement("span");
-                spanText.className = "hot-ranking_text";
-
-                var spanTitle = document.createElement("span");
-                spanTitle.className = "hot-ranking_title";
-                spanTitle.textContent = hot.hot_title;
-
-                var spanNumber = document.createElement("span");
-                spanNumber.className = "hot-ranking_number";
-                spanNumber.textContent = hot.hot_value;
-
-                var spanHot = document.createElement("span");
-                if (hot.hot_rank <= 3){
-                    spanHot.className = "hot-ranking_hot";
-                    spanHot.textContent = "热";
-                }
-                else {
-                    spanHot.className = "hot-ranking_new";
-                    spanHot.textContent = "新";
-                }
-
-                // 将span元素添加到a元素中
-                spanText.appendChild(spanTitle);
-                spanText.appendChild(spanNumber);
-                a.appendChild(spanOrder);
-                a.appendChild(spanText);
-                a.appendChild(spanHot);
-
-                // 将a元素添加到li元素中
-                li.appendChild(a);
-
-                // 将li元素添加到ul元素中
-                ul.appendChild(li);
-            }
-
-            // 将ul元素添加到页面中
-            document.getElementById("weibo_hot").appendChild(ul);
-        }
-    };
-
-</script>
-</body>
+        document.documentElement.dataset.scheme = 'dark';
+      } else {
+        document.documentElement.dataset.scheme = 'light';
+      }
+    })();
+  </script>
+    <th:block th:replace="${content}" />
+  </body>
 </html>

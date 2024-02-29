@@ -1,51 +1,59 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-      th:replace="~{modules/layout :: html(title = '标签' + ' - ' + ${site.title},htmlType = tag,header = null,leftSidebar = true,rightSidebar = true, content = ~{::content}, head = null, footer = null)}"
->
+<html xmlns:th="https://www.thymeleaf.org" th:replace="~{modules/layout :: html(content = ~{::content}, title=${tag.spec.displayName}, pageType='tag' )}">
 <th:block th:fragment="content">
-  <main class="main full-width">
-    <header>
-      <h3 class=section-title>
-        TAG
-      </h3>
-      <div class=section-card>
-        <div class=section-details>
-          <h3 class=section-count>
-            [[${tag.status.postCount}]] page
-          </h3>
-          <h1 class=section-term>
-            [[${tag.spec.displayName}]]
-          </h1>
-        </div>
-      </div>
-    </header>
-    <section class=article-list--compact>
-      <article th:each="post : ${posts.items}">
-        <a th:href="${post.status.permalink}">
-          <div class=article-details>
-            <h2 class=article-title>
-              [[${post.spec.title}]]
-            </h2>
-            <footer class=article-time>
-              <time th:text="${#dates.format(post.spec.publishTime,'yyyy-MM-dd')}">
+    <div class="container main-container flex on-phone--column extended">
+        <!--      Left Sidebar-->
+        <th:block th:replace="~{modules/common/left-sidebar :: left-sidebar}"></th:block>
+        <!--      Right Sidebar-->
+        <th:block th:replace="~{modules/common/right-sidebar :: right-sidebar(toc='false')}"></th:block>
 
-              </time>
-            </footer>
-          </div>
-          <div class=article-image>
-            <th:block th:if="${theme.config.basic.lazyLoading}">
-            <img th:data-src="${#strings.isEmpty(post.spec.cover) ? theme.config.basic.postRandomImg+'?pageid='+post.metadata.name : post.spec.cover}"
-                 th:src="${theme.config.basic.lazyUrl}" class="lazyLoading"
-                 width=120 height=120 th:alt="${post.spec.title}" loading=lazy>
-            </th:block>
-            <th:block th:if="not ${theme.config.basic.lazyLoading}">
-              <img th:src="${#strings.isEmpty(post.spec.cover) ? theme.config.basic.postRandomImg+'?pageid='+post.metadata.name : post.spec.cover}"
-                   width=120 height=120 th:alt="${post.spec.title}" loading=lazy>
-            </th:block>
-          </div>
-        </a>
-      </article>
-    </section>
-    <th:block th:replace="~{modules/footer}" />
-  </main>
+
+        <main class="main full-width">
+            <header>
+                <h3 class="section-title">
+                    [[#{theme.tags}]]
+                </h3>
+
+                <div class="section-card">
+                    <div class="section-details">
+                        <h3 class="section-count">[[${tag.status.postCount}]] [[#{theme.page}]]</h3>
+                        <h1 class="section-term" th:text="${tag.spec.displayName}"></h1>
+
+                    </div>
+                </div>
+            </header>
+
+            <section class="article-list--compact">
+
+                <article th:each="post : ${posts.items}">
+                    <a th:href="${post.status.permalink}">
+                        <div class="article-details">
+                            <h2 class="article-title" th:text="${post.spec.title}"></h2>
+                            <footer class="article-time">
+                                <time th:datetime="${post.spec.publishTime}"
+                                      th:text="${#dates.format(post.spec.publishTime, 'MMM dd, yyyy')}"></time>
+                            </footer>
+                        </div>
+                        <div class="article-image" th:if="${! #strings.isEmpty(post.spec.cover)}">
+                            <img th:src="${post.spec.cover}" width="120" height="120" alt="Hello World" loading="lazy">
+
+                        </div>
+
+                    </a>
+                </article>
+
+            </section>
+            <!--       pagination-->
+            <th:block th:replace="~{modules/common/pagination :: tag}"></th:block>
+            <!--Footer-->
+            <th:block th:replace="~{modules/common/footer :: footer}"></th:block>
+
+
+        </main>
+    </div>
+    <!--    Tail JS-->
+    <th:block th:replace="~{modules/tail :: tail}"></th:block>
+
+
 </th:block>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" th:replace="~{modules/layout :: html(content = ~{::content}, title='首页', pageType = 'index')}">
+<th:block th:fragment="content">
+    <div class="container main-container flex on-phone--column extended">
+        <!--      Left Sidebar-->
+        <th:block th:replace="~{modules/common/left-sidebar :: left-sidebar}"></th:block>
+        <main class="main full-width">
+            <div class="not-found-card">
+                <h1 class="article-title">Not Found</h1>
+                <h2 class="article-subtitle">[[#{theme.404}]]</h2>
+            </div>
+            <!--Footer-->
+            <th:block th:replace="~{modules/common/footer :: footer}"></th:block>
+        </main>
+    </div>
+</th:block>
+</html>

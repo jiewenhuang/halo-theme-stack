@@ -6,7 +6,7 @@
 <div align="center">  
 
 一款 [Halo2.0](https://github.com/halo-dev/halo) 的博客主题  
-移植于 Hugo  [hugo-theme-stack](https://github.com/CaiJimmy/hugo-theme-stack)主题中 [L1nSn0w](https://blog.linsnow.cn/) 的魔改  
+移植于 Hugo  [hugo-theme-stack](https://github.com/CaiJimmy/hugo-theme-stack)同名主题
 
 </div>
 
@@ -22,7 +22,7 @@
   </a>  </a>
 </p>
 
-### 预览：[Jiewen's Blog](https://www.jiewen.run/?preview-theme=theme-stack)  
+### 预览：[Jiewen's Blog](https://www.jiewen.run/?preview-theme=theme-stack)
 <p align="center">
 <img width="100%" src="https://wmimg.com/i/70/2023/08/64d8ee719d8ae.png">
 </p>
@@ -50,7 +50,7 @@
 - [x] [waline评论](https://waline.js.org/)
 - [X] [评论系统](https://github.com/halo-sigs/plugin-comment-widget)（插件）
 - [x] [友情链接](https://github.com/halo-sigs/plugin-links)
-- [x] 其他功能  
+- [x] 其他功能
 
 ### TODO
 - [ ] 瞬时
@@ -83,5 +83,3 @@
 - ......
 
 <br>
-
-

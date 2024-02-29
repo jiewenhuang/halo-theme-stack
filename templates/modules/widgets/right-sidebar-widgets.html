@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<th:block th:fragment="searchBox">
+<!--    Search Box-->
+    <form action="/search" class="search-form widget">
+        <p>
+            <label>[[#{theme.search}]]</label>
+            <input name="keyword" required="" th:placeholder="#{theme.search_input}">
+
+            <button title="Search">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z"></path>
+                    <circle cx="10" cy="10" r="7"></circle>
+                    <line x1="21" y1="21" x2="15" y2="15"></line>
+                </svg>
+
+
+
+            </button>
+        </p>
+    </form>
+</th:block>
+<th:block th:fragment="archives">
+    <!--    archives-->
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-infinity" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z"></path>
+                <path d="M9.828 9.172a4 4 0 1 0 0 5.656 a10 10 0 0 0 2.172 -2.828a10 10 0 0 1 2.172 -2.828 a4 4 0 1 1 0 5.656a10 10 0 0 1 -2.172 -2.828a10 10 0 0 0 -2.172 -2.828"></path>
+            </svg>
+        </div>
+        <h2 class="widget-title section-title">[[#{theme.archives}]]</h2>
+        <div class="widget-archive--list" th:with="archives = ${postFinder.archives(1,999)}">
+            <div class="archives-year" th:each="archive : ${archives.items}">
+                <a th:href="@{'/archives#'+${archive.year}}">
+                    <span class="year" th:text="${archive.year}"></span>
+                    <span class="count" th:with="archiveTotal = ${postFinder.archives(1,10000,archive.year)}">[[${archiveTotal.total}]]</span>
+
+                </a>
+            </div>
+
+        </div>
+    </section>
+</th:block>
+<th:block th:fragment="categoryCloud">
+    <!--    categoryCloud-->
+    <section class="widget tagCloud">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z"></path>
+                <line x1="5" y1="9" x2="19" y2="9"></line>
+                <line x1="5" y1="15" x2="19" y2="15"></line>
+                <line x1="11" y1="4" x2="7" y2="20"></line>
+                <line x1="17" y1="4" x2="13" y2="20"></line>
+            </svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">[[#{theme.categories}]]</h2>
+
+        <div class="tagCloud-tags" th:with="categories = ${categoryFinder.listAll()}">
+
+            <a  th:each="category : ${categories}"
+                th:href="@{${category.status.permalink}}"
+                th:text="${category.spec.displayName}" class="font_size_1">
+            </a>
+
+
+        </div>
+    </section>
+</th:block>
+<th:block th:fragment="tagCloud">
+    <!--    tagCloud-->
+    <section class="widget tagCloud">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z"></path>
+                <path d="M11 3L20 12a1.5 1.5 0 0 1 0 2L14 20a1.5 1.5 0 0 1 -2 0L3 11v-4a4 4 0 0 1 4 -4h4"></path>
+                <circle cx="9" cy="9" r="2"></circle>
+            </svg>
+        </div>
+        <h2 class="widget-title section-title">[[#{theme.tags}]]</h2>
+
+        <div class="tagCloud-tags" th:with="tags = ${tagFinder.listAll()}">
+
+            <a th:each="tag : ${tags}"
+               th:href="@{${tag.status.permalink}}"
+               th:text="${tag.spec.displayName}" class="font_size_1">
+            </a>
+
+
+        </div>
+    </section>
+</th:block>
+<th:block th:fragment="toc">
+    <section class="widget archives post_toc">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z"></path>
+                <line x1="5" y1="9" x2="19" y2="9"></line>
+                <line x1="5" y1="15" x2="19" y2="15"></line>
+                <line x1="11" y1="4" x2="7" y2="20"></line>
+                <line x1="17" y1="4" x2="13" y2="20"></line>
+            </svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">[[#{theme.toc}]]</h2>
+
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+                <ol>
+                </ol>
+
+            </nav>
+        </div>
+    </section>
+
+</th:block>
+
+</html>

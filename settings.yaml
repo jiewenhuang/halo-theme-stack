@@ -4,224 +4,328 @@ metadata:
   name: theme-stack-setting
 spec:
   forms:
-    - group: basic
+    - group: base
       label: 基本设置
       formSchema:
-        - $formkit: radio
-          name: headWelcome
-          id: headWelcome
-          key: headWelcome
-          label: 顶部欢迎
-          value: false
-          options:
-            - label: 显示
-              value: true
-            - label: 隐藏
-              value: false
-        - $formkit: textarea
-          if: "$get(headWelcome).value"
-          name: headHello
-          label: 顶部欢迎代码
-          value: "<h2>👋Welcome To<strong style=color:#e99312>Jiewen's Blog</strong></h2>"
-          language: html
         - $formkit: text
-          name: copy
-          label: copyright
-          value: ""
-          help: "例如：2020 - 2022 Jiewen's Blog"
-        - $formkit: text
-          name: icp
+          name: copyright
+          label: 版权信息
+          value: "2020 - 2024 Halo Theme Stack Starter"
+          help: "页脚版权信息 (示例：2020 - 2024 Halo Theme Stack Starter)"
+        - $formkit: group
+          name: icp_police
           label: 备案信息
-          value: ""
-          help: "例如：京ICP备888888号-3"
-        - $formkit: url
-          name: postRandomImg
-          label: 博客封面随机 API
-          validation: "url"
-          value: "https://imgapi.xl0408.top/index.php"
-          help: "填写随机图Api  例如：https://imgapi.xl0408.top/index.php"
-        - $formkit: radio
-          name: lazyLoading
-          id: lazyLoading
-          key: lazyLoading
-          label: 懒加载图
-          value: false
-          options:
-            - label: 显示
-              value: true
-            - label: 隐藏
-              value: false
-        - $formkit: attachment
-          if: "$get(lazyLoading).value"
-          name: lazyUrl
-          label: 加载图片
-          help: "懒加载图片"
-    - group: leftSidebar
-      label: 左边栏
-      formSchema:
-        - $formkit: text
-          name: profileName
-          label: 社交名称
-          value: ""
-        - $formkit: text
-          name: profileDesc
-          label: 描述信息
-          value: "无限进步.✍️"
-        - $formkit: attachment
-          name: profileAvatar
-          label: 头像
-          value: ""
+          children:
+            - $formkit: text
+              name: icp
+              label: ICP 备案号
+              value: ""
+              help: "ICP 备案信息将展示在页脚中，不填不展示（示例：鄂ICP备20001234号-1）"
+            - $formkit: text
+              name: icp_link
+              label: ICP备案跳转链接
+              value: https://beian.miit.gov.cn/
+            - $formkit: text
+              name: police
+              label: 公网安备号
+              value: ""
+              help: "公网安备信息将展示在页脚中，不填不展示，（示例：鄂公网安备42011102001234号）"
+            - $formkit: text
+              name: gongan_link
+              label: 公安联网备案跳转链接
+              value: https://beian.mps.gov.cn/#/query/webSearch
         - $formkit: select
-          name: socialSelect
-          id: socialSelect
-          key: socialSelect
-          label: 评论使用模块
-          value: social-default
+          name: comment_system
+          id: comment_system
+          label: 评论系统
+          value: "default"
           options:
-            - label: 默认图标
-              value: social-default
-            - label: 自选图标
-              value: social-option
-        - $formkit: repeater
-          if: "$get(socialSelect).value === 'social-default'"
-          name: socials
-          id: socials
-          key: socials
-          label: 社交信息
-          value: []
+            - value: "default"
+              label: "默认"
+            - value: "waline"
+              label: "Waline"
+        - $formkit: group
+          if: "$get(comment_system).value === 'waline'"
+          name: waline
+          label: Waline 配置
           children:
             - $formkit: select
-              name: socials_select
-              label: 平台
+              name: waline_setting
+              id: waline_setting
+              label: Waline 配置文件
+              value: "default"
               options:
-                - label: Github
-                  value: github
-                - label: Facebook
-                  value: facebook
-                - label: Twitter
-                  value: twitter
-                - label: Instagram
-                  value: instagram
-                - label: Telegram
-                  value: telegram
-                - label: Youtube
-                  value: youtube
-                - label: Bilibili
-                  value: bilibili
-                - label: 知乎
-                  value: zhihu
-                - label: QQ
-                  value: qq
-                - label: 微信公众号
-                  value: wechat_group
-                - label: Email
-                  value: email
+                - value: "default"
+                  label: "默认"
+                - value: "custom"
+                  label: "自定义"
             - $formkit: text
-              name: socialUrl
-              label: 链接
-        - $formkit: repeater
-          if: "$get(socialSelect).value === 'social-option'"
-          name: socialOption
-          id: socialOption
-          key: socialOption
-          label: 社交信息
-          value: [ ]
-          children:
-            - $formkit: text
-              name: socialsName
-              label: 名称
-            - $formkit: text
-              name: socialsIcon
-              label: SVG矢量图代码
-              help: "标准请参考https://www.jiewen.run/archives/socialicon"
-            - $formkit: text
-              name: socialUrl
-              label: 跳转地址
+              name: waline_url
+              label: Waline 服务地址
+              value: ""
+              help: "Waline 服务地址，不带末尾反斜杠，使用自定义则无效"
+            - $formkit: code
+              language: javascript
+              name: waline_custom
+              label: 自定义配置
+              value: "Waline.init({}) "
+              help: "自定义Waline配置，参考https://waline.js.org"
 
-
-
-        - $formkit: menuRadio
-          name: menuItem
-          id: menuItem
-          key: menuItem
-          label: 导航栏
-          value: ""
-          help: "列表中的icon图片需自行去菜单设置填入"
-
-    - group: rightSidebar
-      label: 右边栏
+    - group: leftSidebar
+      label: 左侧边栏
       formSchema:
-        - $formkit: textarea
-          name: indexWidgets
-          label: 首页右组件
-          value: "right-pic,search,archives,category,tags,newcomments"
-          help: "目前提供的小部件有：right-pic（一张大图）, archives（归档）,to-links（链接图片）, search（搜索）, category（文章分类）, tags（文章标签）， newcomments（最新评论）,weibo(微博热搜) 。你可以随意组合或排序，以英文逗号隔开。"
-        - $formkit: textarea
-          name: postWidgets
-          label: 文章右组件
-          value: "right-pic,list,newcomments"
-          help: "目前提供的小部件有：right-pic（一张大图）,archives（归档）, to-links（链接图片）, search（搜索）, category（文章分类）, tags（文章标签）, list（文章目录）， newcomments（最新评论）,weibo(微博热搜) 。你可以随意组合或排序，以英文逗号隔开。"
-        - $formkit: textarea
-          name: pageWidgets
-          label: 自定义页面右组件
-          value: "right-pic,list,newcomments"
-          help: "目前提供的小部件有：right-pic（一张大图）,archives（归档）, to-links（链接图片）, search（搜索）, category（文章分类）, tags（文章标签）, list（文章目录）， newcomments（最新评论）,weibo(微博热搜) 。你可以随意组合或排序，以英文逗号隔开。"
-        - $formkit: textarea
-          name: linksWidgets
-          label: 友情链接右组件
-          value: "right-pic,list,newcomments"
-          help: "目前提供的小部件有：right-pic（一张大图）,archives（归档）, to-links（链接图片）, search（搜索）, category（文章分类）, tags（文章标签）, list（文章目录）， newcomments（最新评论）,weibo(微博热搜) 。你可以随意组合或排序，以英文逗号隔开。"
-        - $formkit: textarea
-          name: tagsWidgets
-          label: 标签页面右组件
-          value: "right-pic,category,tags,archives"
-          help: "目前提供的小部件有：right-pic（一张大图）, archives（归档）,to-links（链接图片）, search（搜索）, category（文章分类）, tags（文章标签）, list（文章目录）， newcomments（最新评论）,weibo(微博热搜) 。你可以随意组合或排序，以英文逗号隔开。"
-        - $formkit: textarea
-          name: categoryWidgets
-          label: 分类页面右组件
-          value: "right-pic,category,tags,archives"
-          help: "目前提供的小部件有：right-pic（一张大图）, archives（归档）,to-links（链接图片）, search（搜索）, category（文章分类）, tags（文章标签）, list（文章目录）， newcomments（最新评论）,weibo(微博热搜) 。你可以随意组合或排序，以英文逗号隔开。"
+        - $formkit: group
+          name: blog_info
+          label: 博主信息
+          children:
+            - $formkit: attachment
+              name: avatar
+              label: 头像链接
+              value: "/themes/theme-stack/assets/images/avatar.png"
+              help: "左侧边栏头像链接，不填则使用默认"
+            - $formkit: text
+              name: name
+              label: 昵称
+              value: "Theme Stack Starter"
+              help: "左侧边栏昵称"
+            - $formkit: text
+              name: bio
+              label: 个人简介
+              value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+              help: "左侧边栏个人简介"
+            - $formkit: text
+              name: emoji
+              label: emoji表情
+              value: "🍥"
+              help: "头像右下方emoji表情"
+        - $formkit: repeater
+          name: social_links
+          label: 社交链接
+          children:
+            - $formkit: select
+              name: icon_code
+              id: icon_code
+              label: 图标
+              value: "stack icon-github"
+              validation: "required"
+              options:
+                - label: GitHub
+                  value: "stack icon-github"
+                - label: Twitter
+                  value: "stack icon-twitter"
+                - label: Facebook
+                  value: "stack icon-facebook"
+                - label: Instagram
+                  value: "stack icon-instagram"
+                - label: LinkedIn
+                  value: "stack icon-linkedin"
+                - label: YouTube
+                  value: "stack icon-Youtube"
+                - label: WeChat
+                  value: "stack icon-weixin"
+                - label: QQ
+                  value: "stack icon-QQ"
+                - label: Weibo
+                  value: "stack icon-weibo"
+                - label: Zhihu
+                  value: "stack icon-zhihu-fill"
+                - label: Douban
+                  value: "stack icon-douban-fill"
+                - label: Telegram
+                  value: "stack icon-telegram"
+                - label: Bilbili
+                  value: "stack icon-bilibili-line"
+                - label: RSS
+                - label: RSS
+                  value: "stack icon-rss"
+                - label: Email
+                  value: "stack icon-email"
+                - label: 自定义
+                  value: "custom"
+            - $formkit: text
+              if: $value.icon_code === 'custom'
+              name: custom_icon
+              label: 自定义图标
+              value: ""
+              help: "你可以引入自己的iconfont库，然后这里填写图标的类名，例如：iconfont icon-xxx"
 
-
-
-        - $formkit: attachment
-          name: rightPic
-          label: Right-pic设置
+            - $formkit: text
+              name: link
+              label: 链接
+              value: ""
+              validation: "required"
+              help: "跳转链接"
+        - $formkit: menuRadio
+          name: menu
+          label: 菜单
           value: ""
-        - $formkit: code
-          name: toLinks
-          label: To-links设置
-          value: "<a href=https://travellings.link/ target=_blank rel=noopener title=开往-友链接力>
-      <img src=https://travellings.link/assets/logo.gif alt=开往-友链接力 width=120>
-    </a>
-    <a href=https://www.foreverblog.cn/go.html target=_blank>
-      <img src=https://img.foreverblog.cn/wormhole_1.gif alt style=width:auto;height:32px
-           title=穿梭虫洞-随机访问十年之约友链博客>
-    </a>"
-
-    - group: article
+          help: "选择要显示的菜单，注：只显示一级菜单"
+    - group: rightSidebar
+      label: 右侧边栏
+      formSchema:
+        - $formkit: repeater
+          name: asideData
+          id: asideData
+          label: 侧边栏模块
+          value:
+            - template_aside: "searchBox"
+            - template_aside: "archives"
+            - template_aside: "categoryCloud"
+            - template_aside: "tagCloud"
+          children:
+            - $formkit: select
+              name: template_aside
+              id: template_aside
+              label: "侧边栏模块"
+              value: "none"
+              options:
+                - value: "none"
+                  label: 无
+                - value: "searchBox"
+                  label: 搜索框
+                - value: "archives"
+                  label: 归档
+                - value: "categoryCloud"
+                  label: 分类
+                - value: "tagCloud"
+                  label: 分类
+    - group: post
       label: 文章页
       formSchema:
+        - $formkit: repeater
+          name: asideData
+          id: asideData
+          label: 侧边栏模块
+          help: "文章页侧边栏模块,留空则不显示"
+          value:
+            - template_aside: "toc"
+          children:
+            - $formkit: select
+              name: template_aside
+              id: template_aside
+              label: "侧边栏模块"
+              value: "none"
+              options:
+                - value: "none"
+                  label: 无
+                - value: "searchBox"
+                  label: 搜索框
+                - value: "archives"
+                  label: 归档
+                - value: "categoryCloud"
+                  label: 分类
+                - value: "tagCloud"
+                  label: 分类
+                - value: "toc"
+                  label: 目录
         - $formkit: select
-          name: articleComment
-          id: articleComment
-          key: articleComment
-          label: 评论使用模块
-          value: halo-comment
+          name: code_theme
+          label: 代码主题
+          value: "one-dark"
+          help: "设置代码块主题，可通过后台元数据为每篇文章设置单独的代码主题，主题来自 prism-themes，见https://github.com/PrismJS/prism-themes"
           options:
-            - label: 官方评论插件
-              value: halo-comment
-            - label: Waline评论插件
-              value: waline-comment
-        - $formkit: url
-          if: "$get(articleComment).value === 'waline-comment'"
-          name: walineUrl
-          label: Waline服务地址
-          value: ""
-          help: "你的waline评论服务地址，具体参考：https://waline.js.org/"
+            - value: "one-dark"
+              label: "one-dark"
+            - value: "one-light"
+              label: "one-light"
+            - value: "a11y-dark"
+              label: "a11y-dark"
+            - value: "atom-dark"
+              label: "atom-dark"
+            - value: "base16-ateliersulphurpool.light"
+              label: "base16-ateliersulphurpool.light"
+            - value: "cb"
+              label: "cb"
+            - value: "coldark-cold"
+              label: "coldark-cold"
+            - value: "coldark-dark"
+              label: "coldark-dark"
+            - value: "coy-without-shadows"
+              label: "coy-without-shadows"
+            - value: "darcula"
+              label: "darcula"
+            - value: "dracula"
+              label: "dracula"
+            - value: "duotone-dark"
+              label: "duotone-dark"
+            - value: "duotone-earth"
+              label: "duotone-earth"
+            - value: "duotone-forest"
+              label: "duotone-forest"
+            - value: "duotone-light"
+              label: "duotone-light"
+            - value: "duotone-sea"
+              label: "duotone-sea"
+            - value: "duotone-space"
+              label: "duotone-space"
+            - value: "ghcolors"
+              label: "ghcolors"
+            - value: "gruvbox-dark"
+              label: "gruvbox-dark"
+            - value: "gruvbox-light"
+              label: "gruvbox-light"
+            - value: "holi-theme"
+              label: "holi-theme"
+            - value: "hopscotch"
+              label: "hopscotch"
+            - value: "lucario"
+              label: "lucario"
+            - value: "material-dark"
+              label: "material-dark"
+            - value: "material-light"
+              label: "material-light"
+            - value: "material-oceanic"
+              label: "material-oceanic"
+            - value: "night-owl"
+              label: "night-owl"
+            - value: "nord"
+              label: "nord"
+            - value: "pojoaque"
+              label: "pojoaque"
+            - value: "shades-of-purple"
+              label: "shades-of-purple"
+            - value: "solarized-dark-atom"
+              label: "solarized-dark-atom"
+            - value: "synthwave84"
+              label: "synthwave84"
+            - value: "vs"
+              label: "vs"
+            - value: "vsc-dark-plus"
+              label: "vsc-dark-plus"
+            - value: "xonokai"
+              label: "xonokai"
+            - value: "z-touch"
+              label: "z-touch"
         - $formkit: text
-          if: "$get(articleComment).value === 'waline-comment'"
-          name: walineAdmin
-          label: Admin文字
-          value: "👻屑博主"
-          help: "管理者评论或回复时，名字旁边的介绍"
+          name: article_copyright
+          label: 文章协议
+          value: "LICENSED UNDER CC BY-NC-SA 4.0"
+          help: "文章底部遵循的协议，不填则不展示，默认为：LICENSED UNDER CC BY-NC-SA 4.0"
+        - $formkit: select
+          name: enable_related_article
+          label: 相关文章
+          value: "true"
+          help: "是否开启文章推荐"
+          options:
+            - value: "true"
+              label: "开启"
+            - value: "false"
+              label: "关闭"
+    - group: links
+      label: 友链
+      formSchema:
+        - $formkit: select
+          name: show_type
+          label: 友链展示
+          value: "post_first"
+          options:
+            - value: "post_first"
+              label: "文章页优先"
+            - value: "links_first"
+              label: "友链页优先"
+
+
+
+
+
+

@@ -1,0 +1,80 @@
+@font-face {
+  font-family: "stack"; /* Project id 4436010 */
+  src: url('iconfont.woff2?t=1708068228365') format('woff2'),
+       url('iconfont.woff?t=1708068228365') format('woff'),
+       url('iconfont.ttf?t=1708068228365') format('truetype'),
+       url('iconfont.svg?t=1708068228365#stack') format('svg');
+}
+
+.stack {
+  font-family: "stack" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-instagram:before {
+  content: "\e87f";
+}
+
+.icon-weibo:before {
+  content: "\e882";
+}
+
+.icon-rss:before {
+  content: "\e808";
+}
+
+.icon-zhihu-fill:before {
+  content: "\e77b";
+}
+
+.icon-linkedin:before {
+  content: "\e978";
+}
+
+.icon-douban-fill:before {
+  content: "\e7af";
+}
+
+.icon-github:before {
+  content: "\e799";
+}
+
+.icon-weixin:before {
+  content: "\e66f";
+}
+
+.icon-Youtube:before {
+  content: "\e880";
+}
+
+.icon-facebook:before {
+  content: "\e788";
+}
+
+.icon-twitter:before {
+  content: "\e646";
+}
+
+.icon-bilibili-line:before {
+  content: "\e75d";
+}
+
+.icon-telegram:before {
+  content: "\e9ac";
+}
+
+.icon-jujin:before {
+  content: "\e600";
+}
+
+.icon-email:before {
+  content: "\e670";
+}
+
+.icon-QQ:before {
+  content: "\e65b";
+}
+

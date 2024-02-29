@@ -1,138 +1,63 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-      th:replace="~{modules/layout :: html(title = '归档' + ' - ' + ${site.title},htmlType = category,header = null,leftSidebar = true,rightSidebar = false, content = ~{::content}, head = null, footer = null)}"
->
-  <th:block th:fragment="content">
-    <main class="main full-width">
-      <header>
-        <h2 class=section-title>
-          Categories
-        </h2>
-        <div class=subsection-list>
-          <div class=article-list--tile th:with="categories = ${categoryFinder.listAll()}">
-            <article class=has-image th:each="category : ${categories}">
-              <a th:href="@{${category.status.permalink}}">
-                <div class=article-image>
-                    <th:block th:if="${theme.config.basic.lazyLoading}">
-                  <img th:data-src="${category.spec.cover}"
-                       th:src="${theme.config.basic.lazyUrl}" class="lazyLoading"
-                       width=250 height=150 loading=lazy th:alt="${category.spec.displayName}">
-                    </th:block>
-                    <th:block th:if="not ${theme.config.basic.lazyLoading}">
-                        <img th:src="${category.spec.cover}"
-                             width=250 height=150 loading=lazy th:alt="${category.spec.displayName}">
+<html xmlns:th="https://www.thymeleaf.org" th:replace="~{modules/layout :: html(content = ~{::content}, title=#{theme.archives}, pageType='archives' )}">
+<th:block th:fragment="content">
+    <div class="container main-container flex on-phone--column extended">
+        <!--      Left Sidebar-->
+        <th:block th:replace="~{modules/common/left-sidebar :: left-sidebar}"></th:block>
+        <main class="main full-width">
+            <header>
+                <h2 class="section-title">[[#{theme.archives}]]</h2>
+                <div class="subsection-list">
+                    <div class="article-list--tile" th:with="categories = ${categoryFinder.listAll()}">
+                        <article th:each="category : ${categories}"
+                                 th:classappend="${! #strings.isEmpty(category.spec.cover) ? 'has-image' : ''}">
+                            <a th:href="@{${category.status.permalink}}">
+                                <div class="article-image" th:if="${! #strings.isEmpty(category.spec.cover)}">
+                                    <img th:src="${category.spec.cover}" loading="lazy" th:alt="${category.spec.displayName}" >
+
+                                </div>
+                                <div class="article-details">
+                                    <h2 class="article-title"
+                                        th:text="${category.spec.displayName}"></h2>
+                                </div>
+                            </a>
+                        </article>
+                    </div>
+                </div>
+
+            </header>
+            <th:block th:each="archive : ${archives.items}">
+                <div class="archives-group" th:id="${archive.year}">
+                <h2 class="archives-date section-title">
+                    <a th:href="@{${'archives/'+archive.year}}" th:text="${archive.year}"></a></h2>
+                <div class="article-list--compact">
+                    <th:block th:each="month : ${archive.months}">
+                    <article th:each="post : ${month.posts}">
+                        <a th:href="@{${post.status.permalink}}" >
+                            <div class="article-details">
+                                <h2 class="article-title" th:text="${post.spec.title}"></h2>
+                                <footer class="article-time">
+                                    <time th:datetime="${post.spec.publishTime}" th:text="${#dates.format(post.spec.publishTime, 'MMM dd, yyyy')}"></time>
+                                </footer>
+                            </div>
+                            <div class="article-image" th:if="${! #strings.isEmpty(post.spec.cover)}">
+                                <img th:src="${post.spec.cover}" width="120" height="120" th:alt="${post.spec.title}" loading="lazy">
+
+                            </div>
+                        </a>
+                    </article>
                     </th:block>
                 </div>
-                <div class=article-details>
-                  <h2 class=article-title th:text="${category.spec.displayName}">
+            </div>
+                <!--       pagination-->
+            </th:block>
+            <th:block th:replace="~{modules/common/pagination :: archives}"></th:block>
 
-                  </h2>
-                </div>
-              </a>
-            </article>
-          </div>
-        </div>
-      </header>
-      <div class=archives-group th:each="archive : ${archives.items}" id="${archive.year}">
-        <h2 class="archives-date section-title">
-          <a th:href="'#'+${archive.year}" th:text="${archive.year}">
-
-          </a>
-        </h2>
-        <div class=article-list--compact>
-          <th:block th:each="month : ${archive.months}">
-          <article th:each="post : ${month.posts}">
-            <a th:href="@{${post.status.permalink}}">
-              <div class=article-details>
-                <h2 class=article-title>
-                  [[${post.spec.title}]]
-                </h2>
-                <footer class=article-time>
-                  <time th:text="${#dates.format(post.spec.publishTime,'yyyy-MM-dd')}">
-
-                  </time>
-                </footer>
-              </div>
-              <div class=article-image>
-                  <th:block th:if="${theme.config.basic.lazyLoading}">
-                <img th:data-src="${#strings.isEmpty(post.spec.cover) ? theme.config.basic.postRandomImg+'?pageid='+post.metadata.name : post.spec.cover}"
-                     th:src="${theme.config.basic.lazyUrl}" class="lazyLoading"
-                     width=120 height=120 th:alt="${post.spec.title}" loading=lazy>
-                  </th:block>
-                  <th:block th:if="not ${theme.config.basic.lazyLoading}">
-                      <img th:src="${#strings.isEmpty(post.spec.cover) ? theme.config.basic.postRandomImg+'?pageid='+post.metadata.name : post.spec.cover}"
-                           width=120 height=120 th:alt="${post.spec.title}" loading=lazy>
-                  </th:block>
-              </div>
-            </a>
-          </article>
-          </th:block>
-        </div>
-      </div>
-        <th:block th:if="${archives.hasPrevious() || archives.hasNext()}"
-                  th:with="totalPages = ${archives.totalPages}, pageIndex = ${archives.page}">
-            <!-- 页面小于 7 -->
-            <nav class=pagination th:if="${(totalPages le 7) && (totalPages gt 0)}">
-
-          <span class="page-link" th:classappend="${index eq pageIndex} ? 'current'" th:each="index : ${#numbers.sequence(1, totalPages)}">
-            <a th:href="@{/archives/page/} + ${index}" th:text="${index}">
-            </a>
-          </span>
-            </nav>
-            <!-- 页面大于 7 -->
-            <nav class=pagination th:if="${totalPages gt 7}">
-                <!-- 首页 -->
-                <span class="page-link" th:classappend="${index eq '1'} ? 'current'">
-                <a class="page-link" href="/">1</a>
-            </span>
-                <!-- 当前页面小于等于4 -->
-                <span class="page-link" th:classappend="${index eq pageIndex} ? 'current" th:each="index : ${#numbers.sequence(2,5)}"
-                      th:if="${pageIndex le 4}">
-                <a th:href="@{/archives/page/} + ${index}" th:text="${index}">
-
-                </a>
-            </span>
-                <span class="page-link dots" th:if="${pageIndex le 4}">
-               ...
-            </span>
-                <!-- 最后一页与当前页面之差小于等于3 -->
-                <span class="page-link" th:if="${totalPages - pageIndex le 3}">
-                ...
-            </span>
-                <span class="page-link" th:classappend="${index eq pageIndex} ? 'current'"
-                      th:each="index : ${#numbers.sequence(totalPages - 4, totalPages - 1)}"
-                      th:if="${totalPages - pageIndex le 3}">
-                <a class="page-link" th:href="@{/archives/page/} + ${index}" th:text="${index}">
-                </a>
-            </span>
-                <!-- 最后一页与当前页面之差大于3 且当前页面大于4 -->
-                <span class="page-link" th:if="${(pageIndex gt 4) && (totalPages - pageIndex gt 3)}">
-                ...
-            </span>
-                <span class="page-link" th:each="index : ${#numbers.sequence(pageIndex - 1,pageIndex + 1)}"
-                      th:if="${(pageIndex gt 4) && (totalPages - pageIndex gt 3)}">
-                <a class="page-link" th:href="@{/archives/page/} + ${index}" th:text="${index}">
-                </a>
-            </span>
-                <!-- 需要添加 th:href 跳转地址 -->
-                <span class="page-link" th:if="${(pageIndex gt 4) && (totalPages - pageIndex gt 3)}">
-                ...
-            </span>
-
-                <!-- 尾页 -->
-                <!-- 需要添加 th:href 跳转地址 -->
-                <span class="page-link" th:classappend="${index eq pageIndex} ? 'current'">
-                <a class="page-link" th:text="${totalPages}">
-
-                </a>
-
-            </span>
-            </nav>
-        </th:block>
-
-      <!--  底部信息-->
-      <th:block th:replace="~{modules/footer}" />
-    </main>
-
-  </th:block>
+            <!--Footer-->
+            <th:block th:replace="~{modules/common/footer :: footer}"></th:block>
+        </main>
+    </div>
+    <!--    Tail JS-->
+    <th:block th:replace="~{modules/tail :: tail}"></th:block>
+</th:block>
 </html>

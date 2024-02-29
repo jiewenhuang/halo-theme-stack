@@ -1,8 +1,27 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-                      th:replace="~{modules/layout :: html(title = ${site.title},htmlType = index,header = null,leftSidebar = true,rightSidebar = true, content = ~{::content}, head = null, footer = null)}"
->
+<html xmlns:th="https://www.thymeleaf.org" th:replace="~{modules/layout :: html(content = ~{::content}, title='首页', pageType = 'index')}">
   <th:block th:fragment="content">
-    <th:block th:replace="~{modules/indexMoment}" />
+
+    <div class="container main-container flex on-phone--column extended">
+<!--      Left Sidebar-->
+      <th:block th:replace="~{modules/common/left-sidebar :: left-sidebar}"></th:block>
+<!--      Right Sidebar-->
+      <th:block th:replace="~{modules/common/right-sidebar :: right-sidebar(toc='false')}"></th:block>
+
+
+      <main class="main full-width">
+<!--       Index Article List-->
+        <th:block th:replace="~{modules/index-post-list :: post-list}"></th:block>
+          <!--       pagination-->
+          <th:block th:replace="~{modules/common/pagination :: index}"></th:block>
+
+        <!--Footer-->
+        <th:block th:replace="~{modules/common/footer :: footer}"></th:block>
+      </main>
+    </div>
+<!--    Tail JS-->
+    <th:block th:replace="~{modules/tail :: tail}"></th:block>
+
+
   </th:block>
 </html>
