@@ -9,6 +9,11 @@ spec:
         description: 友情链接页
         screenshot:
         file: page_links.html
+      - name: 搜索
+        description: 搜索页面模板
+        screenshot:
+        file: page_search.html
+
   displayName: theme-stack
   author:
     name: Jiewen
@@ -19,6 +24,5 @@ spec:
   repo: "https://github.com/jiewenhuang/halo-theme-stack"
   settingName: "theme-stack-setting"
   configMapName: "theme-stack-configMap"
-  version: "1.0.6"
-  requires: ">=2.0.0"
-
+  version: "2.0.0"
+  requires: ">=2.11.0"

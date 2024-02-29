@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" th:replace="~{modules/layout :: html(content = ~{::content}, title=#{theme.search}, pageType = 'search')}">
+<th:block th:fragment="content">
+    <div class="container main-container flex on-phone--column extended">
+        <!--      Left Sidebar-->
+        <th:block th:replace="~{modules/common/left-sidebar :: left-sidebar}"></th:block>
+
+        <main class="main full-width">
+            <form action="search.html" class="search-form">
+                <p>
+                    <label>[[#{theme.search}]]</label>
+                    <input name="keyword" th:placeholder="#{theme.search_input}">
+                </p>
+
+                <button title="Search">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z"></path>
+                        <circle cx="10" cy="10" r="7"></circle>
+                        <line x1="21" y1="21" x2="15" y2="15"></line>
+                    </svg>
+
+
+
+                </button>
+            </form>
+
+            <div class="search-result">
+                <h3 class="search-result--title section-title"></h3>
+                <div class="search-result--list article-list--compact"></div>
+            </div>
+
+            <script>
+                window.searchResultTitleTemplate = "#PAGES_COUNT pages (#TIME_SECONDS seconds)"
+            </script>
+            <script type="text/javascript" th:src="@{/assets/dist/search.js}" defer=""></script>
+
+            <!--Footer-->
+            <th:block th:replace="~{modules/common/footer :: footer}"></th:block>
+        </main>
+    </div>
+    <!--    Tail JS-->
+    <th:block th:replace="~{modules/tail :: tail}"></th:block>
+</th:block>
+</html>

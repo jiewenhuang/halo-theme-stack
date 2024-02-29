@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<th:block th:fragment="tail">
+    <script th:src="@{/assets/lib/vibrant/vibrant.min.js}" integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin="anonymous">
+    </script>
+    <script th:src="@{/assets/dist/main.js?v={version}(version=${theme.spec.version})}" defer></script>
+    <script th:src="@{/assets/lib/prism/prism.min.js}"></script>
+    <script>
+        (function() {
+            const customFont = document.createElement('link');
+            customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+            customFont.type = "text/css";
+            customFont.rel = "stylesheet";
+
+            document.head.appendChild(customFont);
+        }());
+    </script>
+<!--    底部代码注入-->
+    <halo:footer />
+
+
+</th:block>
+</html>

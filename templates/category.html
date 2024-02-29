@@ -1,127 +1,58 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-      th:replace="~{modules/layout :: html(title = '分类' + ' - ' + ${site.title},htmlType = category,header = null,leftSidebar = true,rightSidebar = true, content = ~{::content}, head = null, footer = null)}"
->
+<html xmlns:th="https://www.thymeleaf.org" th:replace="~{modules/layout :: html(content = ~{::content}, title=${category.spec.displayName}, pageType='category' )}">
 <th:block th:fragment="content">
-<main class="main full-width">
-  <header>
-    <h3 class=section-title>
-      Categories
-    </h3>
-    <div class=section-card>
-      <div class=section-details>
-        <h3 class=section-count>
-          [[${category.status.postCount}]] POST
-        </h3>
-        <h1 class=section-term th:text="${category.spec.displayName}">
+    <div class="container main-container flex on-phone--column extended">
+        <!--      Left Sidebar-->
+        <th:block th:replace="~{modules/common/left-sidebar :: left-sidebar}"></th:block>
+        <!--      Right Sidebar-->
+        <th:block th:replace="~{modules/common/right-sidebar :: right-sidebar(toc='false')}"></th:block>
 
-        </h1>
-        <h2 class=section-description>
-          [[${category.spec.description}]]
-        </h2>
-      </div>
-      <div class=section-image>
-          <th:block th:if="${theme.config.basic.lazyLoading}">
-        <img th:data-src="${category.spec.cover}"
-             th:src="${theme.config.basic.lazyUrl}" class="lazyLoading"
-             width=120 height=120 loading=lazy>
-          </th:block>
-          <th:block th:if="not ${theme.config.basic.lazyLoading}">
-              <img th:src="${category.spec.cover}"
-                   width=120 height=120 loading=lazy>
-          </th:block>
-      </div>
+
+        <main class="main full-width">
+            <header>
+                <h3 class="section-title">
+                    [[#{theme.categories}]]
+                </h3>
+
+                <div class="section-card">
+                    <div class="section-details">
+                        <h3 class="section-count">[[${category.status.postCount}]] [[#{theme.page}]]</h3>
+                        <h1 class="section-term" th:text="${category.spec.displayName}"></h1>
+
+                        <h2 class="section-description" th:text="${category.spec.description}"></h2>
+
+                    </div>
+                </div>
+            </header>
+
+            <section class="article-list--compact">
+
+                <article th:each="post : ${posts.items}">
+                    <a th:href="${post.status.permalink}">
+                        <div class="article-details">
+                            <h2 class="article-title"
+                                th:text="${post.spec.title}"></h2>
+                            <footer class="article-time">
+                                <time th:datetime="${post.spec.publishTime}" th:text="${#dates.format(post.spec.publishTime, 'MMM dd, yyyy')}"></time>
+                            </footer>
+                        </div>
+                        <div class="article-image" th:if="${! #strings.isEmpty(post.spec.cover)}">
+                            <img th:src="${post.spec.cover}" width="120" height="120" alt="Hello World" loading="lazy">
+
+                        </div>
+
+                    </a>
+                </article>
+
+            </section>
+            <!--       pagination-->
+            <th:block th:replace="~{modules/common/pagination :: category}"></th:block>
+            <!--Footer-->
+            <th:block th:replace="~{modules/common/footer :: footer}"></th:block>
+        </main>
+
     </div>
-  </header>
-  <section class=article-list--compact>
-
-    <article th:each="post : ${posts.items}">
-      <a th:href="${post.status.permalink}">
-        <div class=article-details>
-          <h2 class=article-title>
-           [[${post.spec.title}]]
-          </h2>
-          <footer class=article-time>
-            <time th:text="${#dates.format(post.spec.publishTime,'yyyy-MM-dd')}">
-
-            </time>
-          </footer>
-        </div>
-        <div class=article-image>
-            <th:block th:if="${theme.config.basic.lazyLoading}">
-          <img th:data-src="${#strings.isEmpty(post.spec.cover) ? theme.config.basic.postRandomImg+'?pageid='+post.metadata.name : post.spec.cover}"
-               th:src="${theme.config.basic.lazyUrl}" class="lazyLoading"
-               width=120 height=120 th:alt="${post.spec.title}" loading=lazy>
-            </th:block>
-            <th:block th:if="not ${theme.config.basic.lazyLoading}">
-                <img th:src="${#strings.isEmpty(post.spec.cover) ? theme.config.basic.postRandomImg+'?pageid='+post.metadata.name : post.spec.cover}"
-                     width=120 height=120 th:alt="${post.spec.title}" loading=lazy>
-            </th:block>
-        </div>
-      </a>
-    </article>
-  </section>
-  <th:block th:if="${posts.hasPrevious() || posts.hasNext()}"
-            th:with="totalPages = ${posts.totalPages}, pageIndex = ${posts.page}">
-    <!-- 页面小于 7 -->
-    <nav class=pagination th:if="${(totalPages le 7) && (totalPages gt 0)}">
-
-          <span class="page-link" th:classappend="${index eq pageIndex} ? 'current'" th:each="index : ${#numbers.sequence(1, totalPages)}">
-            <a th:href="@{${category.status.permalink}+ '/page/' + ${index}}" th:text="${index}">
-            </a>
-          </span>
-    </nav>
-    <!-- 页面大于 7 -->
-    <nav class=pagination th:if="${totalPages gt 7}">
-      <!-- 首页 -->
-      <span class="page-link" th:classappend="${index eq '1'} ? 'current'">
-                <a class="page-link" href="/">1</a>
-            </span>
-      <!-- 当前页面小于等于4 -->
-      <span class="page-link" th:classappend="${index eq pageIndex} ? 'current" th:each="index : ${#numbers.sequence(2,5)}"
-            th:if="${pageIndex le 4}">
-                <a th:href="@{${category.status.permalink}+ '/page/' + ${index}}" th:text="${index}">
-
-                </a>
-            </span>
-      <span class="page-link dots" th:if="${pageIndex le 4}">
-               ...
-            </span>
-      <!-- 最后一页与当前页面之差小于等于3 -->
-      <span class="page-link" th:if="${totalPages - pageIndex le 3}">
-                ...
-            </span>
-      <span class="page-link" th:classappend="${index eq pageIndex} ? 'current'"
-            th:each="index : ${#numbers.sequence(totalPages - 4, totalPages - 1)}"
-            th:if="${totalPages - pageIndex le 3}">
-                <a class="page-link" th:href="@{${category.status.permalink}+ '/page/' + ${index}}" th:text="${index}">
-                </a>
-            </span>
-      <!-- 最后一页与当前页面之差大于3 且当前页面大于4 -->
-      <span class="page-link" th:if="${(pageIndex gt 4) && (totalPages - pageIndex gt 3)}">
-                ...
-            </span>
-      <span class="page-link" th:each="index : ${#numbers.sequence(pageIndex - 1,pageIndex + 1)}"
-            th:if="${(pageIndex gt 4) && (totalPages - pageIndex gt 3)}">
-                <a class="page-link" th:href="@{${category.status.permalink}+ '/page/' + ${index}}" th:text="${index}">
-                </a>
-            </span>
-      <!-- 需要添加 th:href 跳转地址 -->
-      <span class="page-link" th:if="${(pageIndex gt 4) && (totalPages - pageIndex gt 3)}">
-                ...
-            </span>
-
-      <!-- 尾页 -->
-      <!-- 需要添加 th:href 跳转地址 -->
-      <span class="page-link" th:classappend="${index eq pageIndex} ? 'current'">
-                <a class="page-link" th:text="${totalPages}">
-
-                </a>
-
-            </span>
-    </nav>
-  </th:block>
-  <th:block th:replace="~{modules/footer}" />
-</main>
+    <!--    Tail JS-->
+    <th:block th:replace="~{modules/tail :: tail}"></th:block>
 </th:block>
 </html>

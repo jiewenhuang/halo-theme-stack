@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<th:block th:fragment="right-sidebar(toc)">
+    <aside class="sidebar right-sidebar sticky">
+        <th:block th:switch="${toc}">
+            <th:block th:case="'false'">
+                <th:block th:each="rightSidebar : ${theme.config.rightSidebar.asideData}">
+                    <th:block th:replace="~{modules/widgets/right-sidebar-widgets :: ${rightSidebar.template_aside}}"></th:block>
+                </th:block>
+            </th:block>
+            <th:block th:case="'true'">
+                <th:block th:each="rightSidebar : ${theme.config.post.asideData}">
+                    <th:block th:replace="~{modules/widgets/right-sidebar-widgets :: ${rightSidebar.template_aside}}"></th:block>
+                </th:block>
+            </th:block>
+        </th:block>
+
+    </aside>
+
+</th:block>
+</html>

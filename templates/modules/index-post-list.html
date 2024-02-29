@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<th:block th:fragment="post-list">
+    <section class="article-list">
+
+
+        <article class="has-image" th:each="post : ${posts.items}">
+            <header class="article-header">
+                <div class="article-image">
+                    <a th:href="${post.status.permalink}">
+                        <img th:if="${! #strings.isEmpty(post.spec.cover)}" th:src="${post.spec.cover}" th:alt="${post.spec.title}">
+
+                    </a>
+                </div>
+                <div class="article-details">
+                    <header class="article-category">
+                        <th:block th:if="${! #strings.isEmpty(post.spec.categories)}"
+                                  th:each="category_name : ${post.spec.categories}">
+                        <a  th:with="category = ${categoryFinder.getByName(category_name)}"
+                            th:href="@{${category.status.permalink}}"
+                            th:text="${category.spec.displayName}" >
+                        </a>
+                        </th:block>
+                    </header>
+                    <div class="article-title-wrapper">
+                        <h2 class="article-title">
+                            <a th:href="@{${post.status.permalink}}"
+                               th:text="${post.spec.title}"></a>
+                        </h2>
+
+                        <h3 class="article-subtitle"
+                            th:text="${post.status.excerpt}">
+                        </h3>
+
+                    </div>
+                    <footer class="article-time">
+
+                        <div>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z"></path>
+                                <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4"></path>
+                                <circle cx="18" cy="18" r="4"></circle>
+                                <path d="M15 3v4"></path>
+                                <path d="M7 3v4"></path>
+                                <path d="M3 11h16"></path>
+                                <path d="M18 16.496v1.504l1 1"></path>
+                            </svg>
+                            <time class="article-time--published" th:text="${#dates.format(post.spec.publishTime, 'MMM dd, yyyy')}"></time>
+                        </div>
+
+
+
+                        <div>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z"></path>
+                                <circle cx="12" cy="12" r="9"></circle>
+                                <polyline points="12 7 12 12 15 15"></polyline>
+                            </svg>
+
+
+
+                            <time class="article-time--reading" th:with="post_data = ${postFinder.getByName(post.metadata.name)}">
+                                <th:block th:with="wordCount = ${#strings.length(post_data.content)}">
+                                    <th:block th:if="${wordCount / 800 lt 1}">
+                                         1 [[#{theme.read_time}]]
+                                    </th:block>
+                                    <th:block th:if="${wordCount / 800 ge 1}">
+                                        [[${wordCount / 800}]] [[#{theme.read_time}]]
+                                    </th:block>
+                                </th:block>
+                            </time>
+                        </div>
+
+                    </footer>
+                </div>
+            </header>
+        </article>
+    </section>
+</th:block>
+</html>
