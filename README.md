@@ -23,22 +23,16 @@
 </p>
 
 ### 预览：[Jiewen's Blog](https://www.jiewen.run/?preview-theme=theme-stack)
-<p align="center">
-<img width="100%" src="https://wmimg.com/i/70/2023/08/64d8ee719d8ae.png">
-</p>
-
-
-### 文档：WIP
+![image](https://user-images.githubusercontent.com/5889006/190859441-141b5f81-8483-40d2-bd96-ebf85616a46d.png)
+### 文档：[Stack 使用文档](https://www.jiewen.run/docs/stack)
 
 ### 安裝
-下载[releases](https://github.com/jiewenhuang/halo-theme-stack/releases)或者直接[下载代码](https://github.com/jiewenhuang/halo-theme-stack)，通过 Halo Console 后台主题安装处上传即可。
+直接通过后台应用市场安装或者下载[releases](https://github.com/jiewenhuang/halo-theme-stack/releases)，通过 Halo Console 后台主题安装处上传即可。
 
 ### 说明
 > 1、部分功能是使用插件进行支持  
-> 2、如果导航栏使用了系统菜单，则icon图需要自己去系统菜单设置添加  
-> 3、1.0.4 版本之后删除了主题设置中的友链设置，如果需要开启请安装插件后前往"页面>新建页面>自定义模板"发布时选择模板为友链即可，由于插件路由占用，友链别名不能为"links"  
-> 4、当导航栏中使用的是自定义链接时，请使用完整链接，例如：首页链接应为"http://example.com/"
-
+> 2、导航icon 推荐使用iconfont  
+> 3、使用搜索请安装插件后新建页面选择search模板，别名为‘search’
 - [x] 卡片化设计
 - [x] 响应式主题
 - [x] 深色模式
@@ -56,6 +50,7 @@
 - [ ] 瞬时
 - [ ] 图库
 - [ ] 细节优化
+- [ ] 默认评论系统样式
 
 ### 🏭 贡献
 
@@ -73,6 +68,7 @@
 在此感谢以下项目提供的支持：
 
 - [Halo](https://halo.run)
+- [hugo-theme-stack](https://github.com/CaiJimmy/hugo-theme-stack)
 - [theme-starter](https://github.com/halo-dev/theme-starter)
 - [Halo-theme-hao](https://github.com/liuzhihang/halo-theme-hao)
 - [Halo-theme-sakura](https://github.com/LIlGG/halo-theme-sakura/tree/next)
