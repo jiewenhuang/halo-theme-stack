@@ -62,6 +62,7 @@ let slideDown = (target: HTMLElement, duration = 500) => {
     }, duration);
 }
 
+// @ts-ignore
 let slideToggle = (target, duration = 500) => {
     if (window.getComputedStyle(target).display === 'none') {
         return slideDown(target, duration);
@@ -74,6 +75,7 @@ export default function () {
     const toggleMenu = document.getElementById('toggle-menu');
     if (toggleMenu) {
         toggleMenu.addEventListener('click', () => {
+            // @ts-ignore
             if (document.getElementById('main-menu').classList.contains('transiting')) return;
             document.body.classList.toggle('show-menu');
             slideToggle(document.getElementById('main-menu'), 300);

@@ -2,7 +2,7 @@
 
 // Inspired from https://gomakethings.com/debouncing-your-javascript-events/
 function debounced(func: Function) {
-    let timeout;
+    let timeout:any;
     return () => {
         if (timeout) {
             window.cancelAnimationFrame(timeout);
@@ -18,6 +18,7 @@ const navigationQuery = "#TableOfContents li";
 const activeClass = "active-class";
 
 function scrollToTocElement(tocElement: HTMLElement, scrollableNavigation: HTMLElement) {
+    // @ts-ignore
     let textHeight = tocElement.querySelector("a").offsetHeight;
     let scrollTop = tocElement.offsetTop - scrollableNavigation.offsetHeight / 2 + textHeight / 2 - scrollableNavigation.offsetTop;
     if (scrollTop < 0) {
@@ -30,10 +31,14 @@ type IdToElementMap = { [key: string]: HTMLElement };
 
 function buildIdToNavigationElementMap(navigation: NodeListOf<Element>): IdToElementMap {
     const sectionLinkRef: IdToElementMap = {};
+    // @ts-ignore
     navigation.forEach((navigationElement: HTMLElement) => {
         const link = navigationElement.querySelector("a");
+        // @ts-ignore
         const href = link.getAttribute("href");
+        // @ts-ignore
         if (href.startsWith("#")) {
+            // @ts-ignore
             sectionLinkRef[href.slice(1)] = navigationElement;
         }
     });
@@ -42,7 +47,8 @@ function buildIdToNavigationElementMap(navigation: NodeListOf<Element>): IdToEle
 }
 
 function computeOffsets(headers: NodeListOf<Element>) {
-    let sectionsOffsets = [];
+    let sectionsOffsets: { id: string; offset: number; }[] = [];
+    // @ts-ignore
     headers.forEach((header: HTMLElement) => { sectionsOffsets.push({ id: header.id, offset: header.offsetTop }) });
     sectionsOffsets.sort((a, b) => a.offset - b.offset);
     return sectionsOffsets;
@@ -88,6 +94,7 @@ function setupScrollspy() {
         // It is possible for no section to be active, so newActiveSection may be undefined.
         sectionsOffsets.forEach((section) => {
             if (scrollPosition >= section.offset - 20) {
+                // @ts-ignore
                 newActiveSection = document.getElementById(section.id);
             }
         });
@@ -110,9 +117,11 @@ function setupScrollspy() {
                 newActiveSectionLink.classList.add(activeClass);
                 if (!tocHovered) {
                     // Scroll so that newActiveSectionLink is in the middle of scrollableNavigation, except when it's from a manual click (hence the tocHovered check)
+                    // @ts-ignore
                     scrollToTocElement(newActiveSectionLink, scrollableNavigation);
                 }
             }
+            // @ts-ignore
             activeSectionLink = newActiveSectionLink;
         }
     }

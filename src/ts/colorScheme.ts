@@ -3,7 +3,7 @@ type colorScheme = 'light' | 'dark' | 'auto';
 class StackColorScheme {
     private localStorageKey = 'StackColorScheme';
     private currentScheme: colorScheme;
-    private systemPreferScheme: colorScheme;
+    private systemPreferScheme!: colorScheme;
 
     constructor(toggleEl: HTMLElement) {
         this.bindMatchMedia();
@@ -23,7 +23,7 @@ class StackColorScheme {
     }
 
     private bindClick(toggleEl: HTMLElement) {
-        toggleEl.addEventListener('click', (e) => {
+        toggleEl.addEventListener('click', () => {
             if (this.isDark()) {
                 /// Disable dark mode
                 this.currentScheme = 'light';

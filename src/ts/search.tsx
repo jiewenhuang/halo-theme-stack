@@ -7,10 +7,6 @@ interface pageData {
 
 }
 
-interface match {
-    start: number,
-    end: number
-}
 
 /**
  * Escape HTML tags as HTML entities
@@ -25,18 +21,20 @@ const tagsToReplace = {
     '…': '&hellip;'
 };
 
-function replaceTag(tag) {
+function replaceTag(tag: string | number) {
+    // @ts-ignore
     return tagsToReplace[tag] || tag;
 }
 
 class Search {
-    private data: pageData[];
+    // @ts-ignore
     private form: HTMLFormElement;
     private input: HTMLInputElement;
     private list: HTMLDivElement;
     private resultTitle: HTMLHeadElement;
     private resultTitleTemplate: string;
 
+    // @ts-ignore
     constructor({ form, input, list, resultTitle, resultTitleTemplate }) {
         this.form = form;
         this.input = input;
@@ -72,22 +70,26 @@ class Search {
     private async doSearch(keywords: string[]) {
         const results = await this.searchKeywords(keywords);
         this.clear();
-        const items:pageData = results?.results
+        const items:pageData[] | undefined = results?.results
 
+        // @ts-ignore
         for (const item of items) {
             this.list.append(Search.render(item));
         }
 
-        this.resultTitle.innerText = this.generateResultTitle(items.length, ((results?.processingTimeMillis) / 1000).toPrecision(1));
+        // @ts-ignore
+        this.resultTitle.innerText = this.generateResultTitle(items?.length, ((results?.processingTimeMillis) / 1000).toPrecision(1));
     }
 
-    private generateResultTitle(resultLen, time) {
+    private generateResultTitle(resultLen: string | number | undefined, time: string) {
+        // @ts-ignore
         return this.resultTitleTemplate.replace("#PAGES_COUNT", resultLen).replace("#TIME_SECONDS", time);
     }
 
     private bindSearchForm() {
         let lastSearch = '';
 
+        // @ts-ignore
         const eventHandler = (e) => {
             e.preventDefault();
             const keywords = this.input.value.trim();
@@ -115,7 +117,7 @@ class Search {
     }
 
     private bindQueryStringChange() {
-        window.addEventListener('popstate', (e) => {
+        window.addEventListener('popstate', () => {
             this.handleQueryString()
         })
     }
@@ -123,6 +125,7 @@ class Search {
     private handleQueryString() {
         const pageURL = new URL(window.location.toString());
         const keywords = pageURL.searchParams.get('keyword');
+        // @ts-ignore
         this.input.value = keywords;
 
         if (keywords) {

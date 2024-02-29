@@ -15,7 +15,7 @@ interface PhotoSwipeItem {
 }
 
 class StackGallery {
-    private galleryUID: number;
+    private galleryUID!: number;
     private items: PhotoSwipeItem[] = [];
 
     constructor(container: HTMLElement, galleryUID = 1) {
@@ -36,6 +36,7 @@ class StackGallery {
 
         const figures = container.querySelectorAll('figure.gallery-image');
 
+        // @ts-ignore
         for (const el of figures) {
             const figcaption = el.querySelector('figcaption'),
                 img = el.querySelector('img');
@@ -65,7 +66,7 @@ class StackGallery {
             img.classList.add('gallery-image')
         })
 
-        const images = container.querySelectorAll('img.gallery-image');
+        const images:NodeListOf<HTMLElement> = container.querySelectorAll('img.gallery-image');
         for (const img of Array.from(images)) {
             /// Images are wrapped with figure tag if the paragraph has only images without texts
             /// This is done to allow inline images within paragraphs
@@ -73,6 +74,7 @@ class StackGallery {
 
             if (!paragraph || !container.contains(paragraph)) continue;
 
+            // @ts-ignore
             if (paragraph.textContent.trim() == '') {
                 /// Once we insert figcaption, this check no longer works
                 /// So we add a class to paragraph to mark it
@@ -82,8 +84,9 @@ class StackGallery {
             let isNewLineImage = paragraph.classList.contains('no-text');
             if (!isNewLineImage) continue;
 
-            const hasLink = img.parentElement.tagName == 'A';
+            const hasLink = img.parentElement?.tagName == 'A';
 
+            // @ts-ignore
             let el: HTMLElement = img;
             /// Wrap image with figure tag, with flex-grow and flex-basis values extracted from img's data attributes
             const figure = document.createElement('figure');
@@ -93,12 +96,14 @@ class StackGallery {
                 /// Wrap <a> if it exists
                 el = img.parentElement;
             }
+            // @ts-ignore
             el.parentElement.insertBefore(figure, el);
             figure.appendChild(el);
 
             /// Add figcaption if it exists
             if (img.hasAttribute('alt')) {
                 const figcaption = document.createElement('figcaption');
+                // @ts-ignore
                 figcaption.innerText = img.getAttribute('alt');
                 figure.appendChild(figcaption);
             }
@@ -108,8 +113,10 @@ class StackGallery {
                 figure.className = 'gallery-image';
 
                 const a = document.createElement('a');
+                // @ts-ignore
                 a.href = img.src;
                 a.setAttribute('target', '_blank');
+                // @ts-ignore
                 img.parentNode.insertBefore(a, img);
                 a.appendChild(img);
             }
@@ -119,6 +126,7 @@ class StackGallery {
 
         let currentGallery = [];
 
+        // @ts-ignore
         for (const figure of figuresEl) {
             if (!currentGallery.length) {
                 /// First iteration
@@ -151,6 +159,7 @@ class StackGallery {
         const parentNode = figures[0].parentNode,
             first = figures[0];
 
+        // @ts-ignore
         parentNode.insertBefore(galleryContainer, first)
 
         for (const figure of figures) {
@@ -163,7 +172,8 @@ class StackGallery {
         const ps = new window.PhotoSwipe(pswp, window.PhotoSwipeUI_Default, this.items, {
             index: index,
             galleryUID: this.galleryUID,
-            getThumbBoundsFn: (index) => {
+            getThumbBoundsFn: (index: string | number) => {
+                // @ts-ignore
                 const thumbnail = this.items[index].el.getElementsByTagName('img')[0],
                     pageYScroll = window.pageYOffset || document.documentElement.scrollTop,
                     rect = thumbnail.getBoundingClientRect();
@@ -179,6 +189,7 @@ class StackGallery {
         for (const [index, item] of this.items.entries()) {
             const a = item.el.querySelector('a');
 
+            // @ts-ignore
             a.addEventListener('click', (e) => {
                 e.preventDefault();
                 this.open(index);

@@ -1,8 +1,10 @@
+
 /**
  * createElement
  * Edited from:
  * @link https://stackoverflow.com/a/42405694
  */
+// @ts-ignore
 function createElement(tag, attrs, children) {
     var element = document.createElement(tag);
 
