@@ -15,12 +15,14 @@ const anchorLinksQuery = "a[href]";
 function setupSmoothAnchors() {
     document.querySelectorAll(anchorLinksQuery).forEach(aElement => {
         let href = aElement.getAttribute("href");
+        // @ts-ignore
         if (!href.startsWith("#")) {
             return;
         }
         aElement.addEventListener("click", clickEvent => {
             clickEvent.preventDefault();
 
+            // @ts-ignore
             const targetId = decodeURI(aElement.getAttribute("href").substring(1)),
                 target = document.getElementById(targetId) as HTMLElement,
                 offset = target.getBoundingClientRect().top - document.documentElement.getBoundingClientRect().top;

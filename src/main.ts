@@ -41,11 +41,11 @@ let Stack = {
 
                     const articles = entry.target.querySelectorAll('article.has-image');
                     articles.forEach(async articles => {
-                        const image = articles.querySelector('img'),
+                        const image = articles.querySelector('img')!,
                             imageURL = image.src,
-                            key = image.getAttribute('data-key'),
-                            hash = image.getAttribute('data-hash'),
-                            articleDetails: HTMLDivElement = articles.querySelector('.article-details');
+                            key = image.getAttribute('data-key')||'',
+                            hash = image.getAttribute('data-hash')||'',
+                            articleDetails: HTMLDivElement = articles.querySelector('.article-details')!;
 
                         const colors = await getColor(key, hash, imageURL);
 
@@ -78,7 +78,7 @@ let Stack = {
             if (!codeBlock) return;
 
             copyButton.addEventListener('click', () => {
-                navigator.clipboard.writeText(codeBlock.textContent)
+                navigator.clipboard.writeText(codeBlock.textContent!)
                     .then(() => {
                         copyButton.textContent = copiedText;
 
@@ -93,7 +93,7 @@ let Stack = {
             });
         });
 
-        new StackColorScheme(document.getElementById('dark-mode-toggle'));
+        new StackColorScheme(document.getElementById('dark-mode-toggle')!);
     }
 }
 

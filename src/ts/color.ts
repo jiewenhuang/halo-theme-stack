@@ -16,7 +16,7 @@ let colorsCache: { [key: string]: colorScheme } = {};
 
 if (localStorage.hasOwnProperty('StackColorsCache')) {
     try {
-        colorsCache = JSON.parse(localStorage.getItem('StackColorsCache'));
+        colorsCache = JSON.parse(localStorage.getItem('StackColorsCache')!);
     }
     catch (e) {
         colorsCache = {};
@@ -28,13 +28,16 @@ async function getColor(key: string, hash: string, imageURL: string) {
         /**
          * If no key is provided, do not cache the result
          */
+        // @ts-ignore
         return await Vibrant.from(imageURL).getPalette();
     }
 
     if (!colorsCache.hasOwnProperty(key) || colorsCache[key].hash !== hash) {
+
         /**
          * If key is provided, but not found in cache, or the hash mismatches => Regenerate color scheme
          */
+            // @ts-ignore
         const palette = await Vibrant.from(imageURL).getPalette();
 
         colorsCache[key] = {
