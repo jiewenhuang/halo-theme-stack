@@ -307,7 +307,7 @@
         }
     }
 
-    .code-toolbar {
+    .highlight {
         background-color: var(--pre-background-color);
         padding: var(--card-padding);
         position: relative;
@@ -449,7 +449,7 @@
     /// Negative margins
     blockquote,
     figure,
-    .code-toolbar,
+    .highlight,
     pre,
     .gallery,
     .video-wrapper,

@@ -2,83 +2,10 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
 <th:block th:fragment="comment">
     <th:block th:fragment="waline(name, kind)">
-    <div class="article-comment">
-        <div id="waline"></div>
-
-
-    </div>
-    <style>
-        .article-comment {
-            background-color: var(--card-background);
-            border-radius: var(--card-border-radius);
-            box-shadow: var(--shadow-l1);
-            padding: var(--card-padding);
-            --waline-font-size: var(--article-font-size);
-        }
-        .article-comment .wl-count {
-            color: var(--card-text-color-main);
-        }
-    </style>
-    <script th:src="@{/assets/lib/waline/waline.js}"></script>
-    <link rel="stylesheet"
-          th:href="@{/assets/lib/waline/waline.css}"
-    />
-
-    <!-- 脚本文件 -->
-    <script type="module" th:inline="javascript" th:if="${theme.config.base.waline.waline_setting == 'default'}">
-        Waline.init({
-            "copyright": false,
-            "dark": "html[data-scheme=\"dark\"]",
-            "el": "#waline",
-            "emoji": ["[(${#theme.assets(\"/lib/waline/Sticker-100/\")})]"],
-            "lang": "zh-CN",
-            "locale": {
-                "admin": "👻屑博主",
-                "placeholder": "🎉留下你的脚印."
-            },
-            "pageview": true,
-            "reaction": false,
-            "requiredMeta": ["name", "email"],
-            "search": false,
-            "serverURL": /*[[${theme.config.base.waline.waline_url}]]*/""
-        });
-    </script>
-        <script th:if="${theme.config.base.waline.waline_setting == 'custom'}"
-                th:utext="${theme.config.base.waline.waline_custom}"></script>
-    </th:block>
-    <th:block th:fragment="default(name,kind)">
         <div class="article-comment">
-            <halo:comment
-                    group="content.halo.run"
-                    th:attr="name=${name},kind=${kind}"
-                    colorScheme="document.documentElement.getAttribute('data-scheme')"
-            />
-<!--            评论区主体-->
-<!--            <div class="comment-box">-->
-
-<!--&lt;!&ndash;                输入框&ndash;&gt;-->
-<!--                <div class="header-items">-->
-<!--                    <div class="item">-->
-<!--                        <label for="nick">昵称</label>-->
-<!--                        <input type="text" id="nick" name="nick" class="info-input info-nick">-->
-<!--                        -->
-<!--                    </div>-->
-<!--                    <div class="item">-->
-<!--                        <label for="email">邮箱</label>-->
-<!--                        <input type="email" id="email" name="email" class="info-input info-email">-->
-<!--                        -->
-<!--                    </div>-->
-<!--                    <div class="item">-->
-<!--                        <label for="webUrl">网址</label>-->
-<!--                        <input type="text" id="webUrl" name="webUrl" class="info-input info-web-url">-->
-<!--                        -->
-<!--                    </div>-->
-
-<!--                </div>-->
-<!--                <textarea id="editor" class="c-editor" placeholder="留下你的足迹"></textarea>-->
+            <div id="waline"></div>
 
 
-<!--            </div>-->
         </div>
         <style>
             .article-comment {
@@ -86,9 +13,53 @@
                 border-radius: var(--card-border-radius);
                 box-shadow: var(--shadow-l1);
                 padding: var(--card-padding);
+                --waline-font-size: var(--article-font-size);
             }
 
+            .article-comment .wl-count {
+                color: var(--card-text-color-main);
+            }
         </style>
+        <script th:src="@{/assets/lib/waline/waline.js}"></script>
+        <link rel="stylesheet"
+              th:href="@{/assets/lib/waline/waline.css}"
+        />
+
+        <!-- 脚本文件 -->
+        <script type="module" th:inline="javascript" th:if="${theme.config.base.waline.waline_setting == 'default'}">
+            Waline.init({
+                "copyright": false,
+                "dark": "html[data-scheme=\"dark\"]",
+                "el": "#waline",
+                "emoji": ["[(${#theme.assets(\"/lib/waline/Sticker-100/\")})]"],
+                "lang": "zh-CN",
+                "locale": {
+                    "admin": "👻屑博主",
+                    "placeholder": "🎉留下你的脚印."
+                },
+                "pageview": true,
+                "reaction": false,
+                "requiredMeta": ["name", "email"],
+                "search": false,
+                "serverURL": /*[[${theme.config.base.waline.waline_url}]]*/""
+            });
+        </script>
+        <script th:if="${theme.config.base.waline.waline_setting == 'custom'}"
+                th:utext="${theme.config.base.waline.waline_custom}"></script>
+    </th:block>
+    <th:block th:fragment="default(name,kind)">
+        <div class="article-comment">
+            <div class="comment-head">
+                <div class="comment-title">
+                    <span > [[#{theme.comment}]]</span>
+                </div>
+            </div>
+            <halo:comment
+                    group="content.halo.run"
+                    th:attr="name=${name},kind=${kind}"
+            />
+
+        </div>
     </th:block>
 
 </th:block>

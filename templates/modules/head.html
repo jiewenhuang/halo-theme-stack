@@ -1,24 +1,17 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org" lang="en">
 <head th:fragment="head(title)">
-    <meta name="generator" content="Hugo 0.115.2">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Lorem ipsum dolor sit amet, consectetur adipiscing elit.">
     <title th:text="${#strings.isEmpty(title)? site.title : title+'-'+site.title}"></title>
     <link rel="stylesheet" th:href="@{/assets/dist/style.css?v={version}(version=${theme.spec.version})}" href="./assets/dist/style.css" />
     <link rel="stylesheet" th:href="@{/assets/iconfont/iconfont.css}" />
-    <th:block th:if="${pageType == 'post' or pageType == 'journals' or pageType == 'sheet'}">
-        <link rel="preload stylesheet" as="style" th:href="@{/assets/lib/prism/prism.min.css}">
-        <link rel="preload stylesheet" as="style" th:href="@{/assets/lib/prism/themes}+${'/prism-'+theme.config.post.code_theme+'.css'}">
-    </th:block>
     <meta property="og:title" th:content="${#strings.isEmpty(title)? site.title : title+'-'+site.title}">
     <meta property="og:description" th:content="${site.seo.description}">
     <meta property="og:site_name" th:content="${site.title}">
     <meta property="og:type" content="website">
     <link rel="alternate" type="application/rss+xml" th:href="@{/rss.xml}">
     <link rel="shortcut icon" th:href="${site.favicon}">
-
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&amp;display=swap" type="text/css" rel="stylesheet">
 </head>
 </html>

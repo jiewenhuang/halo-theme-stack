@@ -6,7 +6,7 @@
 *   @link: https://github.com/CaiJimmy/hugo-theme-stack
 */
 import "./styles/style.scss";
-import StackGallery from "./ts/gallery";
+// import StackGallery from "./ts/gallery";
 import { getColor } from './ts/color';
 import menu from './ts/menu';
 import createElement from './ts/createElement';
@@ -24,10 +24,12 @@ let Stack = {
 
         const articleContent = document.querySelector('.article-content') as HTMLElement;
         if (articleContent) {
-            new StackGallery(articleContent);
+            // new StackGallery(articleContent);
             setupSmoothAnchors();
             // setupScrollspy();
         }
+
+
 
         /**
          * Add linear gradient background to tile style article
@@ -61,10 +63,23 @@ let Stack = {
         }
 
 
+
         /**
          * Add copy button to code block
         */
-        const highlights = document.querySelectorAll('.article-content div.code-toolbar');
+        const preTags = document.querySelectorAll('pre')
+        preTags.forEach(preTag => {
+            // 创建一个新的 div 元素
+            const divWrapper = document.createElement('div');
+            // 添加类名为 'highlight' 的 CSS 类
+            divWrapper.classList.add('highlight');
+            // 将 <pre> 标签的内容移动到新创建的 div 元素中
+            // @ts-ignore
+            preTag.parentNode.insertBefore(divWrapper, preTag);
+            divWrapper.appendChild(preTag);
+        });
+
+        const highlights = document.querySelectorAll('.article-content div.highlight');
         const copyText = `Copy`,
             copiedText = `Copied!`;
 
@@ -102,22 +117,46 @@ window.addEventListener('load', () => {
         Stack.init();
     }, 0);
 })
-tocbot.init({
-    // Where to render the table of contents.
-    tocSelector: '#TableOfContents',
-    // Where to grab the headings to build the table of contents.
-    contentSelector: '.article-content',
-    // Which headings to grab inside of the contentSelector element.
-    headingSelector: 'h1, h2, h3, h4, h5, h6',
-    activeLinkClass: 'active-class',
-    activeListItemClass: 'active-class',
-    headingsOffset: 40,
-    scrollSmoothOffset: -40,
+function generateSidebar(){
+    const articleContent = document.querySelector('.article-content')
+    if(!articleContent){
+        return
+    }
+    const sideContainer = document.querySelector('.right-sidebar')
+    if(!sideContainer?.childElementCount || sideContainer?.childElementCount === 0){
+        return;
 
-    // For headings inside relative or absolute positioned containers within content.
-    hasInnerContainers: true,
+    }
+    const titles = articleContent?.querySelectorAll("h1, h2, h3, h4, h5, h6");
+    if (!titles || titles.length === 0) {
+        const tocContainer = document.querySelector(".post_toc");
+        tocContainer?.remove();
+        const sideContainer = document.querySelector('.right-sidebar')
+        if (!sideContainer?.childElementCount || sideContainer?.childElementCount === 0){
+            sideContainer?.remove()
+        }
+        return;
+    }
+    tocbot.init({
+        // Where to render the table of contents.
+        tocSelector: '#TableOfContents',
+        // Where to grab the headings to build the table of contents.
+        contentSelector: '.article-content',
+        // Which headings to grab inside of the contentSelector element.
+        headingSelector: 'h1, h2, h3, h4, h5, h6',
+        activeLinkClass: 'active-class',
+        activeListItemClass: 'active-class',
+        headingsOffset: 40,
+        scrollSmoothOffset: -40,
 
-});
+        // For headings inside relative or absolute positioned containers within content.
+        hasInnerContainers: true,
+
+    });
+
+}
+generateSidebar()
+
 
 declare global {
     interface Window {

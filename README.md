@@ -31,6 +31,19 @@
 ### 安裝
 直接通过后台应用市场安装或者下载[releases](https://github.com/jiewenhuang/halo-theme-stack/releases)，通过 Halo Console 后台主题安装处上传即可。
 
+### 插件支持
+stack 主题支持以下 Halo 插件：
+
+- [X] 友情链接（/links）：https://halo.run/store/apps/app-hfbQg
+- [ ] 图库（/photos）(WIP)：https://halo.run/store/apps/app-BmQJW
+- [ ] 瞬间（/moments）(WIP)：https://halo.run/store/apps/app-SnwWD  
+
+为了获得更好的体验，你还可以安装以下插件（如果需要）：
+
+- highlight.js 代码高亮：https://halo.run/store/apps/app-sqpgf
+- lightgallery.js 灯箱：https://halo.run/store/apps/app-OoggD
+
+
 ### 使用说明
 > 1、部分功能是使用插件进行支持  
 > 2、导航icon 推荐使用iconfont  
@@ -56,6 +69,7 @@
 - [ ] 默认评论系统样式  
 
 ### 开发
+dev为开发版本，无特殊需求请拉取此版本进行开发，如果想奉献您的代码，也是拉取并提交到此分支，main分支不做合并。
 
 ```bash
 cd ~/halo2-dev/themes/theme-stack

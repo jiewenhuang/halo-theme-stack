@@ -8,7 +8,7 @@
             <header class="article-header">
                 <div class="article-image">
                     <a th:href="${post.status.permalink}">
-                        <img th:if="${! #strings.isEmpty(post.spec.cover)}" th:src="${post.spec.cover}" th:alt="${post.spec.title}">
+                        <img th:if="${! #strings.isEmpty(post.spec.cover)}" th:src="${post.spec.cover}" th:alt="${post.spec.title}" loading="lazy">
 
                     </a>
                 </div>

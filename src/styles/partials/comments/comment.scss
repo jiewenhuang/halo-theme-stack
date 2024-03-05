@@ -7,71 +7,14 @@
   box-sizing: content-box;
   line-height: 1.75;
   font-size: var(--article-font-size);
-  .comment-box {
-    width: 100%;
-    min-height: 16rem;
-    border-radius: .75em;
-    padding: 0 1rem;
-    //background-color: pink;
-    border: 2px solid #dddddd;
-    .header-items {
-      display: flex;
-      overflow: hidden;
-      padding: 0 4px;
-      border-bottom: 2px dashed #dddddd;
-      border-top-left-radius: 0.75em;
-      border-top-right-radius: 0.75em;
+  .comment-head {
+    .comment-title {
+      margin-bottom: 1.2rem;
+      color: var(--accent-color);
+      font-size: 1.8rem;
+      font-weight: 700;
 
-      .item {
-        display: flex;
-        flex: 1;
-        label {
-          min-width: 40px;
-          padding: 0.75em 0.5em;
-          color: var(--waline-color);
-          font-size: .75em;
-          text-align: center;
-        }
-        input {
-          flex: 1;
-          width: 0;
-          padding: 0.5em;
-          background: rgba(0, 0, 0, 0);
-          font-size: .625em;
-          resize: none;
-
-
-        }
-      }
-
-    }
-    .info-input, .c-editor {
-      max-width: 100%;
-      border: none;
-      color: var(--card-text-color-main);
-      outline: none;
-      transition: all .25s ease;
-      &:focus {
-        background-color: var(--card-background-selected);
-      }
-    }
-    .c-editor {
-      position: relative;
-      width: calc(100% - 1em);
-      min-height: 9.75em;
-      margin: 0.75em 0.5em;
-      border-radius: 0.5em;
-      background: rgba(0, 0, 0, 0);
-      font-size: .875em;
-      resize: vertical;
     }
   }
-}
-@media (max-width: 580px) {
-  .header-items {
-    display: block !important;
-    .item:not(:last-child){
-      border-bottom: 2px dashed #dddddd;
-    }
-  }
+
 }
