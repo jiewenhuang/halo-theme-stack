@@ -61,10 +61,10 @@ class StackGallery {
         /// The process of wrapping image with figure tag is done using JavaScript instead of only Hugo markdown render hook
         /// because it can not detect whether image is being wrapped by a link or not
         /// and it lead to a invalid HTML construction (<a><figure><img></figure></a>)
-        const imgs = document.querySelectorAll('.article-content img')
-        imgs.forEach((img) => {
-            img.classList.add('gallery-image')
-        })
+        // const imgs = document.querySelectorAll('.article-content img')
+        // imgs.forEach((img) => {
+        //     img.classList.add('gallery-image')
+        // })
 
         const images:NodeListOf<HTMLElement> = container.querySelectorAll('img.gallery-image');
         for (const img of Array.from(images)) {

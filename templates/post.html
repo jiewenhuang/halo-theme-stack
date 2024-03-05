@@ -1,131 +1,133 @@
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org" th:replace="~{modules/layout :: html(content = ~{::content}, title=${post.spec.title}, pageType='post' )}">
-  <th:block th:fragment="content">
+<html xmlns:th="https://www.thymeleaf.org"
+      th:replace="~{modules/layout :: html(content = ~{::content}, title=${post.spec.title}, pageType='post' )}">
+<th:block th:fragment="content">
     <div class="container main-container flex on-phone--column extended">
-      <!--      Left Sidebar-->
-      <th:block th:replace="~{modules/common/left-sidebar :: left-sidebar}"></th:block>
-      <th:block th:if="${! #lists.isEmpty(theme.config.post.asideData)}">
-      <!--      Right Sidebar-->
-      <th:block th:replace="~{modules/common/right-sidebar :: right-sidebar(toc='true')}"></th:block>
-      </th:block>
-      <main class="main full-width">
-        <article class="has-image main-article">
-          <header class="article-header">
-            <div class="article-image" th:if="${! #strings.isEmpty(post.spec.cover)}">
-              <a th:href="${post.status.permalink}">
-                <img th:src="${post.spec.cover}" loading="lazy" th:alt="${post.spec.title}">
-
-              </a>
-            </div>
-            <div class="article-details">
-
-              <header class="article-category" >
-                <a th:each="category : ${post.categories}"
-                   th:href="${category.status.permalink}"
-                   th:text="${category.spec.displayName}">
-                </a>
-              </header>
-
-
-              <div class="article-title-wrapper">
-                <h2 class="article-title">
-                  <a th:href="${post.status.permalink}"
-                     th:text="${post.spec.title}"></a>
-                </h2>
-
-
-                <h3 class="article-subtitle" th:text="${post.status.excerpt}">
-
-                </h3>
-
-              </div>
-
-              <footer class="article-time">
-
-                <div>
-                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z"></path>
-                    <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4"></path>
-                    <circle cx="18" cy="18" r="4"></circle>
-                    <path d="M15 3v4"></path>
-                    <path d="M7 3v4"></path>
-                    <path d="M3 11h16"></path>
-                    <path d="M18 16.496v1.504l1 1"></path>
-                  </svg>
-                  <time class="article-time--published" th:text="${#dates.format(post.spec.publishTime, 'MMM dd, yyyy')}"></time>
-                </div>
-
-                <div>
-                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z"></path>
-                    <circle cx="12" cy="12" r="9"></circle>
-                    <polyline points="12 7 12 12 15 15"></polyline>
-                  </svg>
-                  <time class="article-time--reading">
-                    <th:block th:with="wordCount = ${#strings.length(post.content)}">
-                      <th:block th:if="${wordCount / 800 lt 1}">
-                        1 [[#{theme.read_time}]]
-                      </th:block>
-                      <th:block th:if="${wordCount / 800 ge 1}">
-                        [[${wordCount / 800}]] [[#{theme.read_time}]]
-                      </th:block>
-                    </th:block>
-
-                  </time>
-                </div>
-
-              </footer>
-            </div>
-          </header>
-          <section class="article-content">
-            <th:block th:utext="${post.content.content}"></th:block>
-          </section>
-          <footer class="article-footer">
-
-            <section class="article-tags">
-
-              <a th:each="tag : ${post.tags}"
-                 th:href="${tag.status.permalink}" th:text="${tag.spec.displayName}"></a>
-
-            </section>
-
-
-
-            <section class="article-copyright" th:if="${! #strings.isEmpty(theme.config.post.article_copyright)}">
-              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                <path stroke="none" d="M0 0h24v24H0z"></path>
-                <circle cx="12" cy="12" r="9"></circle>
-                <path d="M14.5 9a3.5 4 0 1 0 0 6"></path>
-              </svg>
-
-
-
-              <span th:text="${theme.config.post.article_copyright}">Licensed under CC BY-NC-SA 4.0</span>
-            </section>
-          </footer>
-        </article>
-        <th:block th:if="${theme.config.post.enable_related_article == 'true'}">
-<!--          Related Article-->
-        <th:block th:replace="~{modules/related-article :: related}"></th:block>
+        <!--      Left Sidebar-->
+        <th:block th:replace="~{modules/common/left-sidebar :: left-sidebar}"></th:block>
+        <th:block th:if="${! #lists.isEmpty(theme.config.post.asideData)}">
+            <!--      Right Sidebar-->
+            <th:block th:replace="~{modules/common/right-sidebar :: right-sidebar(toc='true')}"></th:block>
         </th:block>
-<!--        Comment-->
-        <th:block th:replace="~{modules/common/comment :: ${theme.config.base.comment_system}(name=${post.metadata.name}, kind='Post')}"></th:block>
+        <main class="main full-width">
+            <article class="has-image main-article">
+                <header class="article-header">
+                    <div class="article-image" th:if="${! #strings.isEmpty(post.spec.cover)}">
+                        <a th:href="${post.status.permalink}">
+                            <img th:src="${post.spec.cover}" loading="lazy" th:alt="${post.spec.title}">
+
+                        </a>
+                    </div>
+                    <div class="article-details">
+
+                        <header class="article-category">
+                            <a th:each="category : ${post.categories}"
+                               th:href="${category.status.permalink}"
+                               th:text="${category.spec.displayName}">
+                            </a>
+                        </header>
 
 
+                        <div class="article-title-wrapper">
+                            <h2 class="article-title">
+                                <a th:href="${post.status.permalink}"
+                                   th:text="${post.spec.title}"></a>
+                            </h2>
 
-        <!--Footer-->
-        <th:block th:replace="~{modules/common/footer :: footer}"></th:block>
-        <th:block th:replace="~{modules/pswp :: pswp}"></th:block>
 
-        <script th:src="@{/assets/lib/photoswipe/js/photoswipe.min.js}" integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin="anonymous" defer=""></script>
-        <script th:src="@{/assets/lib/photoswipe/js/photoswipe-ui-default.min.js}" integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin="anonymous" defer="">
-        </script>
-        <link rel="stylesheet" th:href="@{/assets/lib/photoswipe/css/default-skin.min.css}" crossorigin="anonymous">
-        <link rel="stylesheet" th:href="@{/assets/lib/photoswipe/css/photoswipe.min.css}" crossorigin="anonymous">
+                            <h3 class="article-subtitle" th:text="${post.status.excerpt}">
 
-      </main>
+                            </h3>
+
+                        </div>
+
+                        <footer class="article-time">
+
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                     class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56"
+                                     viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                     stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z"></path>
+                                    <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4"></path>
+                                    <circle cx="18" cy="18" r="4"></circle>
+                                    <path d="M15 3v4"></path>
+                                    <path d="M7 3v4"></path>
+                                    <path d="M3 11h16"></path>
+                                    <path d="M18 16.496v1.504l1 1"></path>
+                                </svg>
+                                <time class="article-time--published"
+                                      th:text="${#dates.format(post.spec.publishTime, 'MMM dd, yyyy')}"></time>
+                            </div>
+
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock"
+                                     width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                     fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z"></path>
+                                    <circle cx="12" cy="12" r="9"></circle>
+                                    <polyline points="12 7 12 12 15 15"></polyline>
+                                </svg>
+                                <time class="article-time--reading">
+                                    <th:block th:with="wordCount = ${#strings.length(post.content)}">
+                                        <th:block th:if="${wordCount / 800 lt 1}">
+                                            1 [[#{theme.read_time}]]
+                                        </th:block>
+                                        <th:block th:if="${wordCount / 800 ge 1}">
+                                            [[${wordCount / 800}]] [[#{theme.read_time}]]
+                                        </th:block>
+                                    </th:block>
+
+                                </time>
+                            </div>
+
+                        </footer>
+                    </div>
+                </header>
+                <section class="article-content">
+                    <th:block th:utext="${post.content.content}"></th:block>
+                </section>
+                <footer class="article-footer">
+
+                    <section class="article-tags">
+
+                        <a th:each="tag : ${post.tags}"
+                           th:href="${tag.status.permalink}" th:text="${tag.spec.displayName}"></a>
+
+                    </section>
+
+
+                    <section class="article-copyright"
+                             th:if="${! #strings.isEmpty(theme.config.post.article_copyright)}">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright"
+                             width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                             fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z"></path>
+                            <circle cx="12" cy="12" r="9"></circle>
+                            <path d="M14.5 9a3.5 4 0 1 0 0 6"></path>
+                        </svg>
+
+
+                        <span th:text="${theme.config.post.article_copyright}">Licensed under CC BY-NC-SA 4.0</span>
+                    </section>
+                </footer>
+            </article>
+            <th:block th:if="${theme.config.post.enable_related_article == 'true'}">
+                <!--          Related Article-->
+                <th:block th:replace="~{modules/related-article :: related}"></th:block>
+            </th:block>
+            <!--        Comment-->
+            <th:block
+                    th:replace="~{modules/common/comment :: ${theme.config.base.comment_system}(name=${post.metadata.name}, kind='Post')}">
+
+            </th:block>
+
+
+            <!--Footer-->
+            <th:block th:replace="~{modules/common/footer :: footer}"></th:block>
+        </main>
     </div>
     <!--    Tail JS-->
     <th:block th:replace="~{modules/tail :: tail}"></th:block>
-  </th:block>
+</th:block>
 </html>

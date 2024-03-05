@@ -4,7 +4,7 @@
     <script th:src="@{/assets/lib/vibrant/vibrant.min.js}" integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin="anonymous">
     </script>
     <script th:src="@{/assets/dist/main.js?v={version}(version=${theme.spec.version})}" defer></script>
-    <script th:src="@{/assets/lib/prism/prism.min.js}"></script>
+<!--    <script th:src="@{/assets/lib/prism/prism.min.js}"></script>-->
     <script>
         (function() {
             const customFont = document.createElement('link');
@@ -15,6 +15,31 @@
 
             document.head.appendChild(customFont);
         }());
+    </script>
+    <script>
+        function articleSidebar(){
+            const sideContainer = document.querySelector('')
+        }
+        document.addEventListener('DOMContentLoaded', function () {
+            const currentPath = window.location.pathname; // 获取当前路径
+            const menuItems = document.querySelectorAll('#main-menu li a');
+            menuItems.forEach(function(item) {
+                if (item.getAttribute('href') === currentPath) {
+                    item.parentElement.classList.add('current');
+                }
+            });
+        });
+    </script>
+    <script th:if="${theme.config.base.search_style == 'default'}">
+        const searchBox = document.querySelector('.search-form')
+        if(searchBox){
+            searchBox.addEventListener('click', e=>{
+                e.preventDefault()
+                SearchWidget.open()
+            })
+
+        }
+
     </script>
 <!--    底部代码注入-->
     <halo:footer />
