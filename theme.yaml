@@ -1,7 +1,7 @@
 apiVersion: theme.halo.run/v1alpha1
 kind: Theme
 metadata:
-  name: theme-stack
+  name: theme-Stack2
 spec:
   customTemplates:
     page:
@@ -14,15 +14,15 @@ spec:
         screenshot:
         file: page_search.html
 
-  displayName: theme-stack
+  displayName: Theme-Stack
   author:
-    name: Jiewen
+    name: Jiewenhuang
     website: "https://Jiewen.run"
   description: 移植自hugo同名主题stack，一款优秀的个人博客模板。
   logo: "https://www.jiewen.run/upload/jiewen_icon.png"
   website: "https://Jiewen.run"
   repo: "https://github.com/jiewenhuang/halo-theme-stack"
-  settingName: "theme-stack-setting"
-  configMapName: "theme-stack-configMap"
-  version: "2.0.1"
+  settingName: "theme-Stack2-setting"
+  configMapName: "theme-Stack2-configMap"
+  version: "2.0.2"
   requires: ">=2.11.0"
