@@ -35,6 +35,9 @@
             <a th:href="@{${post.status.permalink}}" th:text="${post.spec.title}">
             </a>
           </h2>
+          <h3 class="article-subtitle" th:if="${! #strings.isEmpty(post.status.excerpt)}"
+              th:text="${post.status.excerpt}">
+          </h3>
         </div>
         <footer class=article-time>
           <div>
