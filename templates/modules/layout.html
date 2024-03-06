@@ -169,7 +169,7 @@
     var xhr = new XMLHttpRequest();
 
     // 设置请求方法和请求地址
-    xhr.open("GET", "https://www.aapi.icu/call/hot/weibo/?item=6", true);
+    xhr.open("GET", "https://zj.v.api.aa1.cn/api/weibo-rs/", true);
 
     // 发送请求
     xhr.send();
@@ -188,7 +188,7 @@
             ul.className = "hot-ranking-list";
 
             // 遍历热搜数据，创建li元素
-            for (var i = 0; i < hotData.length; i++) {
+            for (var i = 0; i < 5; i++) {
                 var hot = hotData[i];
 
                 // 创建li元素
@@ -197,28 +197,28 @@
 
                 // 创建a元素
                 var a = document.createElement("a");
-                a.href = hot.hot_url;
+                a.href = hot.url;
                 a.target = "_blank";
-                a.title = hot.hot_title;
+                a.title = hot.title;
 
                 // 创建span元素
                 var spanOrder = document.createElement("span");
-                spanOrder.className = "hot-ranking_order hot-ranking_order-" + hot.hot_rank;
-                spanOrder.textContent = hot.hot_rank;
+                spanOrder.className = "hot-ranking_order hot-ranking_order-" + hot.index;
+                spanOrder.textContent = hot.index;
 
                 var spanText = document.createElement("span");
                 spanText.className = "hot-ranking_text";
 
                 var spanTitle = document.createElement("span");
                 spanTitle.className = "hot-ranking_title";
-                spanTitle.textContent = hot.hot_title;
+                spanTitle.textContent = hot.title;
 
                 var spanNumber = document.createElement("span");
                 spanNumber.className = "hot-ranking_number";
-                spanNumber.textContent = hot.hot_value;
+                spanNumber.textContent = hot.hot;
 
                 var spanHot = document.createElement("span");
-                if (hot.hot_rank <= 3){
+                if (hot.index <= 3){
                     spanHot.className = "hot-ranking_hot";
                     spanHot.textContent = "热";
                 }
@@ -246,6 +246,16 @@
         }
     };
 
+</script>
+<script>
+    const searchBox = document.querySelector('.search-form')
+    if(searchBox){
+        searchBox.addEventListener('click', e=>{
+            e.preventDefault()
+            SearchWidget.open()
+        })
+
+    }
 </script>
 </body>
 </html>
