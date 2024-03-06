@@ -27,7 +27,8 @@
 ### 文档：[Stack 使用文档](https://www.jiewen.run/docs/stack)
 ### 版本说明
 在结构上：考虑到之前的版本并非正常的构建，导致无法修改js和css，不利于用户二次开发，于是重构了2.x版本，此版本与1.x并不通用，因此你可以把它当成一个新的主题来使用。  
-在样式上：此版本几乎不加入个性化样式，保留原来主题样式，如果您需要进行二次开发，可以在`src/styles/custom.scss`中添加，样式可以参考[L1nSn0w 's Blog-Hugo主题魔改](https://blog.linsnow.cn/p/modify-hugo/)
+在样式上：此版本几乎不加入个性化样式，保留原来主题样式，如果您需要进行二次开发，可以在`src/styles/custom.scss`中添加，样式可以参考[L1nSn0w 's Blog-Hugo主题魔改](https://blog.linsnow.cn/p/modify-hugo/)  
+原版本：原1.x版本已经移入1.x分支，需要的可以在此分支下载使用。
 ### 安裝
 直接通过后台应用市场安装或者下载[releases](https://github.com/jiewenhuang/halo-theme-stack/releases)，通过 Halo Console 后台主题安装处上传即可。
 
