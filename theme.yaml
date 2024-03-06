@@ -19,6 +19,6 @@ spec:
   repo: "https://github.com/jiewenhuang/halo-theme-stack"
   settingName: "theme-stack-setting"
   configMapName: "theme-stack-configMap"
-  version: "1.0.6"
+  version: "1.0.7"
   requires: ">=2.0.0"
 
