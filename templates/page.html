@@ -14,8 +14,9 @@
         <div class=article-details>
           <div class=article-title-wrapper>
             <h2 class=article-title>
-              <a th:href="${singlePage.status.permalink}">
-                关于
+              <a th:href="${singlePage.status.permalink}"
+                 th:text="${singlePage.spec.title}">
+
               </a>
             </h2>
           </div>

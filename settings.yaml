@@ -206,6 +206,12 @@ spec:
     - group: article
       label: 文章页
       formSchema:
+        - $formkit: text
+          name: article_copyright
+          id: article_copyright
+          label: 文章协议
+          value: "LICENSED UNDER CC BY-NC-SA 4.0"
+          options:
         - $formkit: select
           name: articleComment
           id: articleComment
