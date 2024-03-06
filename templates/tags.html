@@ -32,7 +32,7 @@
               </time>
             </footer>
           </div>
-          <div class=article-image>
+          <div class=article-image th:if="${! #strings.isEmpty(theme.config.basic.postRandomImg) or ! #strings.isEmpty(post.spec.cover)}">
             <img th:src="${post.spec.cover}"
                  width=120 height=120 th:alt="${post.spec.title}" loading=lazy>
           </div>
