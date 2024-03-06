@@ -22,7 +22,7 @@
   </a>  </a>
 </p>
 
-### 预览：[Jiewen's Blog](https://www.jiewen.run/?preview-theme=theme-stack)
+### 预览：[Jiewen's Blog](https://www.jiewen.run/?preview-theme=theme-Stack2)
 ![image](https://user-images.githubusercontent.com/5889006/190859441-141b5f81-8483-40d2-bd96-ebf85616a46d.png)
 ### 文档：[Stack 使用文档](https://www.jiewen.run/docs/stack)
 ### 版本说明
