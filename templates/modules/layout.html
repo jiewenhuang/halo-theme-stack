@@ -1,13 +1,65 @@
 <!DOCTYPE html>
 <html lang="en" th:fragment="html (title,header,content,head,footer,leftSidebar,rightSidebar,htmlType)" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta name=generator content="Hugo 0.104.1">
     <meta charset=utf-8>
     <meta name=viewport content="width=device-width,initial-scale=1">
     <title th:text="${title}"></title>
     <link rel=stylesheet th:href="@{/assets/css/style.css}">
     <link rel=stylesheet th:href="@{/assets/css/main.css}">
-<!--    <script type="text/javascript" th:src="@{/assets/js/stack.js}"></script>-->
+    <style>
+        :root {
+            --halo-comment-widget-base-font-family: var(--article-font-family);
+            --halo-comment-widget-base-font-size: var(--article-font-size);
+            --halo-search-widget-base-font-size: var(--article-font-size);
+            --halo-search-widget-base-font-family: var(--article-font-family);
+        }
+        :root [data-scheme="dark"] {
+            --halo-comment-widget-component-form-input-bg-color: #475569;
+            --halo-comment-widget-component-form-input-color: #ffffff;
+            --halo-comment-widget-component-form-input-border-color: #495056;
+            --halo-comment-widget-component-form-input-border-color-focus: #65a3ff;
+            --halo-comment-widget-component-form-input-box-shadow-focus: 0 0 0 0.15em #1c3966;
+            --halo-comment-widget-component-form-button-login-bg-color: #334155;
+            --halo-comment-widget-component-form-button-login-bg-color-hover: #475569;
+            --halo-comment-widget-component-form-button-login-border-color: #475569;
+            --halo-comment-widget-component-form-button-submit-border-color: #475569;
+            --halo-comment-widget-component-form-button-submit-border-color-hover: #64748b;
+            --halo-comment-widget-component-form-button-emoji-color: #cbd5e1;
+
+            --halo-comment-widget-component-comment-item-action-bg-color-hover: #475569;
+            --halo-comment-widget-component-comment-item-action-color: #64748b;
+            --halo-comment-widget-component-comment-item-action-color-hover: #94a3b8;
+
+            --halo-comment-widget-component-pagination-button-bg-color-hover: #475569;
+            --halo-comment-widget-component-pagination-button-bg-color-active: #475569;
+            --halo-comment-widget-component-pagination-button-border-color-active: #475569;
+
+            --halo-comment-widget-component-emoji-picker-rgb-color: 222, 222, 221;
+            --halo-comment-widget-component-emoji-picker-rgb-accent: 58, 130, 247;
+            --halo-comment-widget-component-emoji-picker-rgb-background: 21, 22, 23;
+            --halo-comment-widget-component-emoji-picker-rgb-input: 0, 0, 0;
+            --halo-comment-widget-component-emoji-picker-color-border: rgba(255, 255, 255, 0.1);
+            --halo-comment-widget-component-emoji-picker-color-border-over: rgba(255, 255, 255, 0.2);
+
+
+            --halo-search-widget-color-modal-layer: rgba(0, 0, 0, 0.8);
+            --halo-search-widget-color-modal-content-bg: rgb(15 23 42);
+            --halo-search-widget-color-form-input: rgb(255, 255, 255);
+            --halo-search-widget-color-form-input-placeholder: rgb(148 163 184);
+            --halo-search-widget-color-form-input-bg: rgb(15 23 42);
+            --halo-search-widget-color-form-divider: rgb(30 41 59);
+            --halo-search-widget-color-result-item-bg: rgb(30 41 59);
+            --halo-search-widget-color-result-item-hover-bg: rgb(51 65 85);
+            --halo-search-widget-color-result-item-title: rgb(255 255 255);
+            --halo-search-widget-color-result-item-content: rgb(148 163 184);
+            --halo-search-widget-color-command-kbd-item: rgb(148 163 184);
+            --halo-search-widget-color-command-kbd-border: rgb(30 41 59);
+            --halo-search-widget-color-result-empty: rgb(148 163 184);
+        }
+
+
+
+    </style>
     <link rel="shortcut icon" th:href="@{${#strings.isEmpty(site.favicon) ? '/assets/img/jiewen_icon.png' : site.favicon}}"/>
 </head>
 <body class=article-page>
@@ -75,55 +127,18 @@
 <script type="text/javascript" th:src="@{/assets/js/plugins.js}"></script>
 </th:block>
 <script type="text/javascript">
-
-    // 获取导航栏中所有的链接元素
-    const navLinks = document.querySelectorAll('#main-menu a');
-
-    // 定义函数用于清除所有链接的选中类、为当前点击的链接的父元素添加选中类以及使用本地存储保存选中状态
-    function updateNavSelection(link) {
-        // 去除所有链接元素的选中类
-        navLinks.forEach(function(link) {
-            link.parentNode.classList.remove('current');
-        });
-
-        // 为当前点击的链接元素的父元素添加选中类
-        link.parentNode.classList.add('current');
-
-        // 使用本地存储保存选中状态
-        localStorage.setItem('selectedNavLink', link.getAttribute('href'));
+    function articleSidebar(){
+        const sideContainer = document.querySelector('')
     }
-
-    // 为每个链接元素添加点击事件监听器
-    navLinks.forEach(function(link) {
-        link.addEventListener('click', function() {
-            updateNavSelection(this);
+    document.addEventListener('DOMContentLoaded', function () {
+        const currentPath = window.location.pathname; // 获取当前路径
+        const menuItems = document.querySelectorAll('#main-menu li a');
+        menuItems.forEach(function(item) {
+            if (item.getAttribute('href') === currentPath) {
+                item.parentElement.classList.add('current');
+            }
         });
     });
-
-    // 在页面加载时清除所有链接的选中类，并使用本地存储中的选中状态来为对应的链接的父元素添加选中类
-    const selectedNavLink = localStorage.getItem('selectedNavLink');
-    if (selectedNavLink) {
-        const selectedLink = document.querySelector(`#main-menu a[href="${selectedNavLink}"]`);
-        if (selectedLink) {
-            updateNavSelection(selectedLink);
-        }
-    }
-
-    // 获取当前页面的 URL
-    const currentURL = window.location.href;
-
-    // 检查当前页面是否是导航栏中的链接
-    navLinks.forEach(function(link) {
-        // 获取链接的 URL
-        const linkURL = link.getAttribute('href');
-
-    // 如果链接的 URL 与当前页面的 URL 相同，则为该链接的父元素添加选中类
-        if (linkURL === currentURL) {
-            updateNavSelection(link);
-        }
-    });
-
-
 </script>
 <th:block th:if="${theme.config.basic.lazyLoading}">
 <script>
