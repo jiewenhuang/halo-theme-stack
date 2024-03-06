@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
 <th:block th:fragment="pagination">
-    <th:block th:if="${pageType == 'index'}" th:fragment="index">
+    <th:block th:fragment="index">
 
         <th:block
                 th:if="${posts.hasPrevious() || posts.hasNext()}"
