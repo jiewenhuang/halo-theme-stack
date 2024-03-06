@@ -20,7 +20,7 @@
           [[${category.spec.description}]]
         </h2>
       </div>
-      <div class=section-image th:if="${! #strings.isEmpty(theme.config.basic.postRandomImg) or ! #strings.isEmpty(post.spec.cover)}">
+      <div class=section-image th:if="${! #strings.isEmpty(theme.config.basic.postRandomImg) or ! #strings.isEmpty(category.spec.cover)}">
           <th:block th:if="${theme.config.basic.lazyLoading}">
         <img th:data-src="${category.spec.cover}"
              th:src="${theme.config.basic.lazyUrl}" class="lazyLoading"

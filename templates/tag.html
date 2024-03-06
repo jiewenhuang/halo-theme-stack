@@ -32,7 +32,7 @@
               </time>
             </footer>
           </div>
-          <div class=article-image>
+          <div class=article-image th:if="${! #strings.isEmpty(theme.config.basic.postRandomImg) or ! #strings.isEmpty(post.spec.cover)}">
             <th:block th:if="${theme.config.basic.lazyLoading}">
             <img th:data-src="${#strings.isEmpty(post.spec.cover) ? theme.config.basic.postRandomImg+'?pageid='+post.metadata.name : post.spec.cover}"
                  th:src="${theme.config.basic.lazyUrl}" class="lazyLoading"
