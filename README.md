@@ -12,10 +12,10 @@
 
 <p class="badge-row" align="center">
   <a href="https://halo.run" target="_blank">
-    <img src="https://img.shields.io/badge/dynamic/yaml?label=Halo&query=%24.spec.requires&url=https://raw.githubusercontent.com/jiewenhuang/halo-theme-stack/main/theme.yaml&color=113,195,71" alt="Halo"/>
+    <img src="https://img.shields.io/badge/dynamic/yaml?label=Halo&query=%24.spec.requires&url=https://raw.githubusercontent.com/jiewenhuang/halo-theme-stack/1.x/theme.yaml&color=113,195,71" alt="Halo"/>
   </a>
   <a href="https://github.com/jiewenhuang/halo-theme-stack" target="_blank">
-    <img src="https://img.shields.io/github/v/release/jiewenhuang/halo-theme-stack" alt="Release"/>
+    <img src="https://img.shields.io/badge/dynamic/yaml?label=Halo&query=%24.spec.version&url=https://raw.githubusercontent.com/jiewenhuang/halo-theme-stack/1.x/theme.yaml&color=64,127,188" alt="Release"/>
   </a>
   <a href="https://github.com/jiewenhuang/halo-theme-stack/blob/main/LICENSE" target="_blank">
 <img src="https://img.shields.io/badge/License-GPL%20v3.0-green.svg" alt="GPL-3.0 License">
