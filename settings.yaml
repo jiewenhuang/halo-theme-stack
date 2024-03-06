@@ -1,7 +1,7 @@
 apiVersion: v1alpha1
 kind: Setting
 metadata:
-  name: theme-stack-setting
+  name: theme-Stack2-setting
 spec:
   forms:
     - group: base
@@ -92,7 +92,7 @@ spec:
             - $formkit: attachment
               name: avatar
               label: 头像链接
-              value: "/themes/theme-stack/assets/images/avatar.png"
+              value: "/themes/theme-Stack2/assets/images/avatar.png"
               help: "左侧边栏头像链接，不填则使用默认"
             - $formkit: text
               name: name
