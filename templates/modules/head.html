@@ -6,7 +6,7 @@
     <meta name="description" content="Lorem ipsum dolor sit amet, consectetur adipiscing elit.">
     <title th:text="${#strings.isEmpty(title)? site.title : title+'-'+site.title}"></title>
     <link rel="stylesheet" th:href="@{/assets/dist/style.css?v={version}(version=${theme.spec.version})}" href="./assets/dist/style.css" />
-    <link rel="stylesheet" th:href="@{/assets/iconfont/iconfont.css}" />
+    <link rel="stylesheet" href="//at.alicdn.com/t/c/font_4436010_j51rkq7kvgr.css" />
     <meta property="og:title" th:content="${#strings.isEmpty(title)? site.title : title+'-'+site.title}">
     <meta property="og:description" th:content="${site.seo.description}">
     <meta property="og:site_name" th:content="${site.title}">
