@@ -1,0 +1,62 @@
+.gallery-photos {
+  width: 100%;
+}
+
+.gallery-photo {
+  width: 24.9%;
+  position: relative;
+  visibility: hidden;
+  overflow: hidden;
+}
+
+.gallery-photo.visible {
+  visibility: visible;
+  animation: fadeIn 2s;
+  border-radius: var(--card-border-radius);
+}
+
+.gallery-photo img {
+  display: block;
+  width: 100%;
+  border-radius: var(--card-border-radius);
+  box-shadow: var(--shadow-l1);
+  padding: 4px;
+  animation: fadeIn 1s;
+  cursor: pointer;
+  transition: all .4s ease-in-out;
+}
+
+.gallery-photo:hover img {
+  transform: scale(1.1);
+}
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+  img {
+    width: 5.8rem;
+  }
+
+}
+
+@media screen and (max-width: 1280px) {
+  .gallery-photo {
+    width: 33.3%;
+  }
+}
+
+@media screen and (max-width: 860px) {
+  .gallery-photo {
+    width: 49.9%;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

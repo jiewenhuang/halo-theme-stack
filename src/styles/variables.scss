@@ -53,10 +53,13 @@ $defaultTagColors: #fff, #fff, #fff, #fff, #fff;
 :root {
     --card-background: #fff;
     --card-background-selected: #eaeaea;
+    --card-background-color-purple: rgba(0.49, 0.31, 275.75, 0.1);
 
     --card-text-color-main: #000;
     --card-text-color-secondary: #747474;
     --card-text-color-tertiary: #767676;
+    --card-text-color-purple: rgba(0.49, 0.31, 275.75, 0.8);
+
     --card-separator-color: rgba(218, 218, 218, 0.5);
 
     --card-border-radius: 10px;
@@ -80,9 +83,11 @@ $defaultTagColors: #fff, #fff, #fff, #fff, #fff;
     &[data-scheme="dark"] {
         --card-background: #424242;
         --card-background-selected: rgba(255, 255, 255, 0.16);
+        --card-background-color-purple: rgb(146, 144, 195);
         --card-text-color-main: rgba(255, 255, 255, 0.9);
         --card-text-color-secondary: rgba(255, 255, 255, 0.7);
         --card-text-color-tertiary: rgba(255, 255, 255, 0.5);
+        --card-text-color-purple: rgba(0.49, 0.31, 275.75, 0.6);
         --card-separator-color: rgba(255, 255, 255, 0.12);
     }
 }

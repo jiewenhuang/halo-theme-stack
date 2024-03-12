@@ -24,5 +24,5 @@ spec:
   repo: "https://github.com/jiewenhuang/halo-theme-stack"
   settingName: "theme-Stack2-setting"
   configMapName: "theme-Stack2-configMap"
-  version: "2.0.2"
+  version: "2.1.0"
   requires: ">=2.11.0"
