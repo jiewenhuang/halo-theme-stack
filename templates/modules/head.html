@@ -8,6 +8,7 @@
     <link rel="stylesheet" th:href="@{/assets/dist/style.css?v={version}(version=${theme.spec.version})}" href="./assets/dist/style.css" />
     <link rel="stylesheet" href="//at.alicdn.com/t/c/font_4436010_j51rkq7kvgr.css" />
     <meta property="og:title" th:content="${#strings.isEmpty(title)? site.title : title+'-'+site.title}">
+    <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" th:if="${pageType == 'moments'}" />
     <meta property="og:description" th:content="${site.seo.description}">
     <meta property="og:site_name" th:content="${site.title}">
     <meta property="og:type" content="website">

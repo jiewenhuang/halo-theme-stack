@@ -203,7 +203,7 @@
     }
 }
 
-.article-content {
+.article-content, .item-content {
     font-family: var(--article-font-family);
     font-size: var(--article-font-size);
     padding: 0 var(--card-padding);

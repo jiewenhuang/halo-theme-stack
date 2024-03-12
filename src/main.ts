@@ -79,7 +79,7 @@ let Stack = {
             divWrapper.appendChild(preTag);
         });
 
-        const highlights = document.querySelectorAll('.article-content div.highlight');
+        const highlights = document.querySelectorAll('.article-content div.highlight,.item-html .highlight');
         const copyText = `Copy`,
             copiedText = `Copied!`;
 
