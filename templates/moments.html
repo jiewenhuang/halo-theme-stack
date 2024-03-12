@@ -50,6 +50,58 @@
                                             </th:block>
                                     </div>
                                 </div>
+                                <div class="moment-footer">
+                                    <div class="moment-footer-item moment-footer-like" th:data-upvote-moment-name="${moment.metadata.name}">
+                                        <i class="icon stack icon-aixin1"></i>
+                                        <i class="icon stack icon-aixin2" style="display: none"></i>
+                                        <span th:text="${moment.stats.upvote}">0</span>
+                                    </div>
+                                    <div class="moment-footer-item moment-footer-comment" th:data--moment-name="${moment.metadata.name}" onclick="showComment(this.getAttribute('data--moment-name'))">
+                                        <i class="icon stack icon-31pinglun"></i>
+                                        <span th:text="${moment.stats.approvedComment}"
+                                              th:if="${theme.config.base.comment_system == 'default'}">0</span>
+                                        <span class="waline-comment-count"
+                                              th:if="${theme.config.base.comment_system == 'waline'}"
+                                              th:data-path="'/moments/'+${moment.metadata.name}">0</span>
+                                    </div>
+                                    <div class="moment-footer-item moment-footer-time">
+                                        <i class="icon stack icon-rili"></i>
+                                        <span th:text="${#dates.format(moment.spec.releaseTime, 'yyyy-MM-dd')}">0</span>
+                                    </div>
+                                </div>
+                                <div class="moment-comment" style="display: none" th:data-comment-moment-name="${moment.metadata.name}">
+                                    <th:block th:if="${theme.config.base.comment_system == 'default'}">
+                                    <halo:comment
+                                            group="moment.halo.run"
+                                            kind="Moment"
+                                            th:attr="name=${moment.metadata.name}"
+                                    />
+                                        </th:block>
+                                    <th:block th:if="${theme.config.base.comment_system == 'waline'}">
+                                        <div th:id="${moment.metadata.name}"></div>
+                                        <script th:src="@{/assets/lib/waline/waline.js}"></script>
+                                        <link rel="stylesheet"
+                                              th:href="@{/assets/lib/waline/waline.css}"
+                                        />
+                                        <style>
+                                            .moment-comment{
+                                                --waline-font-size: var(--article-font-size);
+                                            }
+
+                                        </style>
+                                        <script type="module" th:inline="javascript" th:if="${theme.config.base.waline.waline_setting == 'default'}">
+                                            Waline.init({
+                                                el: /*[[${'#'+moment.metadata.name}]]*/'',
+                                                dark: 'html[data-mode="dark"]',
+                                                serverURL: /*[[${theme.config.base.waline.waline_url}]]*/"",
+                                                path: '/moments/'+/*[[${moment.metadata.name}]]*/'',
+                                                comment: true,
+                                                requiredMeta:['nick', 'mail'],
+                                            });
+
+                                        </script>
+                                    </th:block>
+                                </div>
                             </div>
 
                         </li>
@@ -83,6 +135,68 @@
                         }else if(currentSearch === '' && linkSearch === ''){
                             link.classList.add('active');
                         }
+                    });
+                });
+                const showComment = (name) => {
+                    const comment = document.querySelector('.moment-comment[data-comment-moment-name="'+name+'"]');
+                    if(comment.style.display === 'none'){
+                        comment.style.display = 'block';
+                    }else{
+                        comment.style.display = 'none';
+                    }
+                }
+
+            </script>
+            <script>
+                const UpvoteManager = (itemType='moment', group, pluralForm) => ({
+                    upvotedItems: [],
+                    init() {
+                        this.upvotedItems = JSON.parse(localStorage.getItem(`stack-upvote.${itemType}.names`) || "[]");
+                    },
+                    hasUpvoted(itemName) {
+                        return this.upvotedItems.includes(itemName);
+                    },
+                    async handleUpvote(itemName) {
+                        if (this.hasUpvoted(itemName)) return;
+
+                        const xhr = new XMLHttpRequest();
+                        xhr.open("POST", "/apis/api.halo.run/v1alpha1/trackers/upvote");
+                        xhr.setRequestHeader("Content-Type", "application/json");
+                        xhr.onload = () => {
+                            this.upvotedItems = [...this.upvotedItems, itemName];
+                            localStorage.setItem(`stack-upvote.${itemType}.names`, JSON.stringify(this.upvotedItems));
+                            document.querySelector(`[data-upvote-moment-name="${itemName}"]`).classList.add('upvoted')
+                            const upvoteElements = document.querySelectorAll(`[data-upvote-moment-name="${itemName}"] span`);
+                            if (upvoteElements && upvoteElements.length > 0) {
+                                upvoteElements.forEach(element => {
+                                    const currentCount = parseInt(element.textContent || "0");
+                                    element.textContent = (currentCount + 1).toString();
+                                });
+                            }
+                        };
+                        xhr.onerror = function() {
+                            alert("Network request failed, please try again later");
+                        };
+                        xhr.send(JSON.stringify({
+                            group: group,
+                            plural: pluralForm,
+                            name: itemName
+                        }));
+                    }
+                });
+                const commentUpvoteManager = UpvoteManager('moment', 'moment.halo.run', 'moments');
+                document.addEventListener('DOMContentLoaded', (event) => {
+                    commentUpvoteManager.init();
+                    document.querySelectorAll('.moment-footer-like').forEach(button => {
+                        const itemName = button.getAttribute('data-upvote-moment-name');
+                        if (commentUpvoteManager.hasUpvoted(itemName)) {
+                            button.classList.add('upvoted');
+                        }
+
+                        button.addEventListener('click', function() {
+                            commentUpvoteManager.handleUpvote(itemName);
+
+                        });
                     });
                 });
 
