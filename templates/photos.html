@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" th:replace="~{modules/layout :: html(content = ~{::content}, title=${theme.config.photos.title}, pageType='photo' )}">
+<th:block th:fragment="content">
+    <div class="container main-container flex on-phone--column extended">
+        <!--      Left Sidebar-->
+        <th:block th:replace="~{modules/common/left-sidebar :: left-sidebar}"></th:block>
+
+
+        <main class="main full-width">
+            <article class="main-article">
+                <header class="article-header">
+                    <div class="article-details">
+                        <div class="article-title-wrapper">
+                            <h2 class="article-title">
+                                <a href="index.html"
+                                   th:if="${! #strings.isEmpty(theme.config.photos.title)}"
+                                   th:text="${theme.config.photos.title}"></a>
+                            </h2>
+                            <h3 class="article-subtitle" th:if="${! #strings.isEmpty(theme.config.photos.description)}"
+                                th:text="${theme.config.photos.description}">
+                            </h3>
+
+                        </div>
+
+
+
+
+
+
+
+                    </div>
+
+                </header>
+
+                <section class="article-content">
+
+
+
+                </section>
+
+
+                <footer class="article-footer">
+
+
+                </footer>
+
+
+
+            </article>
+            <div class="gallery-photos page" th:data-page="${photos.page}"  th:data-total-page="${photos.totalPages}">
+                <div class="gallery-photo visible" th:each="photo : ${photos.items}" >
+                    <img class="photo-img"  decoding="async" th:data-src="${photo.spec.url}" th:src="@{/assets/images/photo_loading.gif}" th:alt="${photo.spec.displayName}">
+                </div>
+
+            </div>
+            <div class="loading">
+                <img th:src="@{/assets/images/loading-ball.svg}" alt="loading">
+
+            </div>
+
+            <!--Footer-->
+            <th:block th:replace="~{modules/common/footer :: footer}"></th:block>
+            <script th:src="@{/assets/dist/photos.js?v={version}(version=${theme.spec.version})}"></script>
+
+            <script th:src="@{/assets/lib/ViewImage/view-image.min.js}"></script>
+            <script>
+                window.ViewImage && ViewImage.init('.gallery-photo img')
+            </script>
+
+
+        </main>
+    </div>
+    <!--    Tail JS-->
+    <th:block th:replace="~{modules/tail :: tail}"></th:block>
+
+
+</th:block>
+</html>

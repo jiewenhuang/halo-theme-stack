@@ -256,6 +256,19 @@ spec:
               label: "文章页优先"
             - value: "links_first"
               label: "友链页优先"
+    - group: photos
+      label: 相册
+      formSchema:
+        - $formkit: text
+          name: title
+          label: 相册标题
+          value: "相册"
+          help: "相册标题"
+        - $formkit: text
+          name: description
+          label: 相册描述
+          value: "这里是相册描述"
+          help: "相册描述"
 
 
 
