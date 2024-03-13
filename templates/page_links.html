@@ -163,12 +163,12 @@
                 </footer>
             </article>
             </th:block>
-            <!--        Comment-->
-            <th:block th:if="${theme.config.links.enable_comment}">
-            <th:block
-                    th:replace="~{modules/common/comment :: ${theme.config.base.comment_system}(name=${singlePage.metadata.name}, kind='SinglePage')}">
+            <th:block th:if="${#annotations.getOrDefault(singlePage, 'showComment', 'false')  == 'true'}">
+                <!--        Comment-->
+                <th:block
+                        th:replace="~{modules/common/comment :: ${theme.config.base.comment_system}(name=${singlePage.metadata.name}, kind='SinglePage')}">
 
-            </th:block>
+                </th:block>
             </th:block>
 
             <!--Footer-->
