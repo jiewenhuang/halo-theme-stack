@@ -1,7 +1,48 @@
 apiVersion: v1alpha1
 kind: AnnotationSetting
 metadata:
-  generateName: annotation-setting-
+  name: stack-annotation-post-setting
+spec:
+  targetRef:
+    group: content.halo.run
+    kind: Post
+  formSchema:
+    - $formkit: "select"
+      name: "showComment"
+      label: "显示评论"
+      value: "true"
+      options:
+        - value: "true"
+          label: "是"
+        - value: "false"
+          label: "否"
+
+---
+apiVersion: v1alpha1
+kind: AnnotationSetting
+metadata:
+  name: stack-annotation-singlePage-setting
+spec:
+  targetRef:
+    group: content.halo.run
+    kind: SinglePage
+  formSchema:
+    - $formkit: "select"
+      name: "showComment"
+      label: "显示评论"
+      value: "false"
+      options:
+        - value: "true"
+          label: "是"
+        - value: "false"
+          label: "否"
+
+---
+
+apiVersion: v1alpha1
+kind: AnnotationSetting
+metadata:
+  name: stack-annotation-menuItem-setting
 spec:
   targetRef:
     group: ""
