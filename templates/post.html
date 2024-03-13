@@ -116,10 +116,12 @@
                 <!--          Related Article-->
                 <th:block th:replace="~{modules/related-article :: related}"></th:block>
             </th:block>
+            <th:block th:if="${#annotations.getOrDefault(post, 'showComment', 'true')  == 'true'}">
             <!--        Comment-->
             <th:block
                     th:replace="~{modules/common/comment :: ${theme.config.base.comment_system}(name=${post.metadata.name}, kind='Post')}">
 
+            </th:block>
             </th:block>
 
 

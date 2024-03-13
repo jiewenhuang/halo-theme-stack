@@ -163,15 +163,16 @@
                 </footer>
             </article>
             </th:block>
+            <!--        Comment-->
+            <th:block th:if="${theme.config.links.enable_comment}">
+            <th:block
+                    th:replace="~{modules/common/comment :: ${theme.config.base.comment_system}(name=${singlePage.metadata.name}, kind='SinglePage')}">
+
+            </th:block>
+            </th:block>
 
             <!--Footer-->
             <th:block th:replace="~{modules/common/footer :: footer}"></th:block>
-            <th:block th:replace="~{modules/pswp :: pswp}"></th:block>
-            <script th:src="@{/assets/lib/photoswipe/js/photoswipe.min.js}" integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin="anonymous" defer=""></script>
-            <script th:src="@{/assets/lib/photoswipe/js/photoswipe-ui-default.min.js}" integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin="anonymous" defer="">
-            </script>
-            <link rel="stylesheet" th:href="@{/assets/lib/photoswipe/css/default-skin.min.css}" crossorigin="anonymous">
-            <link rel="stylesheet" th:href="@{/assets/lib/photoswipe/css/photoswipe.min.css}" crossorigin="anonymous">
 
         </main>
     </div>
