@@ -21,7 +21,7 @@
         </header>
         <ol class="social-menu" th:if="${! #strings.isEmpty(theme.config.leftSidebar.social_links)}">
             <li th:each="social_data : ${theme.config.leftSidebar.social_links}">
-                <a th:href="${social_data.link}" target="_blank"  rel="me">
+                <a th:href="${social_data.link}" target="_blank"  rel="me" >
                     <i th:class="${social_data.icon_code == 'custom' ? social_data.custom_icon : social_data.icon_code}"></i>
                 </a>
             </li>

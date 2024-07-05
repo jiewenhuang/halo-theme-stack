@@ -48,7 +48,7 @@ stack 主题支持以下 Halo 插件：
 ### 使用说明
 > 1、部分功能是使用插件进行支持  
 > 2、导航icon 推荐使用iconfont  
-> 3、使用搜索请安装插件后新建页面选择search模板，别名为‘search’
+> 3、~~使用搜索请安装插件后新建页面选择search模板，别名为‘search’ （2.2.4版本已适配插件路由）~~
 - [x] 卡片化设计
 - [x] 响应式主题
 - [x] 深色模式
@@ -104,7 +104,16 @@ pnpm dev
 - [plugin-links](https://github.com/halo-sigs/plugin-links)
 - [plugin-comment-widget](https://github.com/halo-sigs/plugin-comment-widget)
 - [plugin-search-widget](https://github.com/halo-sigs/plugin-search-widget)
-
+- 
 - ......
 
 <br>
+### TinyTale Halo2 配套小程序
+- [TinyTale](https://www.jiewen.run/archives/TinyTale-formal-edition)
+基于Halo2.0的小程序，支持文章列表、文章详情、分类列表、图库展示、瞬间展示、评论展示、发布图库、发布瞬间、支持随机图、配套插件等功能。
+
+### 预览
+![image](https://source-gz-img.lanyuku.com/jiewen/2024/04/26/111.png)
+![image](https://source-gz-img.lanyuku.com/jiewen/2024/04/26/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%A2%84%E8%A7%88%E5%9B%BE.jpg)  
+![image](https://source-gz-img.lanyuku.com/jiewen/2024/04/26/%E5%B0%8F%E7%A8%8B%E5%BA%8F-%E9%A2%84%E8%A7%882.jpg)  
+![image](https://source-gz-img.lanyuku.com/jiewen/2024/04/26/%E5%B0%8F%E7%A8%8B%E5%BA%8F-%E9%A2%84%E8%A7%883.jpg)  

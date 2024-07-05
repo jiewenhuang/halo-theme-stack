@@ -199,7 +199,7 @@ spec:
                 - value: "categoryCloud"
                   label: 分类
                 - value: "tagCloud"
-                  label: 分类
+                  label: 标签
     - group: post
       label: 文章页
       formSchema:

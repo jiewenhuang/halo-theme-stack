@@ -35,7 +35,7 @@
                             </footer>
                         </div>
                         <div class="article-image" th:if="${! #strings.isEmpty(post.spec.cover)}">
-                            <img th:src="${post.spec.cover}" width="120" height="120" alt="Hello World" loading="lazy">
+                            <img th:src="${post.spec.cover}" width="120" height="120" :alt="post.spec.title" loading="lazy">
 
                         </div>
 
