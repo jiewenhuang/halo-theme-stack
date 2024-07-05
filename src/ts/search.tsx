@@ -1,12 +1,20 @@
 interface pageData {
-    content:string,
-    name:string,
-    permalink:string,
-    publishTimestamp:string,
-    title:string
-
+    id: string
+    metadataName: string
+    title: string
+    description?: string
+    content?: string
+    categories: string[]
+    tags: string[]
+    published: boolean
+    recycled: boolean
+    exposed: boolean
+    ownerName: string
+    creationTimestamp: string
+    updateTimestamp: string
+    permalink: string
+    type: string
 }
-
 
 /**
  * Escape HTML tags as HTML entities
@@ -169,7 +177,7 @@ class Search {
 
         const preview = document.createElement('section');
         preview.className = 'article-preview';
-        preview.innerHTML = item.content;
+        preview.innerHTML = item.description as string;
 
         details.appendChild(title);
         details.appendChild(preview);
