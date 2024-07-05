@@ -177,7 +177,7 @@ class Search {
 
         const preview = document.createElement('section');
         preview.className = 'article-preview';
-        preview.innerHTML = item.description as string;
+        preview.innerHTML = item.description || '';
 
         details.appendChild(title);
         details.appendChild(preview);
