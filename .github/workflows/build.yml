@@ -15,9 +15,8 @@ jobs:
         with:
           node-version: 20
       - name: Setup pnpm
-        uses: pnpm/action-setup@v2.2.4
+        uses: pnpm/action-setup@v4
         with:
-          version: 8
           run_install: false
       # 添加一个步骤来构建文件
       - name: Install dependencies and build
