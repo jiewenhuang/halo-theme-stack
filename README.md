@@ -107,13 +107,15 @@ pnpm dev
 - 
 - ......
 
-<br>
-### TinyTale Halo2 配套小程序
-- [TinyTale](https://www.jiewen.run/archives/TinyTale-formal-edition)
+<br>  
+### QQ交流群
+QQ群号（929708466）欢迎大家前来交流分享  
+
+![QQ群](./doc_images/IMG_3508(20240717-140309).JPG)
+
+### TinyTale Halo2 配套小程序  
+
+[TinyTale](https://www.jiewen.run/archives/TinyTale-formal-edition)
 基于Halo2.0的小程序，支持文章列表、文章详情、分类列表、图库展示、瞬间展示、评论展示、发布图库、发布瞬间、支持随机图、配套插件等功能。
 
-### 预览
-![image](https://source-gz-img.lanyuku.com/jiewen/2024/04/26/111.png)
-![image](https://source-gz-img.lanyuku.com/jiewen/2024/04/26/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%A2%84%E8%A7%88%E5%9B%BE.jpg)  
-![image](https://source-gz-img.lanyuku.com/jiewen/2024/04/26/%E5%B0%8F%E7%A8%8B%E5%BA%8F-%E9%A2%84%E8%A7%882.jpg)  
-![image](https://source-gz-img.lanyuku.com/jiewen/2024/04/26/%E5%B0%8F%E7%A8%8B%E5%BA%8F-%E9%A2%84%E8%A7%883.jpg)  
+![TinyTale](./doc_images/111.png)
