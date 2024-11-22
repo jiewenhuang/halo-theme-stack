@@ -29,7 +29,7 @@
                         </h2>
 
                         <h3 class="article-subtitle"
-                            th:text="${post.status.excerpt}">
+                            th:text="${#strings.length(post.status.excerpt) > 100 ? #strings.substring(post.status.excerpt, 0, 100) + '...' : post.status.excerpt}">
                         </h3>
 
                     </div>
